@@ -1,0 +1,6 @@
+[user]
+	email = chuanscareer@gmail.com
+	name = Chuan He
+[core]
+	editor = nvim
+    excludesfile = ~/.config/git/ignore
