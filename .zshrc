@@ -39,7 +39,7 @@ hash -d api=~/GitHub/fieldwire_api
 hash -d web=~/GitHub/fieldwire_web_app
 
 #Suffix Aliases
-alias -s {rb,json,c,cs,py,md,txt}=nvim
+alias -s {lua,vim,csharp,js,rb,json,c,cs,py,md,txt}=nvim
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
