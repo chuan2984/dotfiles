@@ -3,4 +3,6 @@
 	name = Chuan He
 [core]
 	editor = nvim
-    excludesfile = ~/.config/git/ignore
+  excludesfile = ~/.config/git/ignore
+[alias]
+   whoami = config user.email
