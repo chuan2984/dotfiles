@@ -37,3 +37,6 @@ vim.opt.guifont = "monospace:h17"               -- the font used in graphical ne
 vim.opt.shortmess:append "c"
 
 vim.cmd [[set iskeyword+=-]]
+-- sets the popup menu background to a bluish-grey color
+local bluish_grey = [[#7f8abe]]
+vim.cmd ([[hi Pmenu ctermbg=grey guibg=]] .. bluish_grey .. [[]])
