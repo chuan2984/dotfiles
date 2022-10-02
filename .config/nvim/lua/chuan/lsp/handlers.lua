@@ -1,5 +1,5 @@
 local model = {}
--- TODO: backfill this to template
+
 function model.setup()
   local signs = {
     { name = "DiagnosticSignError", text = "" },
@@ -33,7 +33,6 @@ function model.setup()
   }
 
   vim.diagnostic.config(config)
-  print('inside m.setup')
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
     border = "rounded",
   })
@@ -75,7 +74,7 @@ local function lsp_keymaps(bufnr)
     bufnr,
     "n",
     "gl",
-    '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "rounded" })<CR>',
+    '<cmd>lua vim.diagnostic.open_float({ border = "rounded" })<CR>',
     opts
   )
   vim.api.nvim_buf_set_keymap(bufnr, "n", "]d", '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
@@ -87,6 +86,7 @@ function model.on_attach(client, bufnr)
   lsp_keymaps(bufnr)
   lsp_highlight_document(client)
 end
+
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 

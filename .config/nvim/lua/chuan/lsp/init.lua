@@ -1,8 +1,11 @@
-local status_ok, _ = pcall(require, "lspconfig")
+-- load mason to handle LSP related tasks
+local status_ok, mason = pcall(require, "mason")
 if not status_ok then
-  print('not able to load lspconfig')
-  return
+  print('unable to load mason')
+	return
 end
+mason.setup()
 
-require("chuan.lsp.lsp-installer")
-require("chuan.lsp.handlers").setup()
+-- setups all LSP related configurations
+require("chuan.lsp.lsp-configuration")
+

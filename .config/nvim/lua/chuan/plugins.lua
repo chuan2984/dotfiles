@@ -56,8 +56,9 @@ return packer.startup(function(use)
   -- use "Saecki/crates.nvim" -- rust crates completion
 
   -- LSP
-  use "neovim/nvim-lspconfig" -- enable LSP
-  use "williamboman/nvim-lsp-installer" -- simple to use language server installer
+  use "williamboman/mason.nvim" -- enable LSP
+  use "williamboman/mason-lspconfig.nvim" -- enable LSP
+  use "neovim/nvim-lspconfig" -- simple to use language server installer
 
   -- snippets
   use "L3MON4D3/LuaSnip" --snippet engine
