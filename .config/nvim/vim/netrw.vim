@@ -24,6 +24,8 @@ function! NetrwMapping()
   nmap <buffer> . gh
   nmap <buffer> P <C-w>z
 
+  " needed this to 
+  nmap <buffer> <C-l> <C-w>l
   nmap <buffer> <Leader>dd :Lexplore<CR>
 
   nmap <buffer> <TAB> mf
@@ -47,7 +49,6 @@ function! NetrwMapping()
   nmap <buffer> FF :call NetrwRemoveRecursive()<CR>
 
 endfunction
-
 
 " Remove files recursively
 function! NetrwRemoveRecursive()
