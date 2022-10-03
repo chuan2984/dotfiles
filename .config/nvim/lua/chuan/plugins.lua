@@ -45,6 +45,7 @@ return packer.startup(function(use)
   use "nvim-lua/popup.nvim" -- An implementation of the Popup API from vim in Neovim
   use "nvim-lua/plenary.nvim" -- Useful lua functions used ny lots of plugins
   use "numToStr/Comment.nvim" -- easily comment stuff
+  use "lewis6991/impatient.nvim" -- make startup faster by chaching
 
   -- Git
   use "lewis6991/gitsigns.nvim"

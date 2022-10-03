@@ -11,6 +11,7 @@ require 'chuan.telescope'
 require 'chuan.treesitter'
 require 'chuan.comment'
 require 'chuan.gitsigns'
+require 'chuan.impatient'
 
 -- directory
 require 'chuan.lsp'
