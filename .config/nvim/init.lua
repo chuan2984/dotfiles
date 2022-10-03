@@ -5,6 +5,7 @@
 require 'chuan.options'
 require 'chuan.keymaps'
 require 'chuan.plugins'
+require 'chuan.colorscheme'
 require 'chuan.cmp'
 require 'chuan.telescope'
 require 'chuan.treesitter'

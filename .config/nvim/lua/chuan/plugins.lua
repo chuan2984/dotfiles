@@ -49,6 +49,9 @@ return packer.startup(function(use)
   -- Git
   use "lewis6991/gitsigns.nvim"
 
+  -- Color Scheme
+  use "folke/tokyonight.nvim" -- a bunch of colorschemes
+
   -- cmp plugins
   use "hrsh7th/nvim-cmp" -- The completion plugin
   use "hrsh7th/cmp-buffer" -- buffer completions
