@@ -8,6 +8,8 @@ require 'chuan.plugins'
 require 'chuan.cmp'
 require 'chuan.telescope'
 require 'chuan.treesitter'
+require 'chuan.comment'
+require 'chuan.gitsigns'
 
 -- directory
 require 'chuan.lsp'
