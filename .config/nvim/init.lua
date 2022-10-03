@@ -7,6 +7,7 @@ require 'chuan.keymaps'
 require 'chuan.plugins'
 require 'chuan.cmp'
 require 'chuan.telescope'
+require 'chuan.treesitter'
 
 -- directory
 require 'chuan.lsp'

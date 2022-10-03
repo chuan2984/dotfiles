@@ -7,8 +7,7 @@ let g:netrw_list_hide = '\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_localcopydircmd = 'cp -r'
 hi! link netrwMarkFile Search
 
-nnoremap <leader>dd :Lexplore %:p:h<CR>
-nnoremap <Leader>da :Lexplore<CR>
+nnoremap <Leader>le :Lexplore<CR>
 
 function! NetrwMapping()
 endfunction

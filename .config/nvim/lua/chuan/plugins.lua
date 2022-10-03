@@ -66,7 +66,13 @@ return packer.startup(function(use)
 
   -- telescope
   use "nvim-telescope/telescope.nvim"
-  use "nvim-telescope/telescope-media-files.nvim" -- extension to preview images files
+
+  -- treesitter
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+  }
+  use "p00f/nvim-ts-rainbow" -- rainbow parentheses
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
