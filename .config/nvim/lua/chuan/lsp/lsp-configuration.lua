@@ -16,7 +16,7 @@ local handler = require("chuan.lsp.handlers")
 local get_options_based_on_server = function (server_name)
   local options = {
     on_attach = handler.on_attach,
-    capabilities = handler.capabilities
+    capabilities = handler.capabilities,
   }
 
   if server_name == "jsonls" then
@@ -27,6 +27,11 @@ local get_options_based_on_server = function (server_name)
   if server_name == "sumneko_lua" then
     local sumneko_opts = require("chuan.lsp.settings.sumneko_lua")
     options = vim.tbl_deep_extend("force", sumneko_opts, options)
+  end
+
+  if server_name == "solargraph" then
+    local solargraph_opts = require("chuan.lsp.settings.solargraph")
+    options = vim.tbl_deep_extend("force", solargraph_opts, options)
   end
 
   return options
