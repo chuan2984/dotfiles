@@ -1,5 +1,5 @@
 return {
-  cmd = { "docker", "exec", "-i", "fieldwire_web", "solargraph", "stdio" },
+  --[[ cmd = { "docker", "exec", "-i", "fieldwire_web", "solargraph", "stdio" }, ]]
   settings = {
     solargraph = {
     --[[   transport = "external", ]]

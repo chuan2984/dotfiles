@@ -3,6 +3,44 @@
 	name = chuan2984
 [core]
 	editor = nvim
-  excludesfile = ~/.config/git/ignore
+	excludesfile = ~/.config/git/ignore
 [alias]
-   whoami = config user.email
+	whoami = config user.email
+	lgb = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
+	bb = !~/.config/git/scripts/better-branch.sh
+	blamec = blame -w -C -L
+	lol = !git log --graph --color --decorate --pretty=oneline --abbrev-commit | tac | nvimpager
+	lola = !git log --graph --color --decorate --pretty=oneline --abbrev-commit --all | tac | nvimpager
+	logl = log -L
+	logs = "!f() { git log -S \"$1\" -p; }; f"
+	mylog = !git log --graph --color --decorate --pretty=oneline --abbrev-commit --author=\"$(git config user.name)\" | tac
+	fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -
+	squash = !sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -
+	ri = rebase --interactive --autosquash
+	uncommit = reset --mixed head~
+	shove = push -u
+	cam = commit -am
+	cm = commit -m
+[color]
+	ui = auto
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+	pager = false
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[rerere]
+	enabled = true
+[pull]
+	rebase = true
+[column]
+	ui = auto
+[branch]
+	sort = -committerdate
+[maintenance]
+	strategy = incremental
+	auto = false

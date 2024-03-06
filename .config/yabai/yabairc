@@ -1,4 +1,5 @@
-# the scripting-addition must be loaded manually if
+#For a list of all configs: https://github.com/koekeishiya/yabai/blob/master/doc/yabai.asciidoc#config
+
 # you are running yabai on macOS Big Sur. Uncomment
 # the following line to have the injection performed
 # when the config is executed during startup.
@@ -6,27 +7,41 @@
 # for this to work you must configure sudo such that
 # it will be able to run the command without password
 
-sudo yabai --load-sa
 yabai -m signal --add event=dock_did_restart action="sudo yabai --load-sa"
+sudo yabai --load-sa
+
+# variable declartion
+declare -A gaps
+declare -A color
+
+gaps["top"]="10"
+gaps["bottom"]="10"
+gaps["left"]="10"
+gaps["right"]="10"
+gaps["inner"]="10"
+
+#color["focused"]="0xE0808080"
+#color["normal"]="0x00010101"
+#color["preselect"]="0xE02d74da"
 
 # global settings
 yabai -m config mouse_follows_focus          off
 yabai -m config focus_follows_mouse          off
 yabai -m config window_origin_display        default
 yabai -m config window_placement             second_child
-yabai -m config window_topmost               off
 yabai -m config window_shadow                on
 yabai -m config window_opacity               off
-yabai -m config window_opacity_duration      0.0
+yabai -m config window_opacity_duration      0.5
 yabai -m config active_window_opacity        1.0
-yabai -m config normal_window_opacity        0.90
-yabai -m config window_border                off
-yabai -m config window_border_width          6
-yabai -m config active_window_border_color   0xff775759
-yabai -m config normal_window_border_color   0xff555555
-yabai -m config insert_feedback_color        0xffd75f5f
+yabai -m config normal_window_opacity        1.0
+# border removed by author, leaving it here incase it gets added later
+#yabai -m config window_border                on
+#yabai -m config window_border_width          20
+#yabai -m config active_window_border_color   "${gaps["focused"]}"
+#yabai -m config normal_window_border_color   "${gaps["normal"]}"
+#yabai -m config insert_feedback_color        "${gaps["preselect"]}"
 yabai -m config split_ratio                  0.50
-yabai -m config auto_balance                 off
+yabai -m config auto_balance                 on
 yabai -m config mouse_modifier               fn
 yabai -m config mouse_action1                move
 yabai -m config mouse_action2                resize
@@ -34,17 +49,20 @@ yabai -m config mouse_drop_action            swap
 
 # general space settings
 yabai -m config layout                       bsp
-yabai -m config top_padding                  10
-yabai -m config bottom_padding               10
-yabai -m config left_padding                 10
-yabai -m config right_padding                10
-yabai -m config window_gap                   10
+yabai -m config top_padding                 "${gaps["top"]}"
+yabai -m config bottom_padding              "${gaps["bottom"]}"
+yabai -m config left_padding                "${gaps["left"]}"
+yabai -m config right_padding               "${gaps["right"]}"
+yabai -m config window_gap                  "${gaps["inner"]}"
 
 # apps to not manage (ignore)
 yabai -m rule --add app="^System Preferences$" manage=off
+yabai -m rule --add app="^System Settings$" manage=off
 yabai -m rule --add app="^Archive Utility$" manage=off
 yabai -m rule --add app="^Rize$" manage=off
 yabai -m rule --add app="^Stickies$" manage=off
 yabai -m rule --add app="^Alfred Preferences$" manage=off
+yabai -m rule --add label="Software Update" title="Software Update" manage=off
+yabai -m rule --add label="About This Mac" app="System Information" manage=off
 
 echo "yabai configuration loaded.."

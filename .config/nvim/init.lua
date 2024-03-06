@@ -1,20 +1,17 @@
--- when trying to include a directory, it automatically tries to source
--- init.lua inside that directory
+-- Set <space> as the leader key
+-- See `:help mapleader`
+--  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
 
--- files
-require 'chuan.options'
-require 'chuan.keymaps'
-require 'chuan.plugins'
-require 'chuan.colorscheme'
-require 'chuan.cmp'
-require 'chuan.telescope'
-require 'chuan.treesitter'
-require 'chuan.comment'
-require 'chuan.gitsigns'
-require 'chuan.impatient'
+-- [[ Setting options ]]
+require 'options'
 
--- directory
-require 'chuan.lsp'
+-- [[ Basic Keymaps ]]
+require 'keymaps'
 
--- im too basic to figure out how to do this in lua
-vim.cmd('source ~/.config/nvim/vim/netrw.vim')
+-- [[ Install `lazy.nvim` plugin manager ]]
+require 'lazy-bootstrap'
+
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et

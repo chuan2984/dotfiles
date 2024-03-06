@@ -1,0 +1,13 @@
+#!/bin/bash
+
+find_window() {
+  local app=$1
+  local title=${2:-}
+
+  id=$(yabai -m query --windows | jq \
+    --arg title "$title" \
+    --arg app "$app" \
+    '.[] | select(select(.app | ascii_downcase | contains($app)) | .title | ascii_downcase | contains($title)) |  .id')
+  #echo "window with title \"$title\" and app \"$app\" has id: \"$id\""
+  echo $id
+}

@@ -40,6 +40,7 @@ function model.setup()
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
     border = "rounded",
   })
+  vim.lsp.set_log_level("debug")
 end
 
 local function lsp_highlight_document(client)
@@ -96,6 +97,6 @@ if not status_ok then
   return
 end
 
-model.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+model.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
 return model

@@ -7,7 +7,7 @@ if not status_ok then
 end
 
 mason_lspconfig.setup({
-  ensure_installed = { "sumneko_lua" }
+  ensure_installed = { "lua_ls" }
 })
 
 -- an handler module for adjusting nvim settings
@@ -24,8 +24,8 @@ local get_options_based_on_server = function (server_name)
     options = vim.tbl_deep_extend("force", jsonls_opts, options)
   end
 
-  if server_name == "sumneko_lua" then
-    local sumneko_opts = require("chuan.lsp.settings.sumneko_lua")
+  if server_name == "lua_ls" then
+    local sumneko_opts = require("chuan.lsp.settings.lua_ls")
     options = vim.tbl_deep_extend("force", sumneko_opts, options)
   end
 
