@@ -16,10 +16,14 @@ export PAGER=nvimpager
 function config() {
   cd "$HOME/.dotfiles/.config/$1" || return
 }
+ssh-add --apple-use-keychain ~/.ssh/github/personal
+ssh-add --apple-use-keychain ~/.ssh/github/work
+# Add ssh key
 
 ## Aliases
-alias ls='gls --color' # using gls from gnu coreutils
+alias ls='gls --color -F' # using gls from gnu coreutils
 alias la='ls -a'
+alias ll='ls -l'
 alias lla='ls -al'
 alias mkdir='mkdir -p'
 alias mkcd="mkdir \"$1\" && cd \"$1\""
@@ -96,7 +100,7 @@ eval "$(nodenv init -)"
 #export AWS_CONFIG_FILE="$HOME/.config/aws/config"
 #export AWS_SHARED_CREDENTIALS_FILE="$HOME/.config/aws/credentials"
 
-source ~/.dotfiles/.take.zsh
+source ~/.dotfiles/.config/zsh-plugins/.take.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
