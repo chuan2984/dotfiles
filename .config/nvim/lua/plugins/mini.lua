@@ -162,10 +162,6 @@ return {
       return ''
     end
 
-    statusline.section_fileinfo = function()
-      return ''
-    end
-
     -- Mini Notify
     local mini_notify = require 'mini.notify'
     mini_notify.setup {
