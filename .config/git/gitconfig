@@ -13,14 +13,15 @@
 	lola = !git log --graph --color --decorate --pretty=oneline --abbrev-commit --all | tac | nvimpager
 	logl = log -L
 	logs = "!f() { git log -S \"$1\" -p; }; f"
-	mylog = !git log --graph --color --decorate --pretty=oneline --abbrev-commit --author=\"$(git config user.name)\" | tac
-	fixup = !sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"' -
-	squash = !sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"' -
+	mylog = "!git log --graph --color --decorate --pretty=oneline --abbrev-commit --author=\"$(git config user.name)\" | tac"
+	fixup = "!sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"'" -
+	squash = "!sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"'" -
 	ri = rebase --interactive --autosquash
 	uncommit = reset --mixed head~
 	shove = push -u
 	cam = commit -am
 	cm = commit -m
+	st = status
 [color]
 	ui = auto
 	branch = auto
