@@ -81,4 +81,25 @@ vim.api.nvim_create_autocmd({ 'FileChangedShellPost' }, {
   pattern = '*',
   command = "lua vim.notify('File changed on disk. Buffer reloaded.')",
 })
+
+-- Table mapping specific file names to filetypes
+local file_to_filetype = {
+  gitconfig = 'gitconfig', -- Example: Map 'gitconfig' files to 'gitconfig' filetype
+  ignore = 'gitignore',
+}
+
+-- Used to set filetype for untraditonally named files
+vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  pattern = '*', -- Matches all files
+  callback = function()
+    local filename = vim.fn.expand '%:t' -- "%:t" gets the tail (name) of the current buffer's file
+    for pattern, filetype in pairs(file_to_filetype) do
+      if filename == pattern then
+        vim.bo.filetype = filetype
+        break
+      end
+    end
+  end,
+})
+
 -- vim: ts=2 sts=2 sw=2 et
