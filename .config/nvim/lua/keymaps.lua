@@ -48,6 +48,7 @@ keymap('v', '>', '>gv', opts)
 keymap('v', '<Leader>p', '"_dP', opts)
 -- Delete without yanking the original text
 keymap('v', '<Leader>d', '"_d', opts)
+keymap('n', '<Leader>d', '"_d', opts)
 
 -- Terminal --
 -- Better terminal navigation
