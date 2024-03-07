@@ -101,6 +101,7 @@ eval "$(nodenv init -)"
 #export AWS_SHARED_CREDENTIALS_FILE="$HOME/.config/aws/credentials"
 
 source ~/.dotfiles/.config/zsh-plugins/.take.zsh
+source ~/.dotfiles/.config/zsh-plugins/.fancy-ctrlz.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
