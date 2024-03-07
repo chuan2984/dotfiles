@@ -128,9 +128,9 @@ return {
       })
 
       -- Create keymap to set cwd
-      local files_set_cwd = function(path)
+      local files_set_cwd = function(_)
         -- Works only if cursor is on the valid file system entry
-        local cur_entry_path = MiniFiles.get_fs_entry().path
+        local cur_entry_path = mini_files.get_fs_entry().path
         local cur_directory = vim.fs.dirname(cur_entry_path)
         vim.fn.chdir(cur_directory)
       end
@@ -166,6 +166,65 @@ return {
       statusline.section_fileinfo = function()
         return ''
       end
+
+      -- Mini Notify
+      local mini_notify = require 'mini.notify'
+      mini_notify.setup {
+        -- Content management
+        content = {
+          -- Function which formats the notification message
+          -- By default prepends message with notification time
+          format = nil,
+
+          -- Function which orders notification array from most to least important
+          -- By default orders first by level and then by update timestamp
+          sort = nil,
+        },
+        -- Notifications about LSP progress
+        lsp_progress = {
+          -- Whether to enable showing
+          enable = false,
+
+          -- Duration (in ms) of how long last message should be shown
+          duration_last = 1000,
+        },
+        -- Window options
+        window = {
+          -- Floating window config
+          config = {},
+
+          -- Maximum window width as share (between 0 and 1) of available columns
+          max_width_share = 0.5,
+
+          -- Value of 'winblend' option
+          winblend = 20,
+        },
+      }
+
+      -- Monkey patching the default vim.notify, vim.print and print
+      -- to use MiniNotify so that they can be seen better and written to a history file
+      vim.notify = mini_notify.make_notify {
+        ERROR = { duration = 5000 },
+        WARN = { duration = 4000 },
+        INFO = { duration = 3000 },
+      }
+
+      if not old_print then
+        _G.old_print = print
+      end
+
+      print = function(...)
+        local print_safe_args = {}
+        local _ = { ... }
+        for i = 1, #_ do
+          table.insert(print_safe_args, tostring(_[i]))
+        end
+        vim.notify(table.concat(print_safe_args, ' '), vim.log.levels.INFO)
+      end
+
+      vim.keymap.set('n', '<leader>sN', function()
+        mini_notify.show_history()
+      end, { noremap = true, silent = true, desc = 'Show Notifications' })
     end,
   },
 }
