@@ -71,6 +71,7 @@ vim.cmd [[set iskeyword+=-]]
 -- https://unix.stackexchange.com/questions/149209/refresh-changed-content-of-file-opened-in-vim/383044#383044
 -- https://vi.stackexchange.com/questions/13692/prevent-focusgained-autocmd-running-in-command-line-editing-mode
 vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold', 'CursorHoldI' }, {
+  group = vim.api.nvim_create_augroup('autoread', { clear = true }),
   pattern = '*',
   command = "if mode() !~ '\v(c|r.?|!|t)' && getcmdwintype() == '' | checktime | endif",
 })
@@ -78,6 +79,7 @@ vim.api.nvim_create_autocmd({ 'FocusGained', 'BufEnter', 'CursorHold', 'CursorHo
 -- Notification after file change
 -- https://vi.stackexchange.com/questions/13091/autocmd-event-for-autoread
 vim.api.nvim_create_autocmd({ 'FileChangedShellPost' }, {
+  group = vim.api.nvim_create_augroup('autoread notify', { clear = true }),
   pattern = '*',
   command = "lua vim.notify('File changed on disk. Buffer reloaded.')",
 })
@@ -90,6 +92,7 @@ local file_to_filetype = {
 
 -- Used to set filetype for untraditonally named files
 vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile' }, {
+  group = vim.api.nvim_create_augroup('autoset filetype', { clear = true }),
   pattern = '*', -- Matches all files
   callback = function()
     local filename = vim.fn.expand '%:t' -- "%:t" gets the tail (name) of the current buffer's file
