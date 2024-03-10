@@ -27,10 +27,10 @@ keymap('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
-keymap('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' }, opts)
-keymap('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' }, opts)
-keymap('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' }, opts)
-keymap('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' }, opts)
+--keymap('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' }, opts)
+--keymap('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' }, opts)
+--keymap('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' }, opts)
+--keymap('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' }, opts)
 
 -- Navigate buffers
 keymap('n', '<S-l>', ':bnext<CR>', opts)
@@ -52,10 +52,10 @@ keymap('n', '<Leader>d', '"_d', opts)
 
 -- Terminal --
 -- Better terminal navigation
-keymap('t', '<C-h>', '<C-\\><C-N><C-w>h', term_opts)
-keymap('t', '<C-j>', '<C-\\><C-N><C-w>j', term_opts)
-keymap('t', '<C-k>', '<C-\\><C-N><C-w>k', term_opts)
-keymap('t', '<C-l>', '<C-\\><C-N><C-w>l', term_opts)
+-- keymap('t', '<C-h>', '<C-\\><C-N><C-w>h', term_opts)
+-- keymap('t', '<C-j>', '<C-\\><C-N><C-w>j', term_opts)
+-- keymap('t', '<C-k>', '<C-\\><C-N><C-w>k', term_opts)
+-- keymap('t', '<C-l>', '<C-\\><C-N><C-w>l', term_opts)
 
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
