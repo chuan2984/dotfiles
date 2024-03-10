@@ -45,8 +45,7 @@ shift + alt - 7 : yabai -m window --space 7; yabai -m space --focus 7
 shift + alt - 8 : yabai -m window --space 8; yabai -m space --focus 8
 shift + alt - 9 : yabai -m window --space 9; yabai -m space --focus 9
 
-shift + alt - d : $HOME/.config/yabai/scripts/stack_window.sh chrome personal
-shift + alt - f : $HOME/.config/yabai/scripts/stack_window.sh chrome work
+shift + alt - d : $HOME/.config/yabai/scripts/stack_window.sh arc
 shift + alt - t : $HOME/.config/yabai/scripts/stack_window.sh wezterm
 shift + alt - s : $HOME/.config/yabai/scripts/stack_window.sh slack
 shift + alt - e : $HOME/.config/yabai/scripts/stack_window.sh rubymine
