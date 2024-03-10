@@ -7,6 +7,8 @@ local config = wezterm.config_builder()
 
 local key_bind = require("key_bind")
 key_bind.apply_to_config(config)
+local keymaps = require("keymaps")
+keymaps.apply_to_config(config)
 local tabbar = require("tabbar")
 tabbar.apply_to_config(config)
 --local workspaces = require 'workspaces'
