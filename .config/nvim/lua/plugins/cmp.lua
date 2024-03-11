@@ -1,7 +1,7 @@
 return {
   { -- Autocompletion
     'hrsh7th/nvim-cmp',
-    event = 'InsertEnter',
+    event = { 'InsertEnter', 'CmdLineEnter' },
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
       {
@@ -16,25 +16,74 @@ return {
           return 'make install_jsregexp'
         end)(),
       },
+      'rafamadriz/friendly-snippets',
       'saadparwaiz1/cmp_luasnip',
-
       -- Adds other completion capabilities.
       --  nvim-cmp does not ship with all sources by default. They are split
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
-
-      -- If you want to add a bunch of pre-configured snippets,
-      --    you can use this plugin to help you. It even has snippets
-      --    for various frameworks/libraries/etc. but you will have to
-      --    set up the ones that are useful for you.
-      -- 'rafamadriz/friendly-snippets',
+      'hrsh7th/cmp-cmdline',
     },
     config = function()
-      -- See `:help cmp`
+      local kind_icons = {
+        Text = '',
+        Method = 'm',
+        Function = '',
+        Constructor = '',
+        Field = '',
+        Variable = '',
+        Class = '',
+        Interface = '',
+        Module = '',
+        Property = '',
+        Unit = '',
+        Value = '',
+        Enum = '',
+        Keyword = '',
+        Snippet = '',
+        Color = '',
+        File = '',
+        Reference = '',
+        Folder = '',
+        EnumMember = '',
+        Constant = '',
+        Struct = '',
+        Event = '',
+        Operator = '',
+        TypeParameter = '',
+      }
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
+
+      luasnip.filetype_extend('ruby', { 'rails' })
+      require('luasnip.loaders.from_vscode').lazy_load { include = { 'ruby', 'rails' } }
       luasnip.config.setup {}
+      -- `:` cmdline setup.
+      cmp.setup.cmdline(':', {
+        mapping = cmp.mapping.preset.cmdline(),
+        sources = cmp.config.sources({
+          { name = 'path' },
+        }, {
+          {
+            name = 'cmdline',
+            option = {
+              ignore_cmds = { 'Man', '!' },
+            },
+          },
+        }),
+        enabled = function()
+          -- Set of commands where cmp will be disabled
+          local disabled = {
+            IncRename = true,
+          }
+          -- Get first word of cmdline
+          local cmd = vim.fn.getcmdline():match '%S+'
+          -- Return true if cmd isn't disabled
+          -- else call/return cmp.close(), which returns false
+          return not disabled[cmd] or cmp.close()
+        end,
+      })
 
       cmp.setup {
         snippet = {
@@ -42,8 +91,6 @@ return {
             luasnip.lsp_expand(args.body)
           end,
         },
-        completion = { completeopt = 'menu,menuone,noinsert' },
-
         -- For an understanding of why these mappings were
         -- chosen, you will need to read `:help ins-completion`
         --
@@ -83,10 +130,35 @@ return {
             end
           end, { 'i', 's' }),
         },
+        formatting = {
+          fields = { 'kind', 'abbr', 'menu' },
+          format = function(entry, vim_item)
+            -- Kind icons
+            vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+            vim_item.menu = ({
+              nvim_lsp = '[LSP]',
+              nvim_lua = '[NVIM_LUA]',
+              luasnip = '[Snippet]',
+              buffer = '[Buffer]',
+              path = '[Path]',
+              cmdline = '[CMD]',
+            })[entry.source.name]
+            return vim_item
+          end,
+        },
+        window = {
+          documentation = cmp.config.window.bordered(),
+        },
         sources = {
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
           { name = 'path' },
+          { name = 'buffer' },
+          { name = 'nvim_lua' },
+        },
+        experimental = {
+          ghost_text = false,
+          native_menu = false,
         },
       }
     end,
