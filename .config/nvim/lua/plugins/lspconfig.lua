@@ -139,49 +139,87 @@ return {
       -- local function on_attach(client, bufnr)
       --   local orig_request = client.request
       --   print 'im in the attach'
-      --
-      --   client.request = function(method, params, handler, bufnr)
-      --     -- Check if the params contain a URI that needs to be modified
-      --     if params and params.textDocument and params.textDocument.uri then
-      --       -- Your logic to modify the URI here
-      --       -- For example, replacing the prefix of the path
-      --       local local_path_pattern = '^file:///users/chuanhe/github/fieldwire_api/'
-      --       local remote_path = 'file:///ruby-app/'
-      --       local new_uri = params.textDocument.uri:lower():gsub(local_path_pattern, remote_path)
-      --       params.textDocument.uri = new_uri
-      --     end
-      --     vim.notify(params.textDocument.uri)
-      --
-      --     -- Proceed with the modified request
-      --     return orig_request(method, params, handler, bufnr)
-      --   end
-      -- end
-
-      local workspace_specific_cmd = function()
-        local cwd = vim.fn.getcwd()
-        local solargraph_path = '/Users/chuanhe/.rbenv/versions/3.0.0/lib/ruby/gems/3.0.0/gems/solargraph-0.50.0/bin/solargraph'
-        if not cwd:lower():find 'fieldwire_api' then
-          return {}
+      -- textDocument/diagnostic support until 0.10.0 is released
+      _timers = {}
+      local function setup_diagnostics(client, buffer)
+        if require('vim.lsp.diagnostic')._enable then
+          return
         end
-        return { solargraph_path, 'stdio' }
+
+        local diagnostic_handler = function()
+          local params = vim.lsp.util.make_text_document_params(buffer)
+          client.request('textDocument/diagnostic', { textDocument = params }, function(err, result)
+            if err then
+              local err_msg = string.format('diagnostics error - %s', vim.inspect(err))
+              vim.lsp.log.error(err_msg)
+            end
+            local diagnostic_items = {}
+            if result then
+              diagnostic_items = result.items
+            end
+            vim.lsp.diagnostic.on_publish_diagnostics(nil, vim.tbl_extend('keep', params, { diagnostics = diagnostic_items }), { client_id = client.id })
+          end)
+        end
+
+        diagnostic_handler() -- to request diagnostics on buffer when first attaching
+
+        vim.api.nvim_buf_attach(buffer, false, {
+          on_lines = function()
+            if _timers[buffer] then
+              vim.fn.timer_stop(_timers[buffer])
+            end
+            _timers[buffer] = vim.fn.timer_start(200, diagnostic_handler)
+          end,
+          on_detach = function()
+            if _timers[buffer] then
+              vim.fn.timer_stop(_timers[buffer])
+            end
+          end,
+        })
+      end
+
+      -- adds ShowRubyDeps command to show dependencies in the quickfix list.
+      -- add the `all` argument to show indirect dependencies as well
+      local function add_ruby_deps_command(client, bufnr)
+        vim.api.nvim_buf_create_user_command(bufnr, 'ShowRubyDeps', function(opts)
+          local params = vim.lsp.util.make_text_document_params()
+
+          local showAll = opts.args == 'all'
+
+          client.request('rubyLsp/workspace/dependencies', params, function(error, result)
+            if error then
+              print('Error showing deps: ' .. error)
+              return
+            end
+
+            local qf_list = {}
+            for _, item in ipairs(result) do
+              if showAll or item.dependency then
+                table.insert(qf_list, {
+                  text = string.format('%s (%s) - %s', item.name, item.version, item.dependency),
+
+                  filename = item.path,
+                })
+              end
+            end
+
+            vim.fn.setqflist(qf_list)
+            vim.cmd 'copen'
+          end, bufnr)
+        end, {
+          nargs = '?',
+          complete = function()
+            return { 'all' }
+          end,
+        })
       end
 
       local servers = {
         solargraph = {
-          --on_attach = on_attach,
-          -- before_init = function(p)
-          --   vim.lsp.set_log_level 'debug'
-          --   p.processId = vim.NIL
-          -- end,
-          --
-          -- cmd = {
-          --   'docker',
-          --   'exec',
-          --   '-i', '05c5365860ab',
-          --   'solargraph',
-          --   'stdio',
-          -- },
-          cmd = workspace_specific_cmd(),
+          on_attach = function(client, buffer)
+            vim.lsp.set_log_level 'debug'
+            -- setup_diagnostics(client, buffer)
+          end,
           root_dir = require('lspconfig').util.root_pattern('Gemfile', '.git'),
           settings = {
             solargraph = {
@@ -196,6 +234,14 @@ return {
             },
           },
         },
+        -- ruby_ls = {
+        --   on_attach = function(client, buffer)
+        --     -- vim.lsp.set_log_level 'debug'
+        --     setup_diagnostics(client, buffer)
+        --     add_ruby_deps_command(client, buffer)
+        --   end,
+        --   root_dir = require('lspconfig').util.root_pattern('Gemfile', '.git'),
+        -- },
         -- clangd = {},
         -- gopls = {},
         -- pyright = {},
