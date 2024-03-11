@@ -16,6 +16,7 @@ return {
   { 'tpope/vim-rhubarb', event = 'VeryLazy' },
   { 'tpope/vim-fugitive', event = 'VeryLazy' },
   { 'tpope/vim-rails', event = 'VeryLazy' },
+  { 'tpope/vim-abolish', event = { 'InsertEnter', 'CmdlineEnter' } },
   { 'ludovicchabant/vim-gutentags', event = 'VeryLazy' },
   -- Use `opts = {}` to force a plugin to be loaded.
   --
