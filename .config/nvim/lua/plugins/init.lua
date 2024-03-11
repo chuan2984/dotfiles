@@ -15,6 +15,8 @@ return {
   -- This one enables GBrowse, requires a github key that can be expired
   { 'tpope/vim-rhubarb', event = 'VeryLazy' },
   { 'tpope/vim-fugitive', event = 'VeryLazy' },
+  { 'tpope/vim-rails', event = 'VeryLazy' },
+  { 'ludovicchabant/vim-gutentags', event = 'VeryLazy' },
   -- Use `opts = {}` to force a plugin to be loaded.
   --
   --  This is equivalent to:

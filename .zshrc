@@ -16,6 +16,11 @@ export PAGER=nvimpager
 function config() {
   cd "$HOME/.dotfiles/.config/$1" || return
 }
+
+function vim-htag() {
+  vim -u NONE -c "helptags $1" -c q
+}
+
 ssh-add --apple-use-keychain ~/.ssh/github/personal
 ssh-add --apple-use-keychain ~/.ssh/github/work
 # Add ssh key
