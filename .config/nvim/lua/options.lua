@@ -6,17 +6,18 @@ vim.opt.backup = false
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 vim.opt.swapfile = false -- creates a swapfile
 vim.opt.undofile = true -- enable persistent undo
-vim.opt.conceallevel = 0 -- so that `` is visible in markdown files
+vim.opt.conceallevel = 2 -- so that obsidian can play nice, but can also be set to 0 to hide the quote blocks
 vim.opt.fileencoding = 'utf-8' -- the encoding written to a file
 vim.opt.termguicolors = true -- set term gui colors (most terminals support this)
 vim.opt.showtabline = 2 -- always show tabs
-vim.opt.numberwidth = 4 -- set line number column width to 2 {default 4}
+vim.opt.numberwidth = 2 -- set line number column width to 2 {default 4}
 vim.opt.cmdheight = 0 -- set command line height to 0 to auto hide
 
 -- Tab spaces
 vim.opt.expandtab = true -- convert tabs to spaces
 vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
 vim.opt.tabstop = 2 -- insert 2 spaces for a tab
+vim.opt.softtabstop = 2 -- insert 2 spaces for a tab
 
 -- Make line numbers default
 vim.opt.number = true
