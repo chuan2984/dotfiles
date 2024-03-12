@@ -17,7 +17,11 @@ navigator.apply_to_config(config)
 --  workspaces.loadWorkspaces()
 --end)
 
-config.color_scheme = "tokyonight_storm"
+config.color_scheme = "Gruber (base16)"
+-- config.color_scheme = "Gruber Dark (Gogh)"
+-- config.color_scheme = "rose-pine"
+-- config.color_scheme = "tokyonight storm"
+
 config.font = wezterm.font_with_fallback({
 	{ family = "FiraCode Nerd Font", scale = 1.5, harfbuzz_features = { "zero", "ss01", "cv05" } },
 	{ family = "Fira Code", scale = 1.7 },
