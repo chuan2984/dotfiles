@@ -30,46 +30,53 @@ return {
       { 'nvim-tree/nvim-web-devicons' },
     },
     config = function()
-      -- telescope is a fuzzy finder that comes with a lot of different things that
-      -- it can fuzzy find! it's more than just a "file finder", it can search
-      -- many different aspects of neovim, your workspace, lsp, and more!
-      --
       -- the easiest way to use telescope, is to start by doing something like:
       --  :telescope help_tags
-      --
-      -- after running this command, a window will open up and you're able to
-      -- type in the prompt window. you'll see a list of help_tags options and
-      -- a corresponding preview of the help.
       --
       -- two important keymaps to use while in telescope are:
       --  - insert mode: <c-/>
       --  - normal mode: ?
       --
-      -- this opens a window that shows you all of the keymaps for the current
-      -- telescope picker. this is really useful to discover what telescope can
-      -- do as well as how to actually do it!
-
       -- [[ configure telescope ]]
       -- see `:help telescope` and `:help telescope.setup()`
+      local actions = require 'telescope.actions'
+      local action_layout = require 'telescope.actions.layout'
+      local config = require 'telescope.config'
+
+      -- Clone the default Telescope configuration
+      local vimgrep_arguments = { unpack(config.values.vimgrep_arguments) }
+      -- I want to search in hidden/dot files.
+      table.insert(vimgrep_arguments, '--hidden')
+      -- I don't want to search in the `.git` directory.
+      table.insert(vimgrep_arguments, '--glob')
+      table.insert(vimgrep_arguments, '!**/.git/*')
+
       require('telescope').setup {
         -- you can put your default mappings / updates / etc. in here
         --  all the info you're looking for is in `:help telescope.setup()`
         defaults = {
+          layout_strategy = 'flex',
+          vimgrep_arguments = vimgrep_arguments,
           mappings = {
             i = {
               -- ['<c-enter>'] = 'to_fuzzy_refine'
-              ['<c-h>'] = 'which_key',
+              ['<M-p>'] = action_layout.toggle_preview,
+            },
+            n = {
+              ['<M-p>'] = action_layout.toggle_preview,
             },
           },
         },
         pickers = {
+          buffers = {
+            mappings = {
+              n = {
+                ['d'] = actions.delete_buffer,
+              },
+            },
+          },
           find_files = {
             find_command = { 'rg', '--files', '--hidden', '--glob', '!**/.git/*' },
-          },
-          live_grep = {
-            additional_args = function(_)
-              return { '--hidden' }
-            end,
           },
         },
         extensions = {
