@@ -8,4 +8,6 @@ bower_components
 npm-debug.log
 .solargraph.yml
 tags
+tags.lock
+tags.temp
 projections.json
