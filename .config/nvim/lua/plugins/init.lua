@@ -15,6 +15,7 @@ return {
   { 'rebelot/kanagawa.nvim', lazy = true },
   -- This one enables GBrowse, requires a github key that can be expired
   { 'tpope/vim-rhubarb', event = 'VeryLazy' },
+  { 'Bekaboo/deadcolumn.nvim', event = 'InsertEnter' },
   { 'tpope/vim-fugitive', event = 'VeryLazy' },
   { 'tpope/vim-rails', event = 'VeryLazy' },
   { 'tpope/vim-abolish', event = { 'InsertEnter', 'CmdlineEnter' } },
