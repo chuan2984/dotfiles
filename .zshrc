@@ -7,7 +7,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-[[ -f ~/.fzf.zsh ]] && source ~/.fzf.zsh
+[[ -f ~/.dotfiles/.config/zsh-plugins/.fzf.zsh ]] && source ~/.dotfiles/.config/zsh-plugins/.fzf.zsh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
@@ -97,14 +97,14 @@ export PATH="$HOME/.nodenv/bin:$PATH"
 eval "$(nodenv init -)"
 #
 # Jira autocomplete
-# https://github.com/go-jira/jira
-#export PATH="/usr/local/bin/jira:$PATH"
+# https://github.com/go-jira/jira export PATH="/usr/local/bin/jira:$PATH"
 #eval "$(jira --completion-script-bash)"
 
 # relocating aws config file to a different folder
 #export AWS_CONFIG_FILE="$HOME/.config/aws/config"
 #export AWS_SHARED_CREDENTIALS_FILE="$HOME/.config/aws/credentials"
 
+eval "$(zoxide init --cmd cd zsh)"
 source ~/.dotfiles/.config/zsh-plugins/.take.zsh
 source ~/.dotfiles/.config/zsh-plugins/.fancy-ctrlz.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
