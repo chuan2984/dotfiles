@@ -24,6 +24,7 @@ return {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
+      { 'Gelio/cmp-natdat', config = true },
     },
     config = function()
       local kind_icons = {
@@ -142,6 +143,7 @@ return {
               buffer = '[Buffer]',
               path = '[Path]',
               cmdline = '[CMD]',
+              natdat = '[DATE]',
             })[entry.source.name]
             return vim_item
           end,
@@ -155,6 +157,7 @@ return {
           { name = 'path' },
           { name = 'buffer' },
           { name = 'nvim_lua' },
+          { name = 'natdat' },
         },
         experimental = {
           ghost_text = false,
