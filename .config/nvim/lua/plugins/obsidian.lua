@@ -27,6 +27,18 @@ return {
   },
 
   config = function()
+    -- Used to hide codeblock that starts with dataview
+    vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile', 'TextChanged', 'TextChangedI' }, {
+      pattern = '*.md',
+      group = vim.api.nvim_create_augroup('MarkdownSyntaxCustomization', { clear = true }),
+      callback = function()
+        vim.api.nvim_set_hl(0, 'ObsidianHighlightTag', { fg = '#e6f0d1', bold = true })
+        vim.cmd [[match ObsidianHighlightTag /^highlights::/]]
+        -- Execute Vimscript command to define the syntax region
+        vim.cmd [[ syntax region DataViewBlock start=/^\(```dataview\|^```dataviewjs\)/ end=/^```/ conceal cchar=* ]]
+      end,
+    })
+
     vim.o.conceallevel = 2
 
     local opts = {
@@ -41,11 +53,11 @@ return {
 
       daily_notes = {
         -- Optional, if you keep daily notes in a separate directory.
-        folder = 'Daily',
+        folder = 'Periodic Notes/Daily',
         -- Optional, if you want to change the date format for the ID of daily notes.
-        date_format = '%Y-%m-%d',
+        date_format = '%Y-%m-%d-%A',
         -- Optional, if you want to change the date format of the default alias of daily notes.
-        alias_format = '%B %-d, %Y',
+        -- alias_format = '%B %-d, %Y',
         -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
         template = nil,
       },
