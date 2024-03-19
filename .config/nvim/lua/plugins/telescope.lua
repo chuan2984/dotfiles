@@ -26,7 +26,6 @@ return {
         end,
       },
       { 'nvim-telescope/telescope-ui-select.nvim' },
-
       { 'nvim-tree/nvim-web-devicons' },
     },
     config = function()
@@ -139,6 +138,11 @@ return {
       vim.keymap.set('n', '<leader>sf', find_files_from_project_git_root, { desc = '[s]earch [f]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[s]earch [s]elect telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[s]earch current [w]ord' })
+      vim.keymap.set(
+        'x',
+        '<leader>sw',
+        '"zy<Cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.getreg("z"), desc = "[s]earch current [w]ord" })<CR>'
+      )
       vim.keymap.set('n', '<leader>sg', live_grep_from_project_git_root, { desc = '[s]earch by [g]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[s]earch [d]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[s]earch [r]esume' })
