@@ -35,7 +35,7 @@ return {
 
     -- Remapping the keys again for better UX, since TS does not expose them
     local is = require 'nvim-treesitter.incremental_selection'
-    vim.keymap.set('n', '<CR>', is.init_selection, { silent = true, desc = 'Init incremental selection' })
+    -- vim.keymap.set('n', '<CR>', is.init_selection, { silent = true, desc = 'Init incremental selection' })
     vim.keymap.set('v', '.', is.node_incremental, { silent = true, desc = 'Node incremental selection' })
     vim.keymap.set('v', ',', is.node_decremental, { silent = true, desc = 'Node decremental selection' })
     vim.keymap.set('v', 'g.', is.scope_incremental, { silent = true, desc = 'Scope incremental selection' })
