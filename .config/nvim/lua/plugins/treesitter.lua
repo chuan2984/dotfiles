@@ -18,6 +18,7 @@ return {
   build = ':TSUpdate',
   config = function()
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
+    vim.treesitter.language.register('markdown', 'octo')
 
     ---@diagnostic disable-next-line: missing-fields
     require('nvim-treesitter.configs').setup {
