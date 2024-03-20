@@ -6,12 +6,15 @@ return {
       event = 'InsertEnter',
     },
     {
-      'https://github.com/nvim-treesitter/nvim-treesitter-context',
+      'nvim-treesitter/nvim-treesitter-context',
       event = 'VeryLazy',
       config = true,
     },
+    {
+      'HiPhish/rainbow-delimiters.nvim',
+      event = 'VeryLazy',
+    },
   },
-
   build = ':TSUpdate',
   config = function()
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
