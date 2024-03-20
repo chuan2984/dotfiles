@@ -11,7 +11,7 @@ vim.opt.fileencoding = 'utf-8' -- the encoding written to a file
 vim.opt.termguicolors = true -- set term gui colors (most terminals support this)
 vim.opt.showtabline = 2 -- always show tabs
 vim.opt.numberwidth = 2 -- set line number column width to 2 {default 4}
-vim.opt.cmdheight = 0 -- set command line height to 0 to auto hide
+vim.opt.cmdheight = 1 -- set command line height to 0 to auto hide
 
 -- Tab spaces
 vim.opt.expandtab = true -- convert tabs to spaces
