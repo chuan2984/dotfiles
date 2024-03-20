@@ -12,6 +12,7 @@
 return {
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  --'sindrets/diffview.nvim', -- diffview, incase i want to use it down the line, looks promising
   { 'rebelot/kanagawa.nvim', lazy = true },
   -- This one enables GBrowse, requires a github key that can be expired
   { 'tpope/vim-rhubarb', event = 'VeryLazy' },
