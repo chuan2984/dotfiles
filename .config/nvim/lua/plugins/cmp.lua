@@ -63,16 +63,7 @@ return {
       -- `:` cmdline setup.
       cmp.setup.cmdline(':', {
         mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({
-          { name = 'path' },
-        }, {
-          {
-            name = 'cmdline',
-            option = {
-              ignore_cmds = { 'Man', '!' },
-            },
-          },
-        }),
+        sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline', max_item_count = 16, option = { ignore_cmds = { 'Man', '!' } } } }),
         enabled = function()
           -- Set of commands where cmp will be disabled
           local disabled = {
@@ -87,6 +78,18 @@ return {
       })
 
       cmp.setup {
+
+        enabled = function()
+          -- disable completion in comments
+          local context = require 'cmp.config.context'
+          -- keep command mode completion enabled when cursor is in a comment
+          if vim.api.nvim_get_mode().mode == 'c' then
+            return true
+          else
+            return not context.in_treesitter_capture 'comment' and not context.in_syntax_group 'Comment'
+          end
+        end,
+
         snippet = {
           expand = function(args)
             luasnip.lsp_expand(args.body)
@@ -152,11 +155,11 @@ return {
           documentation = cmp.config.window.bordered(),
         },
         sources = {
-          { name = 'nvim_lsp' },
-          { name = 'luasnip' },
-          { name = 'path' },
-          { name = 'buffer' },
-          { name = 'nvim_lua' },
+          { name = 'nvim_lsp', max_item_count = 20 },
+          { name = 'luasnip', max_item_count = 10 },
+          { name = 'path', max_item_count = 6 },
+          { name = 'buffer', max_item_count = 6 },
+          { name = 'nvim_lua', max_item_count = 20 },
           { name = 'natdat' },
         },
         experimental = {
