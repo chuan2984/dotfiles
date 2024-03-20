@@ -51,7 +51,7 @@ keybindings:
   prs:
     - key: C
       command: >
-        wezterm cli split-pane --right -- zsh -c "cd {{.RepoPath}} && nvim -c ':Octo pr edit {{.PrNumber}}'"
+        wezterm cli spawn --cwd {{.RepoPath}} -- zsh -c "nvim -c ':Octo pr edit {{.PrNumber}}'"
 repoPaths:
   Fieldwire/fieldwire_api: ~/Github/fieldwire_api
 theme:
