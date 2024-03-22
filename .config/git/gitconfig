@@ -14,9 +14,10 @@
 	logl = log -L
 	logs = "!f() { git log -S \"$1\" -p; }; f"
 	mylog = "!git log --graph --color --decorate --pretty=oneline --abbrev-commit --author=\"$(git config user.name)\" | tac"
-	fixup = "!sh -c 'git commit -m \"fixup! $(git log -1 --format='\\''%s'\\'' $@)\"'" -
+	fixup = "!sh -c 'commit_hash=$(git log -1 --pretty=%H); if [ -z \"$1\" ]; then git commit --fixup=$commit_hash; else git commit --fixup=$1; fi' -"
 	squash = "!sh -c 'git commit -m \"squash! $(git log -1 --format='\\''%s'\\'' $@)\"'" -
 	ri = rebase --interactive --autosquash
+	ra = rebase --autosquash
 	uncommit = reset --mixed head~
 	shove = push -u
 	cam = commit -am
@@ -40,6 +41,8 @@
 	rebase = true
 [column]
 	ui = auto
+[rebase]
+	updateRefs = true
 [branch]
 	sort = -committerdate
 [maintenance]
