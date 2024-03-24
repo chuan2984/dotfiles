@@ -13,5 +13,8 @@ require 'keymaps'
 -- [[ Install `lazy.nvim` plugin manager ]]
 require 'lazy-bootstrap'
 
+-- [[ Abbreviations]]
+require 'abbrev'
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
