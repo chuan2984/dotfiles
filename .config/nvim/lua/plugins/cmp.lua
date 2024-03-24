@@ -6,6 +6,7 @@ return {
       -- Snippet Engine & its associated nvim-cmp source
       {
         'L3MON4D3/LuaSnip',
+        lazy = true,
         build = (function()
           -- Build Step is needed for regex support in snippets
           -- This step is not supported in many windows environments
@@ -16,14 +17,15 @@ return {
           return 'make install_jsregexp'
         end)(),
       },
-      'rafamadriz/friendly-snippets',
-      'saadparwaiz1/cmp_luasnip',
+      { 'rafamadriz/friendly-snippets', lazy = true },
+      { 'saadparwaiz1/cmp_luasnip', lazy = true },
+      { 'hrsh7th/cmp-cmdline', lazy = true },
       -- Adds other completion capabilities.
       --  nvim-cmp does not ship with all sources by default. They are split
       --  into multiple repos for maintenance purposes.
-      'hrsh7th/cmp-nvim-lsp',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
+      { 'hrsh7th/cmp-nvim-lsp', lazy = true },
+      { 'hrsh7th/cmp-path', lazy = true },
+      { 'SergioRibera/cmp-dotenv', lazy = true },
       { 'Gelio/cmp-natdat', config = true },
     },
     config = function()
@@ -147,6 +149,7 @@ return {
               path = '[Path]',
               cmdline = '[CMD]',
               natdat = '[DATE]',
+              dotenv = '[ENV]',
             })[entry.source.name]
             return vim_item
           end,
@@ -155,12 +158,13 @@ return {
           documentation = cmp.config.window.bordered(),
         },
         sources = {
-          { name = 'nvim_lsp', max_item_count = 20 },
+          { name = 'nvim_lsp', max_item_count = 10 },
           { name = 'luasnip', max_item_count = 10 },
           { name = 'path', max_item_count = 6 },
           { name = 'buffer', max_item_count = 6 },
           { name = 'nvim_lua', max_item_count = 20 },
           { name = 'natdat' },
+          { name = 'dotenv', max_item_count = 10, option = { trigger_pattern = [=[\b[A-Z_]+\b]=] } },
         },
         experimental = {
           ghost_text = false,
