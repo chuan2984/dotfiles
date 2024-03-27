@@ -110,10 +110,6 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
   group = vim.api.nvim_create_augroup('autosave on window change', { clear = true }),
   pattern = '*',
   callback = function(event)
-    local notify = function()
-      vim.notify('Auto-saved ' .. vim.fn.strftime '%H:%M:%S', vim.log.levels.INFO)
-    end
-
     local writable_buffer = vim.bo[event.buf].modifiable and vim.bo[event.buf].buftype == ''
     local file_exists = vim.fn.expand '%' ~= ''
     local saved_recently = (vim.b.timestamp or 0) == vim.fn.localtime()
@@ -121,7 +117,6 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
 
     if writable_buffer and file_exists and not saved_recently and not being_formatted then
       vim.cmd 'silent update'
-      notify()
     end
   end,
 })

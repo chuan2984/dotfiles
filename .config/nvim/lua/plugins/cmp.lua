@@ -164,7 +164,7 @@ return {
           { name = 'buffer', max_item_count = 6 },
           { name = 'nvim_lua', max_item_count = 20 },
           { name = 'natdat' },
-          { name = 'dotenv', max_item_count = 10, option = { trigger_pattern = [=[\b[A-Z_]+\b]=] } },
+          -- { name = 'dotenv', max_item_count = 10 },
         },
         experimental = {
           ghost_text = false,
