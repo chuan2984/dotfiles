@@ -6,12 +6,12 @@ vim.opt.backup = false
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 vim.opt.swapfile = false -- creates a swapfile
 vim.opt.undofile = true -- enable persistent undo
-vim.opt.conceallevel = 2 -- so that obsidian can play nice, but can also be set to 0 to hide the quote blocks
+vim.opt.conceallevel = 1 -- so that obsidian can play nice, but can also be set to 0 to hide the quote blocks
 vim.opt.fileencoding = 'utf-8' -- the encoding written to a file
 vim.opt.termguicolors = true -- set term gui colors (most terminals support this)
-vim.opt.showtabline = 2 -- always show tabs
 vim.opt.numberwidth = 2 -- set line number column width to 2 {default 4}
 vim.opt.cmdheight = 1 -- set command line height to 0 to auto hide
+vim.opt.showtabline = 0 -- never show tabs
 
 -- Tab spaces
 vim.opt.expandtab = true -- convert tabs to spaces
@@ -63,7 +63,7 @@ vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
 vim.opt.inccommand = 'split'
 
 -- Show which line your cursor is on
-vim.opt.cursorline = true
+vim.opt.cursorline = false
 
 -- add '-' to iskeyword so that my-object is considered one word
 vim.cmd [[set iskeyword+=-]]
