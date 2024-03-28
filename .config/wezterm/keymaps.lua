@@ -15,11 +15,10 @@ function module.apply_to_config(config)
 		-- Pane keybindings
 		{ key = "s", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 		{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
-		-- Omitting these because this is set by navigator.lu
-		-- { key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
-		-- { key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
-		-- { key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
-		-- { key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
+		{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },
+		{ key = "j", mods = "LEADER", action = act.ActivatePaneDirection("Down") },
+		{ key = "k", mods = "LEADER", action = act.ActivatePaneDirection("Up") },
+		{ key = "l", mods = "LEADER", action = act.ActivatePaneDirection("Right") },
 		{ key = "q", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
 		{ key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
 		{ key = "o", mods = "LEADER", action = act.RotatePanes("Clockwise") },

@@ -16,11 +16,6 @@ navigator.apply_to_config(config)
 
 local workspace_switcher = require("workspace_switcher")
 workspace_switcher.apply_to_config(config)
---local workspaces = require 'workspaces'
---
---wezterm.on('gui-startup', function()
---  workspaces.loadWorkspaces()
---end)
 
 config.color_scheme = "Gruber (base16)"
 -- config.color_scheme = "Gruber Dark (Gogh)"
