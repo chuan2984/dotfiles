@@ -2,7 +2,6 @@
 --  See `:help keymap.set()`
 --
 local opts = { noremap = true, silent = false }
-local term_opts = { silent = true }
 local keymap = vim.keymap.set
 
 -- Modes
@@ -23,6 +22,7 @@ keymap('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic me
 keymap('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' }, opts)
 keymap('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' }, opts)
 
+-- Currently handled by a plugin
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
@@ -36,19 +36,19 @@ keymap('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q
 keymap('n', '<S-l>', ':bnext<CR>', opts)
 keymap('n', '<S-h>', ':bprevious<CR>', opts)
 
--- Insert --
--- Press jk fast to enter
-keymap('i', 'jk', '<ESC>', opts)
-
 -- Visual --
 -- Stay in indent mode keymap("v", "<", "<gv", opts)
 keymap('v', '>', '>gv', opts)
+keymap('v', '<', '<gv', opts)
+
 -- Paste without yanking the original text
 -- Terminal --
 keymap('v', '<Leader>p', '"_dP', opts)
 -- Delete without yanking the original text
 keymap('v', '<Leader>d', '"_d', opts)
 keymap('n', '<Leader>d', '"_d', opts)
+keymap('n', '<Leader>x', '"_x', opts)
+keymap('n', '<Leader>X', '"_X', opts)
 
 -- Terminal --
 -- Better terminal navigation
