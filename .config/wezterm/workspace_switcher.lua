@@ -3,6 +3,7 @@ local module = {}
 function module.apply_to_config(config)
 	local switcher = require("wezterm").plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
 	switcher.apply_to_config(config)
+	switcher.set_zoxide_path("/opt/homebrew/bin/zoxide")
 
 	local function remove_key_binding(keys_table, mod_to_remove, key_to_remove)
 		for i, binding in ipairs(keys_table) do
@@ -15,7 +16,7 @@ function module.apply_to_config(config)
 
 	remove_key_binding(config.keys, "ALT", "s")
 
-	table.insert(config.keys, { key = "f", mods = "LEADER", action = switcher.switch_workspace() })
+	table.insert(config.keys, { key = "f", mods = "LEADER", action = switcher.switch_workspace(" | head -n 6") })
 end
 
 return module
