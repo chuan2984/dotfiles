@@ -24,7 +24,8 @@ return {
     }
 
     vim.keymap.set('n', '<leader>tr', ':lua require("neotest").run.run()<CR>', { noremap = true, silent = true, desc = '[t]est [r]un' })
-    vim.keymap.set('n', '<leader>tl', ':lua require("neotest").run.last()<CR>', { noremap = true, silent = true, desc = '[t]est run [l]ast' })
+    vim.keymap.set('n', '<leader>tl', ':lua require("neotest").run.run_last()<CR>', { noremap = true, silent = true, desc = '[t]est run [l]ast' })
+    vim.keymap.set('n', '<leader>ta', ':lua require("neotest").run.attach()<CR>', { noremap = true, silent = true, desc = '[t]est run [a]ttach' })
     vim.keymap.set('n', '<leader>tf', ':lua require("neotest").run.run(vim.fn.expand("%"))<CR>', { noremap = true, silent = true, desc = '[t]est [f]ile run' })
     vim.keymap.set('n', '<leader>ts', ':lua require("neotest").run.stop()<CR>', { noremap = true, silent = true, desc = 'Run [t]est [s]top' })
     vim.keymap.set('n', '<leader>to', ':lua require("neotest").output.open()<CR>', { noremap = true, silent = true, desc = 'Open [t]est [o]utput' })
