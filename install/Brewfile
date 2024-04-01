@@ -1,0 +1,65 @@
+# general
+tap "homebrew/bundle"
+tap "homebrew/cask-fonts"
+tap "homebrew/cask-versions"
+tap "homebrew/services"
+tap "1password/tap"
+# personal
+tap "koekeishiya/formulae" # yabai
+tap "felixkratz/formulae"  # borders
+
+# general
+brew "tree"
+brew "ack"
+brew "bash"
+brew "bash-completion"
+brew "bat"
+brew "fd"
+brew "fzf"
+brew "gh"
+brew "git"
+brew "jq"
+brew "python"
+brew "ripgrep"
+brew "zsh"
+brew "zsh-autosuggestions"
+brew "zsh-syntax-highlighting"
+brew "zsh-vi-mode"
+
+# work
+brew "nodenv"
+brew "pre-commit"
+brew "rbenv"
+brew "ruby"
+brew "mutagen-io/mutagen/mutagen"
+brew "mutagen-io/mutagen/mutagen-compose"
+
+# personal
+brew "neovim"
+brew "nvimpager"
+brew "perl"
+brew "php"
+brew "universal-ctags"
+brew "weechat"
+brew "zoxide"
+brew "felixkratz/formulae/borders"
+brew "koekeishiya/formulae/skhd"
+brew "koekeishiya/formulae/yabai"
+
+# general
+cask "1password"
+cask "1password-cli"
+
+# work
+cask "docker"
+cask "postman"
+
+# personal
+cask "appcleaner"
+cask "betterzip"
+cask "caffeine"
+cask "dozer"
+cask "keycastr"
+cask "wezterm"
+cask "obsidian"
+cask "arc"
