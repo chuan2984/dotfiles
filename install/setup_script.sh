@@ -9,6 +9,7 @@ curl -LO https://raw.githubusercontent.com/chuan2984/dotfiles/main/install/brew.
 curl -LO https://raw.githubusercontent.com/chuan2984/dotfiles/main/install/Brewfile
 
 # Run the first script
+chmod *x brew.sh
 ./brew.sh
 
 if [ $? -eq 0 ]; then
