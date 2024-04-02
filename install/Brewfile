@@ -31,7 +31,6 @@ brew "nodenv"
 brew "pre-commit"
 brew "rbenv"
 brew "ruby"
-brew "mutagen-io/mutagen/mutagen"
 brew "mutagen-io/mutagen/mutagen-compose"
 
 # personal
@@ -51,7 +50,6 @@ cask "1password"
 cask "1password-cli"
 
 # work
-cask "docker"
 cask "postman"
 
 # personal
