@@ -12,6 +12,8 @@ brew install macvim
 brew link macvim
 brew install stow
 
-brew bundle --file "$HOME/.dotfiles/install/Brewfile"
+brewfile="$(pwd)/Brewfile"
+
+brew bundle --file $brewfile
 
 exit 0
