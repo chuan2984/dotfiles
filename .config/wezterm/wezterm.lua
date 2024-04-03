@@ -39,7 +39,7 @@ config.inactive_pane_hsb = {
 
 config.background = {
 	{
-		source = { File = { path = os.getenv("HOME") .. "/.dotfiles/.config/wezterm/images/dark_mountain.png" } },
+		source = { File = { path = os.getenv("HOME") .. "/dotfiles/.config/wezterm/images/dark_mountain.png" } },
 		height = "Cover",
 		width = "Cover",
 		opacity = 1,
