@@ -48,3 +48,7 @@
 [maintenance]
 	strategy = incremental
 	auto = false
+[credential "https://github.com"]
+	helper = !op plugin run -- gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = !/opt/homebrew/bin/gh auth git-credential
