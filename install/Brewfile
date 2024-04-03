@@ -53,6 +53,8 @@ cask "1password-cli"
 cask "postman"
 
 # personal
+cask "font-fira-code-nerd-font"
+cask "font-meslo-lg-nerd-font"
 cask "appcleaner"
 cask "betterzip"
 cask "caffeine"
