@@ -1,4 +1,3 @@
-source ~/powerlevel10k/powerlevel10k.zsh-theme
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -6,14 +5,14 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-[[ -f ~/.dotfiles/.config/zsh-plugins/.fzf.zsh ]] && source ~/.dotfiles/.config/zsh-plugins/.fzf.zsh
+source ~/powerlevel10k/powerlevel10k.zsh-theme
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export PAGER=nvimpager
 
 function config() {
-  cd "$HOME/.dotfiles/.config/$1" || return
+  cd "$HOME/dotfiles/.config/$1" || return
 }
 
 function vim-htag() {
@@ -21,6 +20,10 @@ function vim-htag() {
 }
 
 ## Aliases
+# export CLICOLOR=1
+# export LSCOLORS=GxFxCxDxBxegedabagaced
+# alias ls='ls -GF'
+alias ls='gls --color -F'
 alias la='ls -a'
 alias ll='ls -l'
 alias lla='ls -al'
@@ -55,19 +58,6 @@ alias g='git'
 alias ec="nvim $HOME/.zshrc"
 alias sc="exec zsh"
 
-export PATH="$PATH:/Users/chuanhe/Library/Python/3.9/bin"
-
-## Setting up android project
-#export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk-19.jdk/Contents/Home
-#export ANDROID_HOME="Users/chuanhe/Library/Android/sdk"
-#export Path="$PATH:/$ANDROID_HOME/platform-tools"
-
-## Add work github directory to hash
-hash -d api=~/GitHub/fieldwire_api
-hash -d web=~/GitHub/fieldwire_web_app
-hash -d dot=~/.dotfiles
-hash -d config=~/.dotfiles/.config
-
 ##Suffix Aliases
 alias -s {yaml,yml,lua,vim,csharp,js,rb,json,c,cs,py,md,txt}=nvim
 
@@ -100,6 +90,10 @@ eval "$(nodenv init -)"
 
 eval "$(zoxide init --cmd cd zsh)"
 source ~/.config/op/plugins.sh
+source ~/.config/zsh-plugins/lscolors.sh
+source ~/.config/zsh-plugins/.fzf.zsh
+source ~/.config/zsh-plugins/.take.zsh
+source ~/.config/zsh-plugins/.fancy-ctrlz.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
