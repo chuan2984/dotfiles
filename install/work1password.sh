@@ -1,4 +1,5 @@
 #!/bin/bash
+mkdir ~/github/work
 cd ~/github/work/
 op signin --account fieldwire.1password.com # to sign in
 op plugin init gh # to enable sign in with gh
