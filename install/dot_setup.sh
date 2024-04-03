@@ -1,9 +1,9 @@
 #!/bin/bash
 
 mkdir ~/github
-gh repo clone chuan2984/dotfiles ~
-gh repo clone chuan2984/alfred-backup ~/github/
-gh repo clone chuan2984/obsidian ~/github/
+git clone https://github.com/chuan2984/dotfiles ~/dotfiles
+git clone https://github.com/chuan2984/alfred-backup ~/github/alfred-backup
+git clone https://github.com/chuan2984/obsidian ~/github/obsidian
 
 cd ~/dotfiles
 stow --adopt . # creates the symlink for everything in the folder and ignore existing
