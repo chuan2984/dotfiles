@@ -1,4 +1,3 @@
-source ~/.config/zsh-plugins/lscolors.sh
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -21,12 +20,7 @@ function vim-htag() {
   vim -u NONE -c "helptags $1" -c q
 }
 
-ssh-add --apple-use-keychain ~/.ssh/github/personal
-ssh-add --apple-use-keychain ~/.ssh/github/work
-# Add ssh key
-
 ## Aliases
-alias ls='gls --color -F' # using gls from gnu coreutils
 alias la='ls -a'
 alias ll='ls -l'
 alias lla='ls -al'
@@ -106,8 +100,6 @@ eval "$(nodenv init -)"
 
 eval "$(zoxide init --cmd cd zsh)"
 source ~/.config/op/plugins.sh
-source ~/.dotfiles/.config/zsh-plugins/.take.zsh
-source ~/.dotfiles/.config/zsh-plugins/.fancy-ctrlz.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
