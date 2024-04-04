@@ -1,6 +1,7 @@
 local wezterm = require("wezterm")
 local act = wezterm.action
 local balance = require("balance")
+local backdrops = require("backdrops")
 
 local module = {}
 
@@ -70,6 +71,42 @@ function module.apply_to_config(config)
 			action = act.ShowLauncherArgs({ flags = "WORKSPACES", title = "workspaces" }),
 		},
 
+		-- background controls --
+		{
+			key = [[/]],
+			mods = "LEADER",
+			action = wezterm.action_callback(function(window, _pane)
+				backdrops:random(window)
+			end),
+		},
+		{
+			key = [[,]],
+			mods = "LEADER",
+			action = wezterm.action_callback(function(window, _pane)
+				backdrops:cycle_back(window)
+			end),
+		},
+		{
+			key = [[.]],
+			mods = "LEADER",
+			action = wezterm.action_callback(function(window, _pane)
+				backdrops:cycle_forward(window)
+			end),
+		},
+		{
+			key = [[\]],
+			mods = "LEADER",
+			action = act.InputSelector({
+				title = "Select Background",
+				choices = backdrops:choices(),
+				fuzzy = true,
+				fuzzy_description = "Select Background: ",
+				action = wezterm.action_callback(function(window, _pane, idx)
+					---@diagnostic disable-next-line: param-type-mismatch
+					backdrops:set_img(window, tonumber(idx))
+				end),
+			}),
+		},
 		{
 			key = ";",
 			mods = "LEADER",
