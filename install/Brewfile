@@ -25,6 +25,7 @@ brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 brew "zsh-vi-mode"
 brew "coreutils"
+brew "direnv"
 
 # languages
 brew "python"
