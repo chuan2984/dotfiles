@@ -91,7 +91,6 @@ eval "$(nodenv init -)"
 #export AWS_SHARED_CREDENTIALS_FILE="$HOME/.config/aws/credentials"
 
 eval "$(zoxide init --cmd cd zsh)"
-eval "$(direnv hook zsh)"
 source ~/.config/zsh-plugins/lscolors.sh
 source ~/.config/zsh-plugins/.fzf.zsh
 source ~/.config/zsh-plugins/.take.zsh
