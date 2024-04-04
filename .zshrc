@@ -85,17 +85,13 @@ eval "$(rbenv init - zsh)"
 # Set up Node env
 export PATH="$HOME/.nodenv/bin:$PATH"
 eval "$(nodenv init -)"
-#
-# Jira autocomplete
-# https://github.com/go-jira/jira export PATH="/usr/local/bin/jira:$PATH"
-#eval "$(jira --completion-script-bash)"
 
 # relocating aws config file to a different folder
 #export AWS_CONFIG_FILE="$HOME/.config/aws/config"
 #export AWS_SHARED_CREDENTIALS_FILE="$HOME/.config/aws/credentials"
 
 eval "$(zoxide init --cmd cd zsh)"
-source ~/.config/op/plugins.sh
+eval "$(direnv hook zsh)"
 source ~/.config/zsh-plugins/lscolors.sh
 source ~/.config/zsh-plugins/.fzf.zsh
 source ~/.config/zsh-plugins/.take.zsh
