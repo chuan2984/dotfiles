@@ -58,10 +58,16 @@ alias g='git'
 alias ec="nvim $HOME/.zshrc"
 alias sc="exec zsh"
 
-##Suffix Aliases
+#Suffix Aliases
 alias -s {yaml,yml,lua,vim,csharp,js,rb,json,c,cs,py,md,txt}=nvim
 
-#plugins=(vi-mode zsh-syntax-highlighting zsh-autosuggestions colored-man-pages colorize)
+# Zsh History
+export HISTFILESIZE=1000
+export HISTSIZE=1000
+export HISTFILE=~/.zsh_history
+setopt HIST_IGNORE_ALL_DUPS
+# following should be turned off, if sharing history via setopt SHARE_HISTORY
+setopt INC_APPEND_HISTORY
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
