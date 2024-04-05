@@ -216,11 +216,13 @@ return {
 
       local servers = {
         solargraph = {
-          on_attach = function(client, buffer)
-            vim.lsp.set_log_level 'debug'
-            -- setup_diagnostics(client, buffer)
+          on_attach = function(_client, _buffer)
+            -- vim.lsp.set_log_level 'debug'
           end,
           root_dir = require('lspconfig').util.root_pattern('Gemfile', '.git'),
+          flags = {
+            debounc_text_changes = 150,
+          },
           settings = {
             solargraph = {
               formatting = true,
