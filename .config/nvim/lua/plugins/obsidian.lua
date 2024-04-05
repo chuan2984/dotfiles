@@ -5,6 +5,7 @@ return {
     'BufReadPre ' .. vim.fn.expand '~' .. '/Github/obsidian/**.md',
     'BufNewFile ' .. vim.fn.expand '~' .. '/Github/obsidian/**.md',
   },
+  cmd = 'ObsidianToday',
   keys = {
     {
       '<leader>so',
