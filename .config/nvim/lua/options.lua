@@ -13,6 +13,10 @@ vim.opt.numberwidth = 2 -- set line number column width to 2 {default 4}
 vim.opt.cmdheight = 1 -- set command line height to 0 to auto hide
 vim.opt.showtabline = 0 -- never show tabs
 
+-- vimgrep
+vim.opt.grepprg = 'rg --vimgrep'
+vim.opt.grepformat = '%f:%l:%c:%m'
+
 -- Tab spaces
 vim.opt.expandtab = true -- convert tabs to spaces
 vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation

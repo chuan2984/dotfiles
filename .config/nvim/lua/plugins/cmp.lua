@@ -26,7 +26,8 @@ return {
       { 'hrsh7th/cmp-nvim-lsp', lazy = true },
       { 'hrsh7th/cmp-path', lazy = true },
       { 'SergioRibera/cmp-dotenv', lazy = true },
-      { 'Gelio/cmp-natdat', config = true },
+      { 'hrsh7th/cmp-buffer', lazy = true },
+      { 'Gelio/cmp-natdat', lazy = true, config = true },
     },
     config = function()
       local kind_icons = {
@@ -163,6 +164,7 @@ return {
           { name = 'path', max_item_count = 6 },
           { name = 'buffer', max_item_count = 6 },
           { name = 'nvim_lua', max_item_count = 20 },
+          { name = 'buffer', max_item_count = 4 },
           { name = 'natdat' },
           -- { name = 'dotenv', max_item_count = 10 },
         },
