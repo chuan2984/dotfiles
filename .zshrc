@@ -92,6 +92,7 @@ eval "$(nodenv init -)"
 
 eval "$(zoxide init --cmd cd zsh)"
 source ~/.config/zsh-plugins/lscolors.sh
+source ~/.config/zsh-plugins/git-completion.zsh
 source ~/.config/zsh-plugins/.fzf.zsh
 source ~/.config/zsh-plugins/.take.zsh
 source ~/.config/zsh-plugins/.fancy-ctrlz.zsh
