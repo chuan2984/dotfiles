@@ -32,9 +32,13 @@ keymap('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q
 --keymap('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' }, opts)
 --keymap('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' }, opts)
 
+-- Navigate quickfix list
+keymap('n', ']q', ':cnext<CR>', { desc = 'Go to previous item in quickfix list' }, opts)
+keymap('n', '[q', ':cprevious<CR>', { desc = 'Go to next item in quickfix list' }, opts)
+
 -- Navigate buffers
-keymap('n', '<S-l>', ':bnext<CR>', opts)
-keymap('n', '<S-h>', ':bprevious<CR>', opts)
+keymap('n', ']b', ':bnext<CR>', opts)
+keymap('n', '[b', ':bprevious<CR>', opts)
 
 -- Visual --
 -- Stay in indent mode keymap("v", "<", "<gv", opts)

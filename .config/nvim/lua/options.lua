@@ -17,6 +17,14 @@ vim.opt.showtabline = 0 -- never show tabs
 vim.opt.grepprg = 'rg --vimgrep'
 vim.opt.grepformat = '%f:%l:%c:%m'
 
+-- always open quickfix window automatically.
+-- this uses cwindows which will open it only if there are entries.
+vim.api.nvim_create_autocmd('QuickFixCmdPost', {
+  group = vim.api.nvim_create_augroup('AutoOpenQuickfix', { clear = true }),
+  pattern = { '[^l]*' },
+  command = 'cwindow',
+})
+
 -- Tab spaces
 vim.opt.expandtab = true -- convert tabs to spaces
 vim.opt.shiftwidth = 2 -- the number of spaces inserted for each indentation
