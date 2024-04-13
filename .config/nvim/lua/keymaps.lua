@@ -41,9 +41,12 @@ keymap('n', ']b', ':bnext<CR>', opts)
 keymap('n', '[b', ':bprevious<CR>', opts)
 
 -- Visual --
--- Stay in indent mode keymap("v", "<", "<gv", opts)
 keymap('v', '>', '>gv', opts)
 keymap('v', '<', '<gv', opts)
+
+-- Vertical movement
+keymap('n', '<C-d>', '<C-d>zz', opts)
+keymap('n', '<C-u>', '<C-u>zz', opts)
 
 -- Paste without yanking the original text
 -- Terminal --
