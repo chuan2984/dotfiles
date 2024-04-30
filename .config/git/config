@@ -23,6 +23,7 @@
 	cam = commit -am
 	cm = commit -m
 	st = status
+	last = switch -
 [color]
 	ui = auto
 	branch = auto
