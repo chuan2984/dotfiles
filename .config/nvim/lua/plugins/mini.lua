@@ -4,6 +4,7 @@ return {
     'nvim-tree/nvim-web-devicons',
   },
   config = function()
+    -- MIni IndentScope
     require('mini.indentscope').setup {
       draw = {
         -- Delay (in ms) between event and start of drawing scope indicator
@@ -39,7 +40,7 @@ return {
         -- Whether to first check input line to be a border of adjacent scope.
         -- Use it if you want to place cursor on function header to get scope of
         -- its body.
-        try_as_border = false,
+        try_as_border = true,
       },
 
       -- Which character to use for drawing scope indicator
@@ -131,9 +132,10 @@ return {
     -- - sr)'  - [S]urround [R]eplace [)] [']
     require('mini.surround').setup()
 
-    -- Simple and easy statusline.
-    --  You could remove this setup call if you don't like it,
-    --  and try some other statusline plugin
+    -- Mini AutoPairs
+    require('mini.pairs').setup()
+
+    -- Mini StatusLine
     local statusline = require 'mini.statusline'
     statusline.setup()
 
