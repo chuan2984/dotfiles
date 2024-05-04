@@ -1,4 +1,3 @@
--- Pull in the wezterm API
 require("backdrops"):set_files():random()
 
 require("startup")
@@ -19,12 +18,11 @@ navigator.apply_to_config(config)
 local workspace_switcher = require("workspace_switcher")
 workspace_switcher.apply_to_config(config)
 
-config.color_scheme = "rose-pine"
--- config.color_scheme = "tokyonight storm"
+config.color_scheme = "Tokyo Night"
 
 config.font = wezterm.font_with_fallback({
-	{ family = "JetbrainsMono Nerd Font", scale = 1.5 },
-	{ family = "FiraCode Nerd Font", scale = 1.5, harfbuzz_features = { "zero", "ss01", "cv05" } },
+	{ family = "JetbrainsMono Nerd Font", scale = 1.7 },
+	{ family = "FiraCode Nerd Font", scale = 1.7, harfbuzz_features = { "zero", "ss01", "cv05" } },
 	{ family = "MesloLGS Nerd Font", scale = 1.5 },
 	{ family = "Fira Code", scale = 1.7 },
 })
