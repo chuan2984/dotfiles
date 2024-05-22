@@ -13,50 +13,68 @@ wezterm.on("gui-startup", function(cmd)
 
 	-- Work workspace
 	-- first tab, fieldwire_api
-	local tab_one, pane_one, first_window = mux.spawn_window({
+	local api_tab, api_tab_pane, work_wiwndow = mux.spawn_window({
 		workspace = "work",
 		cwd = work_dir .. "/fieldwire_api",
 		args = args,
 	})
-	tab_one:set_title("api")
-	pane_one:send_text("rake web:up\n")
+	api_tab:set_title("api")
+	api_tab_pane:send_text("rake full:up\n")
 
-	-- second tab, fieldwire_web_app
-	local tab_two, second_pane, _ = first_window:spawn_tab({
+	-- second tab, fieldwire_api_super
+	local api_super_tab, api_super_tab_pane, _ = work_wiwndow:spawn_tab({
+		cwd = work_dir .. "/fieldwire_api_super",
+	})
+	api_super_tab:set_title("api super")
+	api_super_tab_pane:send_text("make containers_start\n")
+	local client_api_pane = api_super_tab_pane:split({ direction = "Right", size = 0.333 })
+	client_api_pane:send_text("make dev_run_client_api_with_rails_db\n")
+	local admin_api_pane = api_super_tab_pane:split({ direction = "Right", size = 0.333 })
+	admin_api_pane:send_text("make dev_run_admin_api_with_rails_db\n")
+
+	-- third tab, fieldwire_web_app
+	local web_tab, web_tab_pane, _ = work_wiwndow:spawn_tab({
 		cwd = work_dir .. "/fieldwire_web_app",
 	})
-	tab_two:set_title("web_app")
-	second_pane:send_text("yarn dev_server\n")
+	web_tab:set_title("web")
+	web_tab_pane:send_text("yarn dev_server\n")
+
+	-- forth tab, fieldwire_admin
+	local admin_tab, admin_tab_pane, _ = work_wiwndow:spawn_tab({
+		cwd = work_dir .. "/fieldwire_admin",
+	})
+	admin_tab:set_title("admin")
+	admin_tab_pane:send_text("yarn start\n")
 	-- focus first tab
-	tab_one:activate()
+	api_tab:activate()
 
 	-- Dotfiles workspace
 	-- first tab, .config dir
-	local tab_three, pane, sec_window = mux.spawn_window({
+	local dot_tab, _, dot_window = mux.spawn_window({
 		workspace = "dotfiles",
 		cwd = personal_dir,
 		args = args,
 	})
-	tab_three:set_title("dot")
+	dot_tab:set_title("dot")
 
 	-- second tab, nvim
-	local tab_four, forth_pane, _ = sec_window:spawn_tab({
+	local nvim_tab, nvim_tab_pane, _ = dot_window:spawn_tab({
 		cwd = personal_dir .. "/nvim",
 	})
-	tab_four:set_title("nvim")
-	forth_pane:send_text("nv\n")
+	nvim_tab:set_title("nvim")
+	nvim_tab_pane:send_text("nv .\n")
 
 	-- third tab, wezterm
-	local tab_five, fifth_pane, _ = sec_window:spawn_tab({
+	local wez_tab, wez_tab_pane, _ = dot_window:spawn_tab({
 		cwd = personal_dir .. "/wezterm",
 	})
-	tab_five:set_title("wez")
-	fifth_pane:send_text("nv\n")
+	wez_tab:set_title("wez")
+	wez_tab_pane:send_text("nv .\n")
 	-- focus first tab
-	tab_three:activate()
+	dot_tab:activate()
 
 	-- Obsidian workspace
-	local tab_six, sixth_pane, _third_window = mux.spawn_window({
+	local tab_six, sixth_pane, _ = mux.spawn_window({
 		workspace = "obsidian",
 		cwd = home .. "/github/obsidian",
 		args = args,
@@ -65,7 +83,7 @@ wezterm.on("gui-startup", function(cmd)
 	sixth_pane:send_text("nv -c ObsidianToday\n")
 
 	-- PR review workspace
-	local tab_seven, seventh_pane, _forth_window = mux.spawn_window({
+	local tab_seven, seventh_pane, _ = mux.spawn_window({
 		workspace = "PR review",
 		cwd = work_dir,
 		args = args,
@@ -73,6 +91,6 @@ wezterm.on("gui-startup", function(cmd)
 	tab_seven:set_title("gh dash")
 	seventh_pane:send_text("gh dash\n")
 
-	-- We want to startup in the coding workspace
+	-- Start up in work workspace
 	mux.set_active_workspace("work")
 end)
