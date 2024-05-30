@@ -27,6 +27,12 @@ return {
       },
       { 'nvim-telescope/telescope-ui-select.nvim' },
       { 'nvim-tree/nvim-web-devicons' },
+      {
+        'nvim-telescope/telescope-live-grep-args.nvim',
+        -- This will not install any breaking changes.
+        -- For major updates, this must be adjusted manually.
+        version = '^1.0.0',
+      },
     },
     config = function()
       -- the easiest way to use telescope, is to start by doing something like:
@@ -49,6 +55,8 @@ return {
       -- I don't want to search in the `.git` directory.
       table.insert(vimgrep_arguments, '--glob')
       table.insert(vimgrep_arguments, '!**/.git/*')
+
+      local lga_actions = require 'telescope-live-grep-args.actions'
 
       require('telescope').setup {
         -- you can put your default mappings / updates / etc. in here
@@ -82,12 +90,29 @@ return {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
           },
+          live_grep_args = {
+            auto_quoting = true, -- enable/disable auto-quoting
+            -- define mappings, e.g.
+            mappings = { -- extend mappings
+              i = {
+                ['<C-k>'] = lga_actions.quote_prompt(),
+                ['<C-i>'] = lga_actions.quote_prompt { postfix = ' --iglob ' },
+                -- freeze the current list and start a fuzzy search in the frozen list
+                ['<C-space>'] = actions.to_fuzzy_refine,
+              },
+            },
+            -- ... also accepts theme settings, for example:
+            -- theme = "dropdown", -- use dropdown theme
+            -- theme = { }, -- use own theme spec
+            -- layout_config = { mirror=true }, -- mirror preview pane
+          },
         },
       }
 
       -- enable telescope extensions, if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
+      pcall(require('telescope').load_extension, 'live_grep_args')
 
       -- see `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
@@ -130,18 +155,22 @@ return {
           }
         end
 
-        require('telescope.builtin').live_grep(opts)
+        require('telescope').extensions.live_grep_args.live_grep_args(opts)
       end
+
+      local lga_shortcuts = require 'telescope-live-grep-args.shortcuts'
 
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[s]earch [h]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[s]earch [k]eymaps' })
       -- vim.keymap.set('n', '<leader>sf', find_files_from_project_git_root, { desc = '[s]earch [f]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[s]earch [s]elect telescope' })
-      vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[s]earch current [w]ord' })
+      vim.keymap.set('n', '<leader>sw', lga_shortcuts.grep_word_under_cursor, { desc = '[s]earch current [w]ord' })
       vim.keymap.set(
         'x',
         '<leader>sw',
-        '"zy<Cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.getreg("z"), desc = "[s]earch current [w]ord" })<CR>'
+        lga_shortcuts.grep_visual_selection,
+        { desc = '[s]earch current [w]ord' }
+        -- '"zy<Cmd>lua require("telescope.builtin").grep_string({ search = vim.fn.getreg("z"), desc = "[s]earch current [w]ord" })<CR>'
       )
       vim.keymap.set('n', '<leader>sg', live_grep_from_project_git_root, { desc = '[s]earch by [g]rep' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[s]earch [d]iagnostics' })
