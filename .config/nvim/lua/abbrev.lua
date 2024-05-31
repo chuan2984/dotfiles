@@ -19,5 +19,6 @@ vim.cmd 'iabbrev hi:: highlights::'
 vim.cmd 'iabbrev teh the'
 
 -- commandline
-vim.cmd 'ca ors Octo review start'
+vim.cmd 'ca orst Octo review start'
+vim.cmd 'ca orsb Octo review submit'
 vim.cmd 'ca orr Octo review resume'
