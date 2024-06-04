@@ -6,7 +6,7 @@ local backdrops = require("backdrops")
 local module = {}
 
 function module.apply_to_config(config)
-	config.leader = { key = "b", mods = "CTRL", timeout_milliseconds = 1000 }
+	config.leader = { key = "m", mods = "CTRL", timeout_milliseconds = 1000 }
 	config.keys = {
 		-- only send C-b once when C-b is pressed twice
 		{ key = "a", mods = "LEADER|CTRL", action = act.SendKey({ key = "a", mods = "CTRL" }) },
