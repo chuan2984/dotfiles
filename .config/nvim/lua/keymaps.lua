@@ -57,6 +57,14 @@ keymap('n', '<Leader>d', '"_d', opts)
 keymap('n', '<Leader>x', '"_x', opts)
 keymap('n', '<Leader>X', '"_X', opts)
 
+-- close buffer
+vim.keymap.set('n', '<leader>bd', '<cmd>bd<CR>', { desc = '[b]uffer [d]elete' })
+-- Close buffer without closing split
+vim.keymap.set('n', '<leader>bdd', '<cmd>bp|bd #<CR>', { desc = '[b]uffer [d]elete [s]plit' })
+
+-- copy current filename
+vim.keymap.set('n', '<leader>cfn', '<cmd>let @+=@%<CR>', { desc = '[copy] current [f]ile [n]ame' })
+
 -- Terminal --
 -- Better terminal navigation
 -- keymap('t', '<C-h>', '<C-\\><C-N><C-w>h', term_opts)
