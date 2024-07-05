@@ -8,7 +8,7 @@ return {
       transparent_background = true,
     }
     -- Used to set filetype for untraditonally named files
-    vim.api.nvim_create_autocmd({ 'BufWinEnter' }, {
+    vim.api.nvim_create_autocmd({ 'VimEnter' }, {
       group = vim.api.nvim_create_augroup('autoset theme', { clear = true }),
       pattern = '*', -- Matches all files
       callback = function()
