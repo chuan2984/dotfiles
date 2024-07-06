@@ -4,7 +4,7 @@ return {
     'nvim-tree/nvim-web-devicons',
   },
   config = function()
-    -- MIni IndentScope
+    -- Mini IndentScope
     require('mini.indentscope').setup {
       draw = {
         -- Delay (in ms) between event and start of drawing scope indicator
@@ -54,7 +54,7 @@ return {
     -- Toggle open and close
     vim.keymap.set('n', '<leader>te', function()
       if not require('mini.files').close() then
-        require('mini.files').open()
+        require('mini.files').open(vim.api.nvim_buf_get_name(0))
       end
     end, { desc = '[T]oggle [E]xplore' })
 
@@ -105,8 +105,8 @@ return {
       callback = function(args)
         local buf_id = args.data.buf_id
         -- Tweak keys to your liking
-        map_split(buf_id, 'gs', 'Open file in belowright horizontal')
-        map_split(buf_id, 'gv', 'Open file in belowright vertical')
+        map_split(buf_id, 'gs', 'belowright horizontal')
+        map_split(buf_id, 'gv', 'belowright vertical')
       end,
     })
 
@@ -140,6 +140,24 @@ return {
     -- Mini AutoPairs
     require('mini.pairs').setup()
 
+    local disable_minipairs_group = vim.api.nvim_create_augroup('DisableMiniPairsForNorm', { clear = true })
+
+    vim.api.nvim_create_autocmd('CmdlineEnter', {
+      group = disable_minipairs_group,
+      pattern = '*',
+      callback = function()
+        vim.b.minipairs_disable = true
+      end,
+    })
+
+    vim.api.nvim_create_autocmd('CmdlineLeave', {
+      group = disable_minipairs_group,
+      pattern = '*',
+      callback = function()
+        vim.b.minipairs_disable = false
+      end,
+    })
+
     -- Mini StatusLine
     local statusline = require 'mini.statusline'
     statusline.setup()
@@ -149,7 +167,7 @@ return {
     -- cursor information because line numbers are already enabled
     ---@diagnostic disable-next-line: duplicate-set-field
     statusline.section_location = function()
-      return ''
+      return require('arrow.statusline').text_for_statusline_with_icons()
     end
 
     -- Mini Notify
