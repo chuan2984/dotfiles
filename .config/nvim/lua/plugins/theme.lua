@@ -7,15 +7,17 @@ return {
       flavour = 'auto', -- latte, frappe, macchiato, mocha
       transparent_background = true,
     }
-    -- Used to set filetype for untraditonally named files
-    vim.api.nvim_create_autocmd({ 'VimEnter' }, {
+
+    vim.cmd.colorscheme 'catppuccin'
+
+    -- Used to set theme for obsidian files after file is read
+    vim.api.nvim_create_autocmd({ 'BufReadPost' }, {
       group = vim.api.nvim_create_augroup('autoset theme', { clear = true }),
       pattern = '*', -- Matches all files
       callback = function()
-        local theme_name = 'catppuccin'
-        local is_not_obsidian_file = not vim.fn.expand('%:p'):lower():match 'obsidian'
-        if vim.g.colors_name ~= theme_name and is_not_obsidian_file then
-          vim.cmd.colorscheme 'catppuccin'
+        local is_obsidian_file = vim.fn.expand('%:p'):lower():match 'obsidian'
+        if is_obsidian_file then
+          vim.cmd.colorscheme 'kanagawa'
         end
       end,
     })
