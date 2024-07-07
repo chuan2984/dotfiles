@@ -41,6 +41,7 @@ return {
       local actions = require 'telescope.actions'
       local action_layout = require 'telescope.actions.layout'
       local config = require 'telescope.config'
+      local open_with_trouble = require('trouble.sources.telescope').open
 
       -- Clone the default Telescope configuration
       local vimgrep_arguments = { unpack(config.values.vimgrep_arguments) }
@@ -60,9 +61,11 @@ return {
             i = {
               -- ['<c-enter>'] = 'to_fuzzy_refine'
               ['<M-p>'] = action_layout.toggle_preview,
+              ['<c-t>'] = open_with_trouble,
             },
             n = {
               ['<M-p>'] = action_layout.toggle_preview,
+              ['<c-t>'] = open_with_trouble,
             },
           },
         },
