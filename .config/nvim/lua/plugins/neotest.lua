@@ -32,8 +32,8 @@ return {
     vim.keymap.set(
       'n',
       '<leader>tO',
-      ':lua require("neotest").output.open({ enter = true })<CR>',
-      { noremap = true, silent = true, desc = 'open [t]est [O]utput and enter' }
+      ':lua require("neotest").output_panel.toggle()<CR>',
+      { noremap = true, silent = true, desc = 'open [t]est [O]utput panel' }
     )
     vim.keymap.set('n', '<leader>tt', ':lua require("neotest").summary.toggle()<CR>', { noremap = true, silent = true, desc = '[t]est [t]oggle' })
   end,
