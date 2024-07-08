@@ -50,28 +50,31 @@ wezterm.on("gui-startup", function(cmd)
 
 	-- Dotfiles workspace
 	-- first tab, .config dir
-	local dot_tab, _, dot_window = mux.spawn_window({
+	local dot_tab, _, _dot_window = mux.spawn_window({
 		workspace = "dotfiles",
 		cwd = personal_dir,
 		args = args,
 	})
 	dot_tab:set_title("dot")
 
-	-- second tab, nvim
-	local nvim_tab, nvim_tab_pane, _ = dot_window:spawn_tab({
+	-- Neovim workspace
+	local neovim_tab, _, _neovim_window = mux.spawn_window({
+		workspace = "neovim",
 		cwd = personal_dir .. "/nvim",
+		args = args,
 	})
-	nvim_tab:set_title("nvim")
-	nvim_tab_pane:send_text("nv .\n")
 
-	-- third tab, wezterm
-	local wez_tab, wez_tab_pane, _ = dot_window:spawn_tab({
+	neovim_tab:set_title("neovim")
+
+	-- Wezterm workspace
+	local wez_tab, _, _wez_window = mux.spawn_window({
+		workspace = "wezterm",
 		cwd = personal_dir .. "/wezterm",
+		args = args,
+		a,
 	})
+
 	wez_tab:set_title("wez")
-	wez_tab_pane:send_text("nv .\n")
-	-- focus first tab
-	dot_tab:activate()
 
 	-- Obsidian workspace
 	local tab_six, sixth_pane, _ = mux.spawn_window({
