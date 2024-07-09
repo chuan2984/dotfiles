@@ -13,3 +13,4 @@ tags.temp
 projections.json
 *.gp.md
 rspec_cmd.sh
+Spoons/
