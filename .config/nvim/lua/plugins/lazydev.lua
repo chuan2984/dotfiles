@@ -9,9 +9,9 @@ return {
     library = {
       -- See the configuration section for more details
       -- Load luvit types when the `vim.uv` word is found
-      { path = 'luvit-meta/library', words = { 'vim%.uv' } },
       'lazy.nvim',
-  
+      { path = 'luvit-meta/library', words = { 'vim%.uv' } },
+      { path = '~/.hammerspoon/Spoons/EmmyLua.spoon/annotations'},
       { path = 'wezterm-types', mods = { 'wezterm' } },
       { path = 'telescope.nvim', mods = { 'telescope' } },
     },
