@@ -47,6 +47,7 @@ brew "koekeishiya/formulae/skhd"
 brew "koekeishiya/formulae/yabai"
 
 # general
+cask "hammerspoon"
 cask "1password"
 cask "1password-cli"
 
