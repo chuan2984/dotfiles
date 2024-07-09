@@ -1,2 +1,5 @@
 .config/tmux/plugins
 op/
+stackline/
+Spoons/
+*.gp.md
