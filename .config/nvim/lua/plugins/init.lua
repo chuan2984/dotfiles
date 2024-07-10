@@ -19,7 +19,7 @@ return {
   { 'Bekaboo/deadcolumn.nvim', event = 'InsertEnter' },
   { 'tpope/vim-fugitive', event = 'VeryLazy' },
   { 'tpope/vim-rails', event = 'VeryLazy' },
-  { 'tpope/vim-abolish', event = { 'InsertEnter', 'CmdlineEnter' } },
+  { 'tpope/vim-abolish' }, -- cannot lazy load to work with abolish.vim config file
   { 'ludovicchabant/vim-gutentags', event = 'VeryLazy' },
   -- Use `opts = {}` to force a plugin to be loaded.
   --
