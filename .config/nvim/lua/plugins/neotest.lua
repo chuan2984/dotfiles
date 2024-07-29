@@ -1,6 +1,7 @@
 return {
   'nvim-neotest/neotest',
   keys = { '<leader>ts', '<leader>tt', '<leader>tf', '<leader>tr', '<leader>tl' },
+  enabled = false,
   dependencies = {
     'nvim-neotest/nvim-nio',
     'nvim-lua/plenary.nvim',
