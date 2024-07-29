@@ -1,22 +1,19 @@
 local module = {}
+local wezterm = require("wezterm")
 
 function module.apply_to_config(config)
-	local switcher = require("wezterm").plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
-	switcher.apply_to_config(config)
+	local switcher = wezterm.plugin.require("https://github.com/MLFlexer/smart_workspace_switcher.wezterm")
 	switcher.set_zoxide_path("/opt/homebrew/bin/zoxide")
+	switcher.set_workspace_formatter(function(label)
+		return wezterm.format({
+			{ Attribute = { Italic = true } },
+			{ Foreground = { Color = "teal" } },
+			-- { Background = { Color = "rgba(0, 0, 1, 0.5)" } },
+			{ Text = "󱂬: " .. label },
+		})
+	end)
 
-	local function remove_key_binding(keys_table, mod_to_remove, key_to_remove)
-		for i, binding in ipairs(keys_table) do
-			if binding.mods == mod_to_remove and binding.key == key_to_remove then
-				table.remove(keys_table, i)
-				return -- assuming there's only one, we can return immediately after removing
-			end
-		end
-	end
-
-	remove_key_binding(config.keys, "ALT", "s")
-
-	table.insert(config.keys, { key = "f", mods = "LEADER", action = switcher.switch_workspace(" | head -n 6") })
+	table.insert(config.keys, { key = "f", mods = "LEADER", action = switcher.switch_workspace(" | head -n 10") })
 end
 
 return module
