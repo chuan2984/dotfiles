@@ -7,7 +7,7 @@ return {
       leader_key = "'", -- Recommended to be a single key
       buffer_leader_key = 'm', -- Per Buffer Mappings
       separate_by_branch = true,
-      index_keys = 'ghfjdksla;',
+      index_keys = 'hjkl;gfa',
     }
 
     vim.keymap.set('n', 'H', require('arrow.persist').previous)
