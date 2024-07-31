@@ -4,6 +4,9 @@ return {
     'nvim-tree/nvim-web-devicons',
   },
   config = function()
+    -- Mini AI
+    require('mini.ai').setup()
+
     -- Mini IndentScope
     require('mini.indentscope').setup {
       draw = {
