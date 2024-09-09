@@ -16,6 +16,9 @@ local keymap = vim.keymap.set
 vim.opt.hlsearch = true
 keymap('n', '<Esc>', '<cmd>nohlsearch<CR>')
 
+-- copy current file path to system clipboard
+keymap('n', '<leader>cp', '<cmd>let @+ = expand("%:p")<CR>', { desc = '[C]opy current file [p]ath' }, opts)
+
 -- Diagnostic keymaps
 keymap('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' }, opts)
 keymap('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' }, opts)
@@ -47,6 +50,10 @@ keymap('v', '<', '<gv', opts)
 -- Vertical movement
 keymap('n', '<C-d>', '<C-d>zz', opts)
 keymap('n', '<C-u>', '<C-u>zz', opts)
+
+-- Recenter search
+keymap('n', 'n', 'nzzzv', opts)
+keymap('n', 'N', 'Nzzzv', opts)
 
 -- Paste without yanking the original text
 -- Terminal --
