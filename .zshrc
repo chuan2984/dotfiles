@@ -50,6 +50,9 @@ alias 9='cd -9'
 alias ~web='cd ~web'
 alias ~api='cd ~api'
 alias g='git'
+# starts fzf with preview, <c-w> to open in neovim, <c-y> to copy the path to clipboard
+alias sf='fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+}),ctrl-y:execute-silent(echo {} | pbcopy)+abort"'
+alias gdb='git branch --format="%(refname:short)" | fzf -m --bind "enter:execute(git branch -D {+})+abort"'
 alias fsb="$HOME/dotfiles/.config/git/fsb.sh"
 alias fshow="$HOME/dotfiles/.config/git/fshow.sh"
 alias v='fd --hidden --type f --exclude .git | fzf --height 50% --reverse | xargs nvim'
