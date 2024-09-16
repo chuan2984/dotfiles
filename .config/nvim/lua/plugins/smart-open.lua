@@ -7,13 +7,6 @@ return {
     { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   },
   config = function()
-    local telescope = require 'telescope'
-    telescope.load_extension 'smart_open'
-    vim.keymap.set('n', '<leader><leader>', function()
-      require('telescope').extensions.smart_open.smart_open {
-        match_algorithm = 'fzf',
-        cwd_only = true,
-      }
-    end, { noremap = true, silent = true, desc = '[] Smart find files' })
+    vim.keymap.set('n', '<leader><leader>', '<cmd>Telescope smart_open<CR>', { noremap = true, silent = true, desc = '[] Smart find files' })
   end,
 }

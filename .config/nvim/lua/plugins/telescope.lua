@@ -8,7 +8,6 @@
 return {
   { -- Fuzzy Finder (files, lsp, etc)
     'nvim-telescope/telescope.nvim',
-    event = 'VimEnter',
     branch = '0.1.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -85,6 +84,10 @@ return {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
           },
+          smart_open = {
+            match_algorithm = 'fzf',
+            cwd_only = true,
+          },
           -- ... also accepts theme settings, for example:
           -- theme = "dropdown", -- use dropdown theme
           -- theme = { }, -- use own theme spec
@@ -92,6 +95,7 @@ return {
         },
       }
 
+      pcall(require('telescope').load_extension, 'smart_open')
       -- enable telescope extensions, if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
