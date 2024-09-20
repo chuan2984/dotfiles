@@ -137,6 +137,7 @@ return {
         find_left = 'gsF',
         highlight = 'gsh',
         replace = 'gsr',
+        update_n_lines = 'gsn',
       },
     }
 
@@ -228,7 +229,7 @@ return {
       vim.notify(table.concat(print_safe_args, ' '), vim.log.levels.INFO)
     end
 
-    vim.keymap.set('n', '<leader>sN', function()
+    vim.keymap.set('n', '<leader>n', function()
       mini_notify.show_history()
     end, { noremap = true, silent = true, desc = 'Show Notifications' })
   end,
