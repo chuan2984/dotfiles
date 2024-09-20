@@ -38,9 +38,29 @@ return {
       -- [[ configure telescope ]]
       -- see `:help telescope` and `:help telescope.setup()`
       local actions = require 'telescope.actions'
+      local action_state = require 'telescope.actions.state'
       local action_layout = require 'telescope.actions.layout'
       local config = require 'telescope.config'
+
       local open_with_trouble = require('trouble.sources.telescope').open
+      local git_fixup = function(prompt_bufnr)
+        local selection = action_state.get_selected_entry()
+        if selection == nil then
+          print 'No commit selected'
+          return
+        end
+
+        local commit_hash = selection.value
+
+        actions.close(prompt_bufnr)
+        vim.fn.system(string.format('SKIP=lint_ci git commit --fixup=%s', commit_hash))
+
+        if vim.v.shell_error ~= 0 then
+          print 'Failed to create fixup commit'
+        else
+          print('Fixup commit created for ' .. commit_hash)
+        end
+      end
 
       -- Clone the default Telescope configuration
       local vimgrep_arguments = { unpack(config.values.vimgrep_arguments) }
@@ -58,12 +78,16 @@ return {
           vimgrep_arguments = vimgrep_arguments,
           mappings = {
             i = {
+              ['<c-enter>'] = 'to_fuzzy_refine',
               ['<M-p>'] = action_layout.toggle_preview,
               ['<c-t>'] = open_with_trouble,
+              ['<C-a>'] = 'toggle_all',
+              ['<C-s>'] = actions.cycle_previewers_next,
             },
             n = {
               ['<M-p>'] = action_layout.toggle_preview,
               ['<c-t>'] = open_with_trouble,
+              ['<C-a>'] = 'toggle_all',
             },
           },
         },
@@ -77,6 +101,36 @@ return {
           },
           find_files = {
             find_command = { 'rg', '--files', '--hidden', '--glob', '!**/.git/*' },
+          },
+          git_commits = {
+            mappings = {
+              n = {
+                ['<C-f>'] = git_fixup,
+              },
+              i = {
+                ['<C-f>'] = git_fixup,
+              },
+            },
+          },
+          git_bcommits = {
+            mappings = {
+              n = {
+                ['<C-f>'] = git_fixup,
+              },
+              i = {
+                ['<C-f>'] = git_fixup,
+              },
+            },
+          },
+          git_bcommits_range = {
+            mappings = {
+              n = {
+                ['<C-f>'] = git_fixup,
+              },
+              i = {
+                ['<C-f>'] = git_fixup,
+              },
+            },
           },
         },
         extensions = {
@@ -136,6 +190,10 @@ return {
         local home_dir = os.getenv 'HOME'
         builtin.find_files { cwd = home_dir .. '/.dotfiles' }
       end, { desc = '[s]earch [DOT] files' })
+
+      vim.keymap.set('n', '<leader>s.', function()
+        builtin.find_files { cwd = vim.fn.expand '%:p:h' }
+      end, { desc = '[s]earch sibling files' })
     end,
   },
 }
