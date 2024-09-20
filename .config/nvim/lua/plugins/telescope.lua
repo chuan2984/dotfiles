@@ -58,7 +58,6 @@ return {
           vimgrep_arguments = vimgrep_arguments,
           mappings = {
             i = {
-              -- ['<c-enter>'] = 'to_fuzzy_refine'
               ['<M-p>'] = action_layout.toggle_preview,
               ['<c-t>'] = open_with_trouble,
             },
@@ -84,18 +83,9 @@ return {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
           },
-          smart_open = {
-            match_algorithm = 'fzf',
-            cwd_only = true,
-          },
-          -- ... also accepts theme settings, for example:
-          -- theme = "dropdown", -- use dropdown theme
-          -- theme = { }, -- use own theme spec
-          -- layout_config = { mirror=true }, -- mirror preview pane
         },
       }
 
-      pcall(require('telescope').load_extension, 'smart_open')
       -- enable telescope extensions, if they are installed
       pcall(require('telescope').load_extension, 'fzf')
       pcall(require('telescope').load_extension, 'ui-select')
@@ -103,31 +93,11 @@ return {
       -- see `:help telescope.builtin`
       local builtin = require 'telescope.builtin'
 
-      local function find_files_from_project_git_root()
-        local function is_git_repo()
-          vim.fn.system 'git rev-parse --is-inside-work-tree'
-          return vim.v.shell_error == 0
-        end
-        local function get_git_root()
-          local dot_git_path = vim.fn.finddir('.git', '.;')
-          return vim.fn.fnamemodify(dot_git_path, ':h')
-        end
-        local opts = {}
-        if is_git_repo() then
-          opts = {
-            cwd = get_git_root(),
-          }
-        end
-        require('telescope.builtin').find_files(opts)
-      end
-
-      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[s]earch [h]elp' })
+      vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[]earch [h]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[s]earch [k]eymaps' })
-      -- vim.keymap.set('n', '<leader>sf', find_files_from_project_git_root, { desc = '[s]earch [f]iles' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[s]earch [s]elect telescope' })
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[s]earch [d]iagnostics' })
       vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[s]earch [r]esume' })
-      -- vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[s]earch recent files ("." for repeat)' })
       vim.keymap.set('n', '<leader>st', builtin.treesitter, { desc = '[s]earch [t]reesitter' })
       vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[ ] find existing buffers' })
 

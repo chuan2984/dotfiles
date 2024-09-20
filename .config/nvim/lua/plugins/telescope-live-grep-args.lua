@@ -41,8 +41,6 @@ return {
             i = {
               ['<C-k>'] = require('telescope-live-grep-args.actions').quote_prompt(),
               ['<C-i>'] = require('telescope-live-grep-args.actions').quote_prompt { postfix = ' --iglob ' },
-              -- freeze the current list and start a fuzzy search in the frozen list
-              ['<C-space>'] = require('telescope.actions').to_fuzzy_refine,
             },
           },
         },
