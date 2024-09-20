@@ -21,14 +21,21 @@ return {
       require('which-key').setup()
 
       -- Document existing key chains
-      require('which-key').register {
-        ['<leader>c'] = { name = '[C]ode', _ = 'which_key_ignore' },
-        ['<leader>d'] = { name = '[D]ocument', _ = 'which_key_ignore' },
-        ['<leader>r'] = { name = '[R]ename', _ = 'which_key_ignore' },
-        ['<leader>s'] = { name = '[S]earch', _ = 'which_key_ignore' },
-        ['<leader>w'] = { name = '[W]orkspace', _ = 'which_key_ignore' },
-        ['<leader>h'] = { name = '[H]unk', _ = 'which_key_ignore' },
-        ['<C-g>'] = { name = '[G]pt', _ = 'which_key_ignore' },
+      require('which-key').add {
+        { '', desc = '<leader>h_', hidden = true },
+        { '', desc = '<C-g>_', hidden = true },
+        { '', group = '[G]pt' },
+        { '', group = '[C]ode' },
+        { '', group = '[D]ocument' },
+        { '', desc = '<leader>c_', hidden = true },
+        { '', desc = '<leader>d_', hidden = true },
+        { '', desc = '<leader>w_', hidden = true },
+        { '', desc = '<leader>s_', hidden = true },
+        { '', group = '[R]ename' },
+        { '', group = '[W]orkspace' },
+        { '', desc = '<leader>r_', hidden = true },
+        { '', group = '[S]earch' },
+        { '', group = '[H]unk' },
       }
     end,
   },
