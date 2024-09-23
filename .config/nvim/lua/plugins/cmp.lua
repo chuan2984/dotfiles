@@ -139,6 +139,7 @@ return {
         },
         formatting = {
           fields = { 'kind', 'abbr', 'menu' },
+          expandable_indicator = true,
           format = function(entry, vim_item)
             -- Kind icons
             vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
@@ -156,6 +157,7 @@ return {
           end,
         },
         window = {
+          completion = cmp.config.window.bordered(),
           documentation = cmp.config.window.bordered(),
         },
         sources = {
@@ -168,10 +170,6 @@ return {
           { name = 'buffer', max_item_count = 4 },
           { name = 'natdat' },
           -- { name = 'dotenv', max_item_count = 10 },
-        },
-        experimental = {
-          ghost_text = false,
-          native_menu = false,
         },
       }
     end,
