@@ -204,7 +204,7 @@ return {
         max_width_share = 0.5,
 
         -- Value of 'winblend' option
-        winblend = 20,
+        winblend = 0,
       },
     }
 
