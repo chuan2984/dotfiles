@@ -1,22 +1,20 @@
 return {
-  { -- Autoformat
-    'stevearc/conform.nvim',
-    event = 'VeryLazy',
-    opts = {
-      notify_on_error = false,
-      format_on_save = {
-        timeout_ms = 500,
-        lsp_fallback = true,
-      },
-      formatters_by_ft = {
-        lua = { 'stylua' },
-        -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
-        --
-        -- You can use a sub-list to tell conform to run *until* a formatter
-        -- is found.
-        -- javascript = { { "prettierd", "prettier" } },
-      },
+  -- NOTE: This handles all formatting and not `null-ls`
+  -- as this has way better support for finer control and has autosave as a simple option
+  -- It would use formatters_by_ft as the default for the formatter of each language
+  -- and if not specified, it would fallback to the LSP, which may or may not have a formatting
+  -- capability.
+  'stevearc/conform.nvim',
+  event = 'VeryLazy',
+  opts = {
+    notify_on_error = false,
+    format_on_save = {
+      timeout_ms = 2500,
+      lsp_fallback = true,
+    },
+    formatters_by_ft = {
+      lua = { 'stylua' },
+      markdown = { 'markdownlint' },
     },
   },
 }

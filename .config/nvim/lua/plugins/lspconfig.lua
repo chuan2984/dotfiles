@@ -140,6 +140,9 @@ return {
         },
       },
       stylua = {},
+      vale = {},
+      markdownlint = {},
+      ['markdown-oxide'] = {},
     }
 
     -- Ensure the servers and tools above are installed
