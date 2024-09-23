@@ -13,6 +13,12 @@ vim.opt.numberwidth = 2 -- set line number column width to 2 {default 4}
 vim.opt.cmdheight = 1 -- set command line height to 0 to auto hide
 vim.opt.showtabline = 0 -- never show tabs
 
+-- fold
+vim.opt.foldcolumn = '0'
+vim.opt.foldlevel = 69
+vim.opt.foldlevelstart = -1 -- disables
+vim.opt.foldenable = true
+
 -- vimgrep
 vim.opt.grepprg = 'rg --vimgrep'
 vim.opt.grepformat = '%f:%l:%c:%m'
