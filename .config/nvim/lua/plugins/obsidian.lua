@@ -84,7 +84,7 @@ return {
       -- This configuration for lighlight and conceal does not work, replicated at the bottom
       -- This requires you have `conceallevel` set to 1 or 2. See `:help conceallevel` for more details.
       ui = {
-        enable = true, -- set to false to disable all additional syntax features
+        enable = false, -- set to false to disable all additional syntax features
         update_debounce = 200, -- update delay after a text change (in milliseconds)
       },
 
@@ -147,48 +147,8 @@ return {
       pattern = '*.md',
       group = vim.api.nvim_create_augroup('MarkdownSyntaxCustomization', { clear = true }),
       callback = function()
-        local hl_opts = {
-          checkboxes = {
-            [' '] = { char = '󰄱', hl_group = 'ObsidianTodo' },
-            ['x'] = { char = '', hl_group = 'ObsidianDone' },
-            ['>'] = { char = '', hl_group = 'ObsidianRightArrow' },
-            ['~'] = { char = '󰰱', hl_group = 'ObsidianTilde' },
-          },
-          -- Use bullet marks for non-checkbox lists.
-          bullets = { char = '•', hl_group = 'ObsidianBullet' },
-          external_link_icon = { char = '', hl_group = 'ObsidianExtLinkIcon' },
-          reference_text = { hl_group = 'ObsidianRefText' },
-          highlight_text = { hl_group = 'ObsidianHighlightText' },
-          tags = { hl_group = 'ObsidianTag' },
-          block_ids = { hl_group = 'ObsidianBlockID' },
-          hl_groups = {
-            -- The options are passed directly to `vim.api.nvim_set_hl()`. See `:help nvim_set_hl`.
-            ObsidianTodo = { bold = true, fg = '#f78c6c' },
-            ObsidianDone = { bold = true, fg = '#89ddff' },
-            ObsidianRightArrow = { bold = true, fg = '#f78c6c' },
-            ObsidianTilde = { bold = true, fg = '#ff5370' },
-            ObsidianBullet = { bold = true, fg = '#89ddff' },
-            ObsidianRefText = { underline = true, fg = '#c792ea' },
-            ObsidianExtLinkIcon = { fg = '#c792ea' },
-            ObsidianTag = { italic = true, fg = '#89ddff' },
-            ObsidianBlockID = { italic = true, fg = '#89ddff' },
-            ObsidianHighlightText = { bg = '#75662e' },
-          },
-        }
-
-        -- This is copied from obsidian source since it does not work
-        local function install_hl_groups(ui_opts)
-          for group_name, hlopts in pairs(ui_opts.hl_groups) do
-            vim.api.nvim_set_hl(0, group_name, hlopts)
-          end
-        end
-
-        install_hl_groups(hl_opts)
-
-        vim.api.nvim_set_hl(0, 'ObsidianHighlightTag', { fg = '#e6f0d1', bold = true })
-        -- Used to hide codeblock that starts with dataview
-        vim.cmd [[match ObsidianHighlightTag /highlights::/]]
         -- Execute Vimscript command to define the syntax region
+        -- Used to hide codeblock that starts with dataview
         vim.cmd [[ syntax region DataViewBlock start=/^\(```dataview\|^```dataviewjs\)/ end=/^```/ conceal cchar=* ]]
       end,
     })
