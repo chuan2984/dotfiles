@@ -10,6 +10,7 @@ return {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
     dependencies = {
+
       'nvim-lua/plenary.nvim',
       { -- If encountering errors, see telescope-fzf-native README for install instructions
         'nvim-telescope/telescope-fzf-native.nvim',
@@ -188,7 +189,7 @@ return {
       -- shortcut for searching my dotfiles
       vim.keymap.set('n', '<leader>sdot', function()
         local home_dir = os.getenv 'HOME'
-        builtin.find_files { cwd = home_dir .. '/.dotfiles' }
+        builtin.find_files { cwd = home_dir .. '/dotfiles' }
       end, { desc = '[s]earch [DOT] files' })
 
       vim.keymap.set('n', '<leader>s.', function()
