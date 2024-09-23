@@ -15,9 +15,8 @@ local keymap = vim.keymap.set
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 keymap('n', '<Esc>', '<cmd>nohlsearch<CR>')
-
--- copy current file path to system clipboard
-keymap('n', '<leader>cp', '<cmd>let @+ = expand("%:p")<CR>', { desc = '[C]opy current file [p]ath' }, opts)
+keymap({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
+keymap({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 
 -- Diagnostic keymaps
 keymap('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' }, opts)
@@ -40,8 +39,9 @@ keymap('n', ']q', ':cnext<CR>', { desc = 'Go to previous item in quickfix list' 
 keymap('n', '[q', ':cprevious<CR>', { desc = 'Go to next item in quickfix list' }, opts)
 
 -- Navigate buffers
-keymap('n', ']b', ':bnext<CR>', opts)
-keymap('n', '[b', ':bprevious<CR>', opts)
+keymap('n', '<leader>bn', ':bnext<CR>', opts)
+keymap('n', '<leader>bp', ':bprevious<CR>', opts)
+keymap('n', '<leader>bb', '<C-^>', { desc = 'alternate file' }, opts)
 
 -- Visual --
 keymap('v', '>', '>gv', opts)
@@ -65,12 +65,14 @@ keymap('n', '<Leader>x', '"_x', opts)
 keymap('n', '<Leader>X', '"_X', opts)
 
 -- close buffer
-vim.keymap.set('n', '<leader>bd', '<cmd>bd<CR>', { desc = '[b]uffer [d]elete' })
+keymap('n', '<leader>bd', '<cmd>bd<CR>', { desc = '[b]uffer [d]elete' })
 -- Close buffer without closing split
-vim.keymap.set('n', '<leader>bdd', '<cmd>bp|bd #<CR>', { desc = '[b]uffer [d]elete [s]plit' })
+keymap('n', '<leader>bdd', '<cmd>bp|bd #<CR>', { desc = '[b]uffer [d]elete [s]plit' })
 
 -- copy current filename
-vim.keymap.set('n', '<leader>cfn', '<cmd>let @+=@%<CR>', { desc = '[copy] current [f]ile [n]ame' })
+keymap('n', '<leader>cfn', '<cmd>let @+=@%<CR>', { desc = '[copy] current [f]ile [n]ame' })
+-- copy current file path to system clipboard
+keymap('n', '<leader>cfp', '<cmd>let @+ = expand("%:p")<CR>', { desc = '[C]opy current file [p]ath' }, opts)
 
 -- Terminal --
 -- Better terminal navigation
