@@ -2,11 +2,39 @@ return {
   'robitx/gp.nvim',
   keys = {
     -- VISUAL mode mappings
-    { '<C-g><C-t>', ":<C-u>'<,'>GpChatNew tabnew<cr>", desc = 'Visual Chat New tabnew', nowait = true, remap = false, mode = 'v' },
-    { '<C-g><C-v>', ":<C-u>'<,'>GpChatNew vsplit<cr>", desc = 'Visual Chat New vsplit', nowait = true, remap = false, mode = 'v' },
-    { '<C-g><C-x>', ":<C-u>'<,'>GpChatNew split<cr>", desc = 'Visual Chat New split', nowait = true, remap = false, mode = 'v' },
+    {
+      '<C-g><C-t>',
+      ":<C-u>'<,'>GpChatNew tabnew<cr>",
+      desc = 'Visual Chat New tabnew',
+      nowait = true,
+      remap = false,
+      mode = 'v',
+    },
+    {
+      '<C-g><C-v>',
+      ":<C-u>'<,'>GpChatNew vsplit<cr>",
+      desc = 'Visual Chat New vsplit',
+      nowait = true,
+      remap = false,
+      mode = 'v',
+    },
+    {
+      '<C-g><C-x>',
+      ":<C-u>'<,'>GpChatNew split<cr>",
+      desc = 'Visual Chat New split',
+      nowait = true,
+      remap = false,
+      mode = 'v',
+    },
     { '<C-g>a', ":<C-u>'<,'>GpAppend<cr>", desc = 'Visual Append (after)', nowait = true, remap = false, mode = 'v' },
-    { '<C-g>b', ":<C-u>'<,'>GpPrepend<cr>", desc = 'Visual Prepend (before)', nowait = true, remap = false, mode = 'v' },
+    {
+      '<C-g>b',
+      ":<C-u>'<,'>GpPrepend<cr>",
+      desc = 'Visual Prepend (before)',
+      nowait = true,
+      remap = false,
+      mode = 'v',
+    },
     { '<C-g>c', ":<C-u>'<,'>GpChatNew<cr>", desc = 'Visual Chat New', nowait = true, remap = false, mode = 'v' },
     { '<C-g>g', group = 'generate into new ..', nowait = true, remap = false, mode = 'v' },
     { '<C-g>ge', ":<C-u>'<,'>GpEnew<cr>", desc = 'Visual GpEnew', nowait = true, remap = false, mode = 'v' },
@@ -21,12 +49,33 @@ return {
     { '<C-g>s', '<cmd>GpStop<cr>', desc = 'GpStop', nowait = true, remap = false, mode = 'v' },
     { '<C-g>t', ":<C-u>'<,'>GpChatToggle<cr>", desc = 'Visual Toggle Chat', nowait = true, remap = false, mode = 'v' },
     { '<C-g>w', group = 'Whisper', nowait = true, remap = false, mode = 'v' },
-    { '<C-g>wa', ":<C-u>'<,'>GpWhisperAppend<cr>", desc = 'Whisper Append (after)', nowait = true, remap = false, mode = 'v' },
-    { '<C-g>wb', ":<C-u>'<,'>GpWhisperPrepend<cr>", desc = 'Whisper Prepend (before)', nowait = true, remap = false, mode = 'v' },
+    {
+      '<C-g>wa',
+      ":<C-u>'<,'>GpWhisperAppend<cr>",
+      desc = 'Whisper Append (after)',
+      nowait = true,
+      remap = false,
+      mode = 'v',
+    },
+    {
+      '<C-g>wb',
+      ":<C-u>'<,'>GpWhisperPrepend<cr>",
+      desc = 'Whisper Prepend (before)',
+      nowait = true,
+      remap = false,
+      mode = 'v',
+    },
     { '<C-g>we', ":<C-u>'<,'>GpWhisperEnew<cr>", desc = 'Whisper Enew', nowait = true, remap = false, mode = 'v' },
     { '<C-g>wn', ":<C-u>'<,'>GpWhisperNew<cr>", desc = 'Whisper New', nowait = true, remap = false, mode = 'v' },
     { '<C-g>wp', ":<C-u>'<,'>GpWhisperPopup<cr>", desc = 'Whisper Popup', nowait = true, remap = false, mode = 'v' },
-    { '<C-g>wr', ":<C-u>'<,'>GpWhisperRewrite<cr>", desc = 'Whisper Rewrite', nowait = true, remap = false, mode = 'v' },
+    {
+      '<C-g>wr',
+      ":<C-u>'<,'>GpWhisperRewrite<cr>",
+      desc = 'Whisper Rewrite',
+      nowait = true,
+      remap = false,
+      mode = 'v',
+    },
     { '<C-g>wt', ":<C-u>'<,'>GpWhisperTabnew<cr>", desc = 'Whisper Tabnew', nowait = true, remap = false, mode = 'v' },
     { '<C-g>wv', ":<C-u>'<,'>GpWhisperVnew<cr>", desc = 'Whisper Vnew', nowait = true, remap = false, mode = 'v' },
     { '<C-g>ww', ":<C-u>'<,'>GpWhisper<cr>", desc = 'Whisper', nowait = true, remap = false, mode = 'v' },
@@ -81,12 +130,33 @@ return {
     { '<C-g>s', '<cmd>GpStop<cr>', desc = 'GpStop', nowait = true, remap = false, mode = 'i' },
     { '<C-g>t', '<cmd>GpChatToggle<cr>', desc = 'Toggle Chat', nowait = true, remap = false, mode = 'i' },
     { '<C-g>w', group = 'Whisper', nowait = true, remap = false, mode = 'i' },
-    { '<C-g>wa', '<cmd>GpWhisperAppend<cr>', desc = 'Whisper Append (after)', nowait = true, remap = false, mode = 'i' },
-    { '<C-g>wb', '<cmd>GpWhisperPrepend<cr>', desc = 'Whisper Prepend (before)', nowait = true, remap = false, mode = 'i' },
+    {
+      '<C-g>wa',
+      '<cmd>GpWhisperAppend<cr>',
+      desc = 'Whisper Append (after)',
+      nowait = true,
+      remap = false,
+      mode = 'i',
+    },
+    {
+      '<C-g>wb',
+      '<cmd>GpWhisperPrepend<cr>',
+      desc = 'Whisper Prepend (before)',
+      nowait = true,
+      remap = false,
+      mode = 'i',
+    },
     { '<C-g>we', '<cmd>GpWhisperEnew<cr>', desc = 'Whisper Enew', nowait = true, remap = false, mode = 'i' },
     { '<C-g>wn', '<cmd>GpWhisperNew<cr>', desc = 'Whisper New', nowait = true, remap = false, mode = 'i' },
     { '<C-g>wp', '<cmd>GpWhisperPopup<cr>', desc = 'Whisper Popup', nowait = true, remap = false, mode = 'i' },
-    { '<C-g>wr', '<cmd>GpWhisperRewrite<cr>', desc = 'Whisper Inline Rewrite', nowait = true, remap = false, mode = 'i' },
+    {
+      '<C-g>wr',
+      '<cmd>GpWhisperRewrite<cr>',
+      desc = 'Whisper Inline Rewrite',
+      nowait = true,
+      remap = false,
+      mode = 'i',
+    },
     { '<C-g>wt', '<cmd>GpWhisperTabnew<cr>', desc = 'Whisper Tabnew', nowait = true, remap = false, mode = 'i' },
     { '<C-g>wv', '<cmd>GpWhisperVnew<cr>', desc = 'Whisper Vnew', nowait = true, remap = false, mode = 'i' },
     { '<C-g>ww', '<cmd>GpWhisper<cr>', desc = 'Whisper', nowait = true, remap = false, mode = 'i' },
@@ -95,13 +165,14 @@ return {
   config = function()
     require('gp').setup {
       -- openai_api_key = { 'cat', os.getenv 'HOME' .. '/.openai_api_key' },
+      log_sensitive = true,
       providers = {
         openai = {
-          secret = vim.fn.system('cat ' .. os.getenv 'HOME' .. '/.openai_api_key'),
+          secret = vim.fn.system('cat ' .. os.getenv 'HOME' .. '/.openai_api_key'):gsub('%s+$', ''),
         },
         anthropic = {
           disable = false,
-          secret = vim.fn.system('cat ' .. os.getenv 'HOME' .. '/.anthropic_api_key'),
+          secret = vim.fn.system('cat ' .. os.getenv 'HOME' .. '/.anthropic_api_key'):gsub('%s+$', ''),
         },
       },
       agents = {
@@ -144,7 +215,7 @@ return {
             .. '- Think deeply and carefully from first principles step by step.\n'
             .. '- Zoom out first to see the big picture and then zoom in to details.\n'
             .. '- Use Socratic method to improve your thinking and coding skills.\n'
-            .. '- Try not to repeat previously presented answers.\n'
+            .. '- Try not to repeat what was previously said.\n'
             .. '- Do not be sorry if you get things wrong its ok.\n',
         },
         {
