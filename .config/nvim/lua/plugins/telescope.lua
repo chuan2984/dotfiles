@@ -1,18 +1,11 @@
--- NOTE: Plugins can specify dependencies.
---
--- The dependencies are proper plugin specifications as well - anything
--- you do for a plugin at the top level, you can do for a dependency.
---
--- Use the `dependencies` key to specify the dependencies of a particular plugin
-
 return {
-  { -- Fuzzy Finder (files, lsp, etc)
+  {
     'nvim-telescope/telescope.nvim',
     branch = '0.1.x',
     dependencies = {
 
       'nvim-lua/plenary.nvim',
-      { -- If encountering errors, see telescope-fzf-native README for install instructions
+      {
         'nvim-telescope/telescope-fzf-native.nvim',
 
         -- `build` is used to run some command when the plugin is installed/updated.
@@ -29,15 +22,6 @@ return {
       { 'nvim-tree/nvim-web-devicons' },
     },
     config = function()
-      -- the easiest way to use telescope, is to start by doing something like:
-      --  :telescope help_tags
-      --
-      -- two important keymaps to use while in telescope are:
-      --  - insert mode: <c-/>
-      --  - normal mode: ?
-      --
-      -- [[ configure telescope ]]
-      -- see `:help telescope` and `:help telescope.setup()`
       local actions = require 'telescope.actions'
       local action_state = require 'telescope.actions.state'
       local action_layout = require 'telescope.actions.layout'
