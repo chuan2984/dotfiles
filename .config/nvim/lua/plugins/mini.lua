@@ -174,6 +174,17 @@ return {
       return require('arrow.statusline').text_for_statusline_with_icons()
     end
 
+    -- Function to get the number of open buffers using the :ls command
+    local function get_buffer_count()
+      local buffers = vim.fn.getbufinfo { buflisted = 1 }
+      return #buffers
+    end
+
+    ---@diagnostic disable-next-line: duplicate-set-field
+    statusline.section_lsp = function()
+      return ' ' .. get_buffer_count()
+    end
+
     -- Mini Notify
     local mini_notify = require 'mini.notify'
     mini_notify.setup {
