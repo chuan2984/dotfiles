@@ -12,7 +12,7 @@ return {
         width = 'block',
         min_width = 100,
         position = 'inline',
-        icons = { '󰎥', '󰎨', '󰎫', '󰎲', '󰎯', '󰎴' },
+        icons = { '󰎥 ', '󰎨 ', '󰎫 ', '󰎲 ', '󰎯 ', '󰎴 ' },
       },
       code = {
         sign = false,
