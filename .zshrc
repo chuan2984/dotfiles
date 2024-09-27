@@ -57,8 +57,8 @@ alias fsb="$HOME/dotfiles/.config/git/fsb.sh"
 alias fshow="$HOME/dotfiles/.config/git/fshow.sh"
 alias v='fd --hidden --type f --exclude .git | fzf --height 50% --reverse | xargs nvim'
 
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+# alias it since its not installed system-wide
+alias jupynium="$HOME/github/jupyter/jupyterenv/bin/jupynium"
 
 # open ~/.zshrc in using the default editor specified in $EDITOR
 alias ec="nvim $HOME/.zshrc"
@@ -105,3 +105,4 @@ source ~/.config/zsh-plugins/.fancy-ctrlz.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+

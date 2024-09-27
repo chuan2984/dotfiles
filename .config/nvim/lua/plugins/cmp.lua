@@ -30,6 +30,8 @@ return {
       { 'Gelio/cmp-natdat', lazy = true, config = true },
     },
     config = function()
+      local compare = require('cmp').config.compare
+
       local kind_icons = {
         Text = '\u{eb69}',
         Method = 'm',
@@ -66,7 +68,10 @@ return {
       -- `:` cmdline setup.
       cmp.setup.cmdline(':', {
         mapping = cmp.mapping.preset.cmdline(),
-        sources = cmp.config.sources({ { name = 'path' } }, { { name = 'cmdline', max_item_count = 16, option = { ignore_cmds = { 'Man', '!' } } } }),
+        sources = cmp.config.sources(
+          { { name = 'path' } },
+          { { name = 'cmdline', max_item_count = 16, option = { ignore_cmds = { 'Man', '!' } } } }
+        ),
         enabled = function()
           -- Set of commands where cmp will be disabled
           local disabled = {
@@ -151,6 +156,7 @@ return {
               path = '[Path]',
               cmdline = '[CMD]',
               natdat = '[DATE]',
+              jupynium = 'Jupy',
               dotenv = '[ENV]',
             })[entry.source.name]
             return vim_item
@@ -161,15 +167,23 @@ return {
           documentation = cmp.config.window.bordered(),
         },
         sources = {
-          { name = 'lazydev', group_index = 0 },
-          { name = 'nvim_lsp', max_item_count = 10 },
-          { name = 'luasnip', max_item_count = 10 },
-          { name = 'path', max_item_count = 6 },
-          { name = 'buffer', max_item_count = 6 },
+          { name = 'lazydev', group_index = 0, priority = 99 },
+          { name = 'nvim_lsp', max_item_count = 10, priority = 100 },
+          { name = 'luasnip', max_item_count = 10, priority = 98 },
+          { name = 'path', max_item_count = 6, priority = 50 },
+          { name = 'buffer', max_item_count = 6, priority = 80 },
           { name = 'nvim_lua', max_item_count = 20 },
-          { name = 'buffer', max_item_count = 4 },
+          { name = 'jupynium', max_item_count = 10, priority = 1000 },
           { name = 'natdat' },
           -- { name = 'dotenv', max_item_count = 10 },
+        },
+        sorting = {
+          priority_weight = 1.0,
+          comparators = {
+            compare.score,
+            compare.recently_used,
+            compare.locality,
+          },
         },
       }
     end,

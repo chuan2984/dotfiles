@@ -45,7 +45,6 @@ return {
   config = function()
     local ftMap = {
       vim = 'indent',
-      python = { 'indent' },
       git = '',
     }
 
@@ -67,6 +66,15 @@ return {
         end)
         :catch(function(err)
           return handleFallbackException(err, 'indent')
+        end)
+        :thenCall(function(ufo_folds)
+          local ok, jupynium = pcall(require, 'jupynium')
+          if ok then
+            for _, fold in ipairs(jupynium.get_folds()) do
+              table.insert(ufo_folds, fold)
+            end
+          end
+          return ufo_folds
         end)
     end
 
