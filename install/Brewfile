@@ -9,7 +9,6 @@ tap "koekeishiya/formulae" # yabai
 tap "felixkratz/formulae"  # borders
 
 # general
-brew "tree"
 brew "tmux"
 brew "ack"
 brew "bash"
@@ -25,7 +24,6 @@ brew "zsh"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
 brew "zsh-vi-mode"
-brew "coreutils"
 brew "glow"
 
 # languages

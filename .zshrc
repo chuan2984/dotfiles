@@ -19,14 +19,14 @@ function vim-htag() {
   vim -u NONE -c "helptags $1" -c q
 }
 
-## Aliases
-# export CLICOLOR=1
-# export LSCOLORS=GxFxCxDxBxegedabagaced
-# alias ls='ls -GF'
-alias ls='gls --color -F'
-alias la='ls -a'
-alias ll='ls -l'
-alias lla='ls -al'
+# Aliases
+if command -v eza &>/dev/null; then
+  alias ls='eza' # with -F maybe?
+  alias la='eza -a'
+  alias ll='eza -lhg'
+  alias lla='eza -alhg'
+  alias tree='eza --tree'
+fi
 alias mkdir='mkdir -p'
 alias mkcd="mkdir \"$1\" && cd \"$1\""
 alias rd='rmdir'
@@ -97,7 +97,6 @@ eval "$(nodenv init -)"
 #export AWS_SHARED_CREDENTIALS_FILE="$HOME/.config/aws/credentials"
 
 eval "$(zoxide init --cmd cd zsh)"
-source ~/.config/zsh-plugins/lscolors.sh
 source ~/.config/zsh-plugins/git-completion.zsh
 source ~/.config/zsh-plugins/.fzf.zsh
 source ~/.config/zsh-plugins/.take.zsh
