@@ -9,7 +9,6 @@ tap "koekeishiya/formulae" # yabai
 tap "felixkratz/formulae"  # borders
 
 # general
-brew "tmux"
 brew "ack"
 brew "bash"
 brew "bash-completion"
