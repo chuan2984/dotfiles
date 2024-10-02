@@ -1,4 +1,7 @@
+---@type Wezterm
 local wezterm = require("wezterm")
+
+---@type Action
 local act = wezterm.action
 local balance = require("balance")
 local backdrops = require("backdrops")
@@ -9,8 +12,9 @@ function module.apply_to_config(config)
 	config.leader = { key = "m", mods = "CTRL", timeout_milliseconds = 1000 }
 	config.keys = {
 		-- only send C-b once when C-b is pressed twice
-		{ key = "a", mods = "LEADER|CTRL", action = act.SendKey({ key = "a", mods = "CTRL" }) },
+		{ key = "m", mods = "LEADER|CTRL", action = act.SendKey({ key = "m", mods = "CTRL" }) },
 		{ key = "c", mods = "LEADER", action = act.ActivateCopyMode },
+		{ key = "'", mods = "LEADER", action = act.QuickSelect },
 		{ key = "phys:Space", mods = "LEADER", action = act.ActivateCommandPalette },
 
 		-- Pane keybindings
@@ -24,7 +28,7 @@ function module.apply_to_config(config)
 		{ key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
 		{ key = "o", mods = "LEADER", action = act.RotatePanes("Clockwise") },
 		{
-			key = "0",
+			key = "=",
 			mods = "LEADER",
 			action = act.Multiple({
 				wezterm.action_callback(balance.balance_panes("x")),
