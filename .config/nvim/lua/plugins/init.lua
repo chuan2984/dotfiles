@@ -12,8 +12,6 @@
 return {
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-  --'sindrets/diffview.nvim', -- diffview, incase i want to use it down the line, looks promising
-  { 'rebelot/kanagawa.nvim', lazy = true },
   -- This one enables GBrowse, requires a github key that can be expired
   { 'tpope/vim-rhubarb', event = 'VeryLazy' },
   { 'Bekaboo/deadcolumn.nvim', event = 'InsertEnter' },
@@ -21,12 +19,6 @@ return {
   { 'tpope/vim-rails', event = 'VeryLazy' },
   { 'tpope/vim-abolish' }, -- cannot lazy load to work with abolish.vim config file
   { 'ludovicchabant/vim-gutentags', event = 'VeryLazy' },
-  -- Use `opts = {}` to force a plugin to be loaded.
-  --
-  --  This is equivalent to:
-  --    require('Comment').setup({})
-  -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
 }
 
 -- vim: ts=2 sts=2 sw=2 et
