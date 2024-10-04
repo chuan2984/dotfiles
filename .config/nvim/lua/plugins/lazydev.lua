@@ -5,15 +5,15 @@ return {
     { 'justinsgithub/wezterm-types', lazy = true },
   },
   ft = 'lua', -- only load on lua files
+  cmd = { 'LazyDev' },
   opts = {
     library = {
       -- See the configuration section for more details
       -- Load luvit types when the `vim.uv` word is found
       'lazy.nvim',
       { path = 'luvit-meta/library', words = { 'vim%.uv' } },
-      { path = '~/.hammerspoon/Spoons/EmmyLua.spoon/annotations'},
+      { path = '~/.hammerspoon/Spoons/EmmyLua.spoon/annotations' },
       { path = 'wezterm-types', mods = { 'wezterm' } },
-      { path = 'telescope.nvim', mods = { 'telescope' } },
     },
   },
 }
