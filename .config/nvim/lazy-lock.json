@@ -14,7 +14,7 @@
   "easypick.nvim": { "branch": "main", "commit": "a6de2bfaa9f257d3bbf900668eb963277abb436a" },
   "fidget.nvim": { "branch": "main", "commit": "d855eed8a06531a7e8fd0684889b2943f373c469" },
   "flash.nvim": { "branch": "main", "commit": "34c7be146a91fec3555c33fe89c7d643f6ef5cf1" },
-  "friendly-snippets": { "branch": "main", "commit": "00ba9dd3df89509f95437b8d595553707c46d5ea" },
+  "friendly-snippets": { "branch": "rspec_snippets", "commit": "29d31374a59344c46863d8b2cf1c1c9d02898dd7" },
   "gitsigns.nvim": { "branch": "main", "commit": "356df59308d8b87486644d2324d7558ac0f3db36" },
   "gp.nvim": { "branch": "main", "commit": "2372d5323c6feaa2e9c19f7ccb537c615d878e18" },
   "jupynium.nvim": { "branch": "master", "commit": "24e6c681adcb64c755d03f79982c5f8bbc81750d" },

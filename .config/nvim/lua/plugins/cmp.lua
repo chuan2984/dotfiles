@@ -1,5 +1,5 @@
 return {
-  { -- Autocompletion
+  {
     'hrsh7th/nvim-cmp',
     event = { 'InsertEnter', 'CmdLineEnter' },
     dependencies = {
@@ -17,7 +17,8 @@ return {
           return 'make install_jsregexp'
         end)(),
       },
-      { 'rafamadriz/friendly-snippets', lazy = true },
+      -- TODO: change it back when rspec snippets are merged { 'rafamadriz/friendly-snippets', lazy = true },
+      { 'chuan2984/friendly-snippets', lazy = true, branch = 'rspec_snippets' },
       { 'saadparwaiz1/cmp_luasnip', lazy = true },
       { 'hrsh7th/cmp-cmdline', lazy = true },
       -- Adds other completion capabilities.
@@ -29,43 +30,41 @@ return {
       { 'hrsh7th/cmp-buffer', lazy = true },
       { 'Gelio/cmp-natdat', lazy = true, config = true },
     },
+
     config = function()
+      vim.opt.completeopt = { 'menuone', 'noselect' }
       local compare = require('cmp').config.compare
 
       local kind_icons = {
-        Text = '\u{eb69}',
+        Text = '',
         Method = 'm',
-        Function = '\u{f0295}',
+        Function = '󰊕',
         Constructor = '',
         Field = '',
-        Variable = '\u{f0ae7}',
-        Class = '\u{eb5b}',
+        Variable = '󰫧',
+        Class = '',
         Interface = '',
         Module = '',
         Property = '',
         Unit = '',
-        Value = '\u{f4f7}',
+        Value = '',
         Enum = '',
         Keyword = '',
         Snippet = '',
-        Color = '\u{eb5c}',
-        File = '\u{ea7b}',
+        Color = '',
+        File = '',
         Reference = '',
-        Folder = '\u{ea83}',
+        Folder = '',
         EnumMember = '',
-        Constant = '\u{eb5d}',
+        Constant = '',
         Struct = '',
         Event = '',
-        Operator = '\u{eb64}',
-        TypeParameter = '\u{f0284}',
+        Operator = '',
+        TypeParameter = '󰊄',
       }
       local cmp = require 'cmp'
       local luasnip = require 'luasnip'
 
-      luasnip.filetype_extend('ruby', { 'rails' })
-      require('luasnip.loaders.from_vscode').lazy_load { include = { 'ruby', 'rails' } }
-      luasnip.config.setup {}
-      -- `:` cmdline setup.
       cmp.setup.cmdline(':', {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources(
@@ -85,17 +84,42 @@ return {
         end,
       })
 
-      cmp.setup {
+      local loader = require 'luasnip.loaders.from_vscode'
+      loader.lazy_load()
+      luasnip.filetype_extend('ruby', { 'rdoc', 'rspec' })
+      luasnip.filetype_extend('lua', { 'luadoc' })
 
+      vim.api.nvim_create_user_command('DebugSnippets', function()
+        print 'Available snippets:'
+        print(vim.inspect(luasnip.available()))
+      end, {})
+
+      cmp.setup {
         enabled = function()
-          -- disable completion in comments
           local context = require 'cmp.config.context'
-          -- keep command mode completion enabled when cursor is in a comment
+          local line_to_cursor = vim.api.nvim_get_current_line():sub(1, vim.api.nvim_win_get_cursor(0)[2])
+
+          -- Keep command mode completion enabled
           if vim.api.nvim_get_mode().mode == 'c' then
             return true
-          else
-            return not context.in_treesitter_capture 'comment' and not context.in_syntax_group 'Comment'
           end
+
+          -- Check for common comment indicators at the start of the line
+          local comment_indicators = {
+            '^%s*%--', -- Lua
+            '^%s*//', -- JavaScript, C, C++, etc.
+            '^%s*#', -- Python, Bash, etc.
+          }
+
+          --- enable for the start of comment for comment snippets
+          for _, pattern in ipairs(comment_indicators) do
+            if line_to_cursor:match(pattern) then
+              return true
+            end
+          end
+
+          -- Disable in other comments
+          return not context.in_treesitter_capture 'comment' and not context.in_syntax_group 'Comment'
         end,
 
         snippet = {
@@ -103,26 +127,13 @@ return {
             luasnip.lsp_expand(args.body)
           end,
         },
-        -- For an understanding of why these mappings were
-        -- chosen, you will need to read `:help ins-completion`
-        --
-        -- No, but seriously. Please read `:help ins-completion`, it is really good!
+        -- Please read `:help ins-completion`, it is really good!
         mapping = cmp.mapping.preset.insert {
           -- Select the [n]ext item
           ['<C-n>'] = cmp.mapping.select_next_item(),
           -- Select the [p]revious item
           ['<C-p>'] = cmp.mapping.select_prev_item(),
-
-          -- Accept ([y]es) the completion.
-          --  This will auto-import if your LSP supports it.
-          --  This will expand snippets if the LSP sent a snippet.
           ['<C-y>'] = cmp.mapping.confirm { select = true },
-
-          -- Manually trigger a completion from nvim-cmp.
-          --  Generally you don't need this, because nvim-cmp will display
-          --  completions whenever it has completion options available.
-          ['<C-Space>'] = cmp.mapping.complete {},
-
           -- Think of <c-l> as moving to the right of your snippet expansion.
           --  So if you have a snippet that's like:
           --  function $name($args)
@@ -149,14 +160,14 @@ return {
             -- Kind icons
             vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
             vim_item.menu = ({
+              lazydev = '[LazyDev]',
               nvim_lsp = '[LSP]',
-              nvim_lua = '[NVIM_LUA]',
               luasnip = '[Snippet]',
               buffer = '[Buffer]',
               path = '[Path]',
               cmdline = '[CMD]',
               natdat = '[DATE]',
-              jupynium = 'Jupy',
+              jupynium = '[Jupy]',
               dotenv = '[ENV]',
             })[entry.source.name]
             return vim_item
@@ -167,12 +178,11 @@ return {
           documentation = cmp.config.window.bordered(),
         },
         sources = {
-          { name = 'lazydev', group_index = 0, priority = 99 },
           { name = 'nvim_lsp', max_item_count = 10, priority = 100 },
-          { name = 'luasnip', max_item_count = 10, priority = 98 },
-          { name = 'path', max_item_count = 6, priority = 50 },
+          { name = 'lazydev', group_index = 0, priority = 99 },
           { name = 'buffer', max_item_count = 6, priority = 80 },
-          { name = 'nvim_lua', max_item_count = 20 },
+          { name = 'path', max_item_count = 6, priority = 50 },
+          { name = 'luasnip', max_item_count = 6, priority = 50 },
           { name = 'jupynium', max_item_count = 10, priority = 1000 },
           { name = 'natdat' },
           -- { name = 'dotenv', max_item_count = 10 },
