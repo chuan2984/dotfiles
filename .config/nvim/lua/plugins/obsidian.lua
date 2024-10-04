@@ -12,7 +12,10 @@ return {
       function()
         local home_dir = os.getenv 'HOME'
         local find_command = { 'rg', '--files', '--glob', '!**/.git/*' }
-        require('telescope.builtin').find_files { find_command = find_command, cwd = home_dir .. '/GitHub/obsidian/Work' }
+        require('telescope.builtin').find_files {
+          find_command = find_command,
+          cwd = home_dir .. '/GitHub/obsidian/2ndBrain',
+        }
       end,
       desc = '[S]earch [O]bsidian',
     },
@@ -33,7 +36,7 @@ return {
       workspaces = {
         {
           name = 'work',
-          path = '~/GitHub/obsidian/Work',
+          path = '~/GitHub/obsidian/2ndBrain',
         },
       },
 
