@@ -19,6 +19,13 @@ return {
   { 'tpope/vim-rails', event = 'VeryLazy' },
   { 'tpope/vim-abolish' }, -- cannot lazy load to work with abolish.vim config file
   { 'ludovicchabant/vim-gutentags', event = 'VeryLazy' },
+  {
+    'norcalli/nvim-colorizer.lua',
+    event = 'BufRead',
+    config = function()
+      require('colorizer').setup()
+    end,
+  },
 }
 
 -- vim: ts=2 sts=2 sw=2 et
