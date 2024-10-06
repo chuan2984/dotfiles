@@ -10,6 +10,7 @@ source ~/powerlevel10k/powerlevel10k.zsh-theme
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 export PAGER=nvimpager
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 
 function config() {
   cd "$HOME/dotfiles/.config/$1" || return
@@ -104,4 +105,3 @@ source ~/.config/zsh-plugins/.fancy-ctrlz.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
