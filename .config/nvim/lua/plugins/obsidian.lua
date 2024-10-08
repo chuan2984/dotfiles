@@ -2,10 +2,9 @@ return {
   'epwalsh/obsidian.nvim',
   version = '*', -- recommended, use latest release instead of latest commit
   event = {
-    'BufReadPre ' .. vim.fn.expand '~' .. '/Github/obsidian/**.md',
-    'BufNewFile ' .. vim.fn.expand '~' .. '/Github/obsidian/**.md',
+    'BufReadPre ' .. vim.fn.expand '~' .. '/github/obsidian/**.md',
+    'BufNewFile ' .. vim.fn.expand '~' .. '/github/obsidian/**.md',
   },
-  cmd = 'ObsidianToday',
   keys = {
     {
       '<leader>so',
@@ -23,6 +22,11 @@ return {
       '<leader>ot',
       '<CMD>ObsidianToday<CR>',
       desc = '[O]bsidian [T]oday',
+    },
+    {
+      '<leader>ont',
+      '<CMD>ObsidianNewFromTemplate<CR>',
+      desc = '[O]bsidian [n]ew [t]emplate',
     },
   },
   dependencies = {
@@ -42,20 +46,20 @@ return {
 
       log_level = vim.log.levels.INFO,
 
-      daily_notes = {
-        -- Optional, if you keep daily notes in a separate directory.
-        folder = 'Periodic Notes/Daily',
-        -- Optional, if you want to change the date format for the ID of daily notes.
-        date_format = '%Y-%m-%d-%A',
-        -- Optional, if you want to change the date format of the default alias of daily notes.
-        -- alias_format = '%B %-d, %Y',
-        -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
-        template = nil,
-      },
+      -- daily_notes = {
+      --   -- Optional, if you keep daily notes in a separate directory.
+      --   folder = 'Periodic Notes/Daily',
+      --   -- Optional, if you want to change the date format for the ID of daily notes.
+      --   date_format = '%Y-%m-%d-%A',
+      --   -- Optional, if you want to change the date format of the default alias of daily notes.
+      --   -- alias_format = '%B %-d, %Y',
+      --   -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
+      --   template = nil,
+      -- },
 
       completion = {
         -- Set to false to disable completion.
-        nvim_cmp = true,
+        nvim_cmp = false,
         -- Trigger completion at 2 chars.
         min_chars = 2,
       },
@@ -81,6 +85,12 @@ return {
           end,
           opts = { buffer = true, desc = '[O]bsidian Toggle [C]heckbox' },
         },
+        ['<leader>oat'] = {
+          action = function()
+            return vim.cmd 'ObsidianTemplate'
+          end,
+          opts = { buffer = true, desc = '[O]bsidian [a]pply [t]emplate' },
+        },
       },
 
       disable_frontmatter = true,
@@ -96,13 +106,13 @@ return {
       preferred_link_style = 'wiki',
 
       -- Optional, for templates (see below).
-      -- templates = {
-      --   subdir = 'templates',
-      --   date_format = '%Y-%m-%d',
-      --   time_format = '%H:%M',
-      --   -- A map for custom variables, the key should be the variable and the value a function
-      --   substitutions = {},
-      -- },
+      templates = {
+        subdir = 'Templates alt',
+        date_format = '%Y-%m-%d',
+        time_format = '%H:%M',
+        -- A map for custom variables, the key should be the variable and the value a function
+        substitutions = {},
+      },
 
       -- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
       -- URL it will be ignored but you can customize this behavior here.
