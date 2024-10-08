@@ -4,6 +4,7 @@
 local opts = { noremap = true, silent = false }
 local keymap = vim.keymap.set
 
+vim.keymap.set('i', 'jk', '<Esc>', opts)
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -39,8 +40,8 @@ keymap('n', ']q', ':cnext<CR>', { desc = 'Go to previous item in quickfix list' 
 keymap('n', '[q', ':cprevious<CR>', { desc = 'Go to next item in quickfix list' }, opts)
 
 -- Navigate buffers
-keymap('n', '<leader>bn', ':bnext<CR>', opts)
-keymap('n', '<leader>bp', ':bprevious<CR>', opts)
+keymap('n', ']b', ':bnext<CR>', opts)
+keymap('n', '[b', ':bprevious<CR>', opts)
 keymap('n', '<leader>bb', '<C-^>', { desc = 'alternate file' }, opts)
 
 -- Visual --
