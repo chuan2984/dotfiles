@@ -55,7 +55,7 @@ vim.opt.clipboard = 'unnamedplus'
 -- Wrapping related
 vim.opt.wrap = false -- display lines as one long line
 vim.opt.scrolloff = 8 -- will scroll down when there are 8 lines at the bottom of the screen
-vim.opt.sidescrolloff = 8 -- same as above but for horizontal
+vim.opt.sidescrolloff = 20 -- same as above but for horizontal
 
 -- Case-insensitive searching UNLESS \C or capital in search
 vim.opt.ignorecase = true
