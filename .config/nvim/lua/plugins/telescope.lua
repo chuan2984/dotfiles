@@ -27,7 +27,6 @@ return {
       local action_layout = require 'telescope.actions.layout'
       local config = require 'telescope.config'
 
-      local open_with_trouble = require('trouble.sources.telescope').open
       local git_fixup = function(prompt_bufnr)
         local selection = action_state.get_selected_entry()
         if selection == nil then
@@ -65,13 +64,11 @@ return {
             i = {
               ['<c-enter>'] = 'to_fuzzy_refine',
               ['<M-p>'] = action_layout.toggle_preview,
-              ['<c-t>'] = open_with_trouble,
               ['<C-a>'] = 'toggle_all',
               ['<C-s>'] = actions.cycle_previewers_next,
             },
             n = {
               ['<M-p>'] = action_layout.toggle_preview,
-              ['<c-t>'] = open_with_trouble,
               ['<C-a>'] = 'toggle_all',
             },
           },
