@@ -141,27 +141,6 @@ return {
       },
     }
 
-    -- Mini AutoPairs
-    require('mini.pairs').setup()
-
-    local disable_minipairs_group = vim.api.nvim_create_augroup('DisableMiniPairsForNorm', { clear = true })
-
-    vim.api.nvim_create_autocmd('CmdlineEnter', {
-      group = disable_minipairs_group,
-      pattern = '*',
-      callback = function()
-        vim.b.minipairs_disable = true
-      end,
-    })
-
-    vim.api.nvim_create_autocmd('CmdlineLeave', {
-      group = disable_minipairs_group,
-      pattern = '*',
-      callback = function()
-        vim.b.minipairs_disable = false
-      end,
-    })
-
     -- Mini StatusLine
     local statusline = require 'mini.statusline'
     statusline.setup()
@@ -169,6 +148,7 @@ return {
     -- You can configure sections in the statusline by overriding their
     -- default behavior. For example, here we disable the section for
     -- cursor information because line numbers are already enabled
+
     ---@diagnostic disable-next-line: duplicate-set-field
     statusline.section_location = function()
       return ''
