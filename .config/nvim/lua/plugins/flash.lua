@@ -3,7 +3,8 @@ return {
   opts = {
     modes = {
       char = {
-        enabled = false,
+        keys = { 'f', 'F', 't', 'T' },
+        multi_line = false,
       },
     },
   },
@@ -39,14 +40,6 @@ return {
         require('flash').treesitter_search()
       end,
       desc = 'Treesitter Search',
-    },
-    {
-      '<c-s>',
-      mode = { 'c' },
-      function()
-        require('flash').toggle()
-      end,
-      desc = 'Toggle Flash Search',
     },
     'f',
     'F',

@@ -50,8 +50,19 @@ return {
     local ts_repeat_move = require 'nvim-treesitter.textobjects.repeatable_move'
 
     -- Repeat movement with ; and ,
-    vim.keymap.set({ 'n', 'x', 'o' }, ';', ts_repeat_move.repeat_last_move_next)
-    vim.keymap.set({ 'n', 'x', 'o' }, ',', ts_repeat_move.repeat_last_move_previous)
+    vim.keymap.set({ 'n', 'x', 'o' }, ';', function()
+      local success = ts_repeat_move.repeat_last_move_next()
+      if not success then
+        vim.cmd 'normal! ;'
+      end
+    end, { desc = 'repeat last textobject move' })
+
+    vim.keymap.set({ 'n', 'x', 'o' }, ',', function()
+      local success = ts_repeat_move.repeat_last_move_previous()
+      if not success then
+        vim.cmd 'normal! ,'
+      end
+    end, { desc = 'repeat prev textobject move' })
 
     -- vim way: ; goes to the direction you were moving.
     -- vim.keymap.set({ "n", "x", "o" }, ";", ts_repeat_move.repeat_last_move)
@@ -63,7 +74,8 @@ return {
     vim.keymap.set({ 'n', 'x', 'o' }, ']h', next_hunk_repeat)
     vim.keymap.set({ 'n', 'x', 'o' }, '[h', prev_hunk_repeat)
 
-    local next_diag, prev_diag = ts_repeat_move.make_repeatable_move_pair(vim.diagnostic.goto_next, vim.diagnostic.goto_prev)
+    local next_diag, prev_diag =
+      ts_repeat_move.make_repeatable_move_pair(vim.diagnostic.goto_next, vim.diagnostic.goto_prev)
     vim.keymap.set('n', '[d', next_diag, { desc = 'Go to previous [D]iagnostic message' })
     vim.keymap.set('n', ']d', prev_diag, { desc = 'Go to next [D]iagnostic message' })
   end,
