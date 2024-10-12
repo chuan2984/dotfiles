@@ -1,6 +1,6 @@
 return {
   'smjonas/live-command.nvim',
-  event = 'BufReadPost',
+  event = 'CmdlineEnter',
   config = function()
     require('live-command').setup {
       commands = {

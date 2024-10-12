@@ -5,7 +5,7 @@ return {
   -- and if not specified, it would fallback to the LSP, which may or may not have a formatting
   -- capability.
   'stevearc/conform.nvim',
-  event = 'VeryLazy',
+  event = 'BufWritePre',
   opts = {
     notify_on_error = false,
     format_on_save = {

@@ -16,7 +16,7 @@ return {
   { 'tpope/vim-rhubarb', event = 'VeryLazy' },
   { 'Bekaboo/deadcolumn.nvim', event = 'InsertEnter' },
   { 'tpope/vim-fugitive', event = 'VeryLazy' },
-  { 'tpope/vim-rails', event = 'VeryLazy' },
+  { 'tpope/vim-rails', ft = 'ruby' },
   { 'tpope/vim-abolish' }, -- cannot lazy load to work with abolish.vim config file
   { 'ludovicchabant/vim-gutentags', event = 'VeryLazy' },
   {

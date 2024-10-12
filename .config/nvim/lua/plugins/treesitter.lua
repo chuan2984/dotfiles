@@ -1,5 +1,6 @@
 return {
   'nvim-treesitter/nvim-treesitter',
+  event = { 'BufReadPost', 'BufNewFile' },
   dependencies = {
     {
       'RRethy/nvim-treesitter-endwise',
@@ -7,12 +8,10 @@ return {
     },
     {
       'nvim-treesitter/nvim-treesitter-context',
-      event = 'VeryLazy',
       config = true,
     },
     {
       'HiPhish/rainbow-delimiters.nvim',
-      event = 'VeryLazy',
     },
     {
       'nvim-treesitter/nvim-treesitter-textobjects',
