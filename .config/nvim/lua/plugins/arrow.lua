@@ -21,6 +21,7 @@ return {
       "<C-'>",
       function()
         require('arrow.persist').toggle()
+        vim.cmd 'redrawstatus'
       end,
       desc = 'bookmark buffer',
     },
@@ -37,5 +38,10 @@ return {
       index_keys = 'hjkl;gfa',
     }
 
+    MiniStatusline.section_location = function()
+      return require('arrow.statusline').text_for_statusline_with_icons()
+    end
+
+    vim.cmd 'redrawstatus'
   end,
 }

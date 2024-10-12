@@ -171,7 +171,7 @@ return {
     -- cursor information because line numbers are already enabled
     ---@diagnostic disable-next-line: duplicate-set-field
     statusline.section_location = function()
-      return require('arrow.statusline').text_for_statusline_with_icons()
+      return ''
     end
 
     -- Function to get the number of open buffers using the :ls command
