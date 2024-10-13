@@ -1,6 +1,8 @@
 return {
   {
-    'hrsh7th/nvim-cmp',
+    -- 'hrsh7th/nvim-cmp',
+    'iguanacucumber/magazine.nvim',
+    name = 'nvim-cmp', -- Otherwise highlighting gets messed up
     event = { 'InsertEnter', 'CmdLineEnter' },
     dependencies = {
       -- Snippet Engine & its associated nvim-cmp source
@@ -21,16 +23,10 @@ return {
       { 'chuan2984/friendly-snippets', lazy = true, branch = 'rspec_snippets' },
       { 'saadparwaiz1/cmp_luasnip', lazy = true },
       { 'hrsh7th/cmp-cmdline', lazy = true },
-      -- Adds other completion capabilities.
-      --  nvim-cmp does not ship with all sources by default. They are split
-      --  into multiple repos for maintenance purposes.
       { 'hrsh7th/cmp-nvim-lsp', lazy = true },
       { 'hrsh7th/cmp-path', lazy = true },
-      { 'SergioRibera/cmp-dotenv', lazy = true },
       { 'hrsh7th/cmp-buffer', lazy = true },
-      { 'Gelio/cmp-natdat', lazy = true, config = true },
     },
-
     config = function()
       vim.opt.completeopt = { 'menuone', 'noselect' }
       local compare = require('cmp').config.compare
@@ -184,8 +180,6 @@ return {
           { name = 'path', max_item_count = 6, priority = 50 },
           { name = 'luasnip', max_item_count = 6, priority = 50 },
           { name = 'jupynium', max_item_count = 10, priority = 1000 },
-          { name = 'natdat' },
-          -- { name = 'dotenv', max_item_count = 10 },
         },
         sorting = {
           priority_weight = 1.0,
