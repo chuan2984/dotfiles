@@ -1,10 +1,20 @@
 return {
   'epwalsh/obsidian.nvim',
-  version = '*', -- recommended, use latest release instead of latest commit
   event = {
     'BufReadPre ' .. vim.fn.expand '~' .. '/github/obsidian/**.md',
     'BufNewFile ' .. vim.fn.expand '~' .. '/github/obsidian/**.md',
   },
+  build = function()
+    local pngpaste_installed = vim.fn.system 'command -v pngpaste' ~= ''
+    if not pngpaste_installed then
+      print 'Pngpaste not found. Installing via brew...'
+      vim.schedule(function()
+        os.execute 'brew install pngpaste'
+      end)
+    else
+      print 'Pngpaste already installed, exiting...'
+    end
+  end,
   keys = {
     {
       '<leader>so',
@@ -35,7 +45,6 @@ return {
   },
   config = function()
     vim.o.conceallevel = 2
-
     local opts = {
       workspaces = {
         {
@@ -91,17 +100,22 @@ return {
           end,
           opts = { buffer = true, desc = '[O]bsidian [a]pply [t]emplate' },
         },
+        ['<leader>oqs'] = {
+          action = function()
+            return vim.cmd 'ObsidianQuickSwitch'
+          end,
+          opts = { buffer = true, desc = '[O]bsidian [q]uick [s]witch' },
+        },
       },
 
-      disable_frontmatter = true,
+      disable_frontmatter = false,
       -- This configuration for lighlight and conceal does not work, replicated at the bottom
       -- This requires you have `conceallevel` set to 1 or 2. See `:help conceallevel` for more details.
       ui = {
         enable = false, -- set to false to disable all additional syntax features
-        update_debounce = 200, -- update delay after a text change (in milliseconds)
       },
 
-      new_notes_location = 'notes_subdir',
+      new_notes_location = 'current_dir',
       -- Either 'wiki' or 'markdown'.
       preferred_link_style = 'wiki',
 
@@ -154,6 +168,9 @@ return {
       -- 2. "vsplit" - to open in a vertical split if there's not already a vertical split
       -- 3. "hsplit" - to open in a horizontal split if there's not already a horizontal split
       open_notes_in = 'current',
+      attachments = {
+        img_folder = 'Assets/imgs',
+      },
     }
 
     vim.api.nvim_create_autocmd({ 'BufRead', 'BufNewFile', 'TextChanged', 'TextChangedI' }, {
