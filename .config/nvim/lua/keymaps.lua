@@ -13,6 +13,10 @@ vim.keymap.set('i', 'jk', '<Esc>', opts)
 --   term_mode = "t",
 --   command_mode = "c",
 
+-- config lua helper
+keymap('n', '<leader>xl', '<cmd>.lua<CR>', { desc = 'Execute the current line' })
+keymap('n', '<leader>xf', '<cmd>source %<CR>', { desc = 'Execute the current file' })
+
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
 keymap('n', '<Esc>', '<cmd>nohlsearch<CR>')
