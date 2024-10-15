@@ -10,7 +10,7 @@ return {
       heading = {
         sign = false,
         width = 'block',
-        min_width = 100,
+        min_width = 96,
         position = 'inline',
         icons = { '󰎥 ', '󰎨 ', '󰎫 ', '󰎲 ', '󰎯 ', '󰎴 ' },
       },

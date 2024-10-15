@@ -14,7 +14,15 @@ return {
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
   -- This one enables GBrowse, requires a github key that can be expired
   { 'tpope/vim-rhubarb', event = 'VeryLazy' },
-  { 'Bekaboo/deadcolumn.nvim', event = 'InsertEnter' },
+  {
+    'Bekaboo/deadcolumn.nvim',
+    event = 'InsertEnter',
+    opts = {
+      warning = {
+        alpha = 0.2,
+      },
+    },
+  },
   { 'tpope/vim-fugitive', event = 'VeryLazy' },
   { 'tpope/vim-rails', ft = 'ruby' },
   { 'tpope/vim-abolish' }, -- cannot lazy load to work with abolish.vim config file
