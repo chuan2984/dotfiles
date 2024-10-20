@@ -50,14 +50,14 @@ return {
     local ts_repeat_move = require 'nvim-treesitter.textobjects.repeatable_move'
 
     -- Repeat movement with ; and ,
-    vim.keymap.set({ 'n', 'x', 'o' }, ';', function()
+    vim.keymap.set({ 'n', 'x', 'o' }, ']]', function()
       local success = ts_repeat_move.repeat_last_move_next()
       if not success then
         vim.cmd 'normal! ;'
       end
     end, { desc = 'repeat last textobject move' })
 
-    vim.keymap.set({ 'n', 'x', 'o' }, ',', function()
+    vim.keymap.set({ 'n', 'x', 'o' }, '[[', function()
       local success = ts_repeat_move.repeat_last_move_previous()
       if not success then
         vim.cmd 'normal! ,'
