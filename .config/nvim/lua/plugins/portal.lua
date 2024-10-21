@@ -3,6 +3,14 @@ return {
   cmd = 'Portal',
   keys = {
     {
+      '<leader>pm',
+      function()
+        local trailblazer_generator = require 'plugins.portals.trailblazer'
+        require('portal').tunnel(trailblazer_generator.query { max_results = 5 })
+      end,
+      desc = '[p]ortal trailblazer [m]arks',
+    },
+    {
       '<leader>pb',
       function()
         local recent_buffers = require 'plugins.portals.recent_buffers'
@@ -26,6 +34,8 @@ return {
     },
   },
   config = function()
-    require('portal').setup()
+    require('portal').setup {
+      labels = { 'j', 'k', 'h', 'l', 'a', 's', 'd', 'f' },
+    }
   end,
 }
