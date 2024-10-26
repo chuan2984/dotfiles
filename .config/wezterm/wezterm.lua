@@ -35,7 +35,7 @@ config.enable_kitty_graphics = true
 config.set_environment_variables = {
 	TERMINFO_DIRS = os.getenv("HOME") .. "/.terminfo",
 }
-config.term = "wezterm"
+config.term = "xterm-kitty"
 
 -- Dim inactive panes
 config.inactive_pane_hsb = {
