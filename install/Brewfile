@@ -34,6 +34,8 @@ brew "php"
 brew "nodenv"
 brew "rbenv"
 brew "ruby"
+brew "erlang"
+brew "elixir"
 
 # personal
 brew "neovim"
