@@ -10,6 +10,7 @@ return {
       end,
       desc = '[p]ortal trailblazer [m]arks',
     },
+
     {
       '<leader>pb',
       function()
@@ -18,13 +19,15 @@ return {
       end,
       desc = '[p]ortal recent [b]uffers',
     },
+
     {
       '<leader>pi',
       function()
-        require('portal.builtin').jumplist.tunnel_forward()
+        require('portal.builtin').jumplist.tunnel_backward()
       end,
       desc = '[p]ortal jumplist prev',
     },
+
     {
       '<leader>po',
       function()
@@ -33,9 +36,10 @@ return {
       desc = '[p]ortal jumplist next',
     },
   },
+
   config = function()
     require('portal').setup {
-      labels = { 'j', 'k', 'h', 'l', 'a', 's', 'd', 'f' },
+      labels = { 'j', 'k', 'h', 'l' },
     }
   end,
 }
