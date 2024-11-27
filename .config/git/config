@@ -8,7 +8,8 @@
 	whoami = config user.email
 	lgb = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
 	bb = !~/.config/git/scripts/better-branch.sh
-	blamec = blame -w -C -L
+	blamec = blame -w -C -C -C -L
+	blame = blame -w -CCC
 	lol = !git log --graph --color --decorate --pretty=oneline --abbrev-commit | tac | nvimpager
 	lola = !git log --graph --color --decorate --pretty=oneline --abbrev-commit --all | tac | nvimpager
 	logl = log -L
