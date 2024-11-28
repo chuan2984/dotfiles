@@ -1,6 +1,9 @@
 return {
   'kristijanhusak/vim-dadbod-ui',
-  dependencies = { 'tpope/vim-dadbod', lazy = true },
+  dependencies = {
+    { 'kristijanhusak/vim-dadbod-completion', lazy = true },
+    { 'tpope/vim-dadbod', lazy = true },
+  },
   cmd = {
     'DBUI',
     'DBUIToggle',

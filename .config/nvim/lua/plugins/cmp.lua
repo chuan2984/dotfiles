@@ -80,6 +80,13 @@ return {
         end,
       })
 
+      cmp.setup.filetype({'sql'}, {
+        sources = {
+          { name = 'vim-dadbod-completion', max_item_count = 6},
+          { name = 'buffer', max_item_count = 5 },
+        },
+      })
+
       local loader = require 'luasnip.loaders.from_vscode'
       loader.lazy_load()
       luasnip.filetype_extend('ruby', { 'rdoc', 'rspec' })
@@ -165,6 +172,7 @@ return {
               natdat = '[DATE]',
               jupynium = '[Jupy]',
               dotenv = '[ENV]',
+              ['vim-dadbod-completion']= '[DB]',
             })[entry.source.name]
             return vim_item
           end,
