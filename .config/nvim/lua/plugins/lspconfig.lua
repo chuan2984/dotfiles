@@ -79,6 +79,14 @@ return {
       end,
     })
 
+    -- Ensure the servers and tools above are installed
+    --  To check the current status of installed tools and/or manually install
+    --  other tools, you can run
+    --    :Mason
+    --
+    --  You can press `g?` for help in this menu
+    require('mason').setup()
+
     -- LSP servers and clients are able to communicate to each other what features they support.
     --  By default, Neovim doesn't support everything that is in the LSP Specification.
     --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
@@ -117,16 +125,23 @@ return {
       stylua = {},
       vale = {},
       markdownlint = {},
+      lexical = {
+        root_dir = function(fname)
+          return require('lspconfig').util.root_pattern('mix.exs', '.git')(fname) or vim.loop.cwd()
+        end,
+        filetypes = { 'elixir', 'eelixir', 'heex' },
+        cmd = {
+          vim.fs.joinpath(
+            require('mason-registry').get_package('lexical'):get_install_path(),
+            'libexec',
+            'lexical',
+            'bin',
+            'start_lexical.sh'
+          ),
+        },
+      },
       ['markdown-oxide'] = {},
     }
-
-    -- Ensure the servers and tools above are installed
-    --  To check the current status of installed tools and/or manually install
-    --  other tools, you can run
-    --    :Mason
-    --
-    --  You can press `g?` for help in this menu
-    require('mason').setup()
 
     -- You can add other tools here that you want Mason to install
     -- for you, so that they are available from within Neovim.
