@@ -47,12 +47,18 @@ return {
       },
 
       -- Which character to use for drawing scope indicator
-      symbol = '\u{e621}',
+      symbol = '',
     }
 
     -- MniFiles
     local mini_files = require 'mini.files'
-    mini_files.setup()
+    mini_files.setup {
+      windows = {
+        preview = true,
+        width_preview = 50,
+        width_focus = 40,
+      },
+    }
 
     -- Toggle open and close
     vim.keymap.set('n', '<leader>te', function()
@@ -192,7 +198,7 @@ return {
         config = {},
 
         -- Maximum window width as share (between 0 and 1) of available columns
-        max_width_share = 0.5,
+        max_width_share = 0.7,
 
         -- Value of 'winblend' option
         winblend = 0,
