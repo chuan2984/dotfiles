@@ -6,7 +6,7 @@ vim.opt.backup = false
 vim.opt.writebackup = false -- if a file is being edited by another program (or was written to file while editing with another program), it is not allowed to be edited
 vim.opt.swapfile = false -- creates a swapfile
 vim.opt.undofile = true -- enable persistent undo
-vim.opt.conceallevel = 1 -- so that obsidian can play nice, but can also be set to 0 to hide the quote blocks
+-- vim.opt.conceallevel = 3 -- so that obsidian can play nice, but can also be set to 0 to hide the quote blocks
 vim.opt.fileencoding = 'utf-8' -- the encoding written to a file
 vim.opt.termguicolors = true -- set term gui colors (most terminals support this)
 vim.opt.numberwidth = 2 -- set line number column width to 2 {default 4}
@@ -15,7 +15,7 @@ vim.opt.showtabline = 1 -- show when theres more than 1 tab
 
 -- fold
 vim.opt.foldcolumn = '0'
-vim.opt.foldlevel = 69
+vim.opt.foldlevel = 99
 vim.opt.foldlevelstart = -1 -- disables
 vim.opt.foldenable = true
 

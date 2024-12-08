@@ -44,7 +44,6 @@ return {
     'nvim-lua/plenary.nvim',
   },
   config = function()
-    vim.o.conceallevel = 2
     local opts = {
       workspaces = {
         {
