@@ -7,13 +7,14 @@ function module.apply_to_config(config)
 	switcher.set_workspace_formatter(function(label)
 		return wezterm.format({
 			{ Attribute = { Italic = true } },
-			{ Foreground = { Color = "teal" } },
-			-- { Background = { Color = "rgba(0, 0, 1, 0.5)" } },
+			{ Foreground = { Color = "#6cb5fb" } },
 			{ Text = "󱂬: " .. label },
 		})
 	end)
 
 	table.insert(config.keys, { key = "f", mods = "LEADER", action = switcher.switch_workspace(" | head -n 10") })
 end
+
+-- [swiitch to most recent](https://github.com/wez/wezterm/discussions/5833)
 
 return module
