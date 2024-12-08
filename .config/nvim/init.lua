@@ -4,6 +4,9 @@
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
+-- [[ Autocmd options ]]
+require 'autocmd'
+
 -- [[ Setting options ]]
 require 'options'
 
