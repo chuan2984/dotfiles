@@ -9,4 +9,13 @@ return {
     local cwd = vim.fn.getcwd()
     return cwd:match '/github/jupyter'
   end,
+  config = function()
+    local cursorline_hl = vim.api.nvim_get_hl(0, { name = 'CursorLine' })
+    local separator_bg = string.format('#%06x', cursorline_hl.bg - 0x101010)
+
+    vim.api.nvim_set_hl(0, 'JupyniumMarkdownCellContent', {
+      bg = separator_bg,
+      fg = 'NONE',
+    })
+  end,
 }
