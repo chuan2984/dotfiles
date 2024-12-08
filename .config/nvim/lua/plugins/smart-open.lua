@@ -1,6 +1,7 @@
 return {
   'danielfalk/smart-open.nvim',
   branch = '0.2.x',
+  event = 'VeryLazy',
   dependencies = {
     'kkharji/sqlite.lua',
     -- Only required if using match_algorithm fzf
@@ -16,7 +17,12 @@ return {
       },
     }
 
-    vim.keymap.set('n', '<leader><leader>', '<cmd>Telescope smart_open<CR>', { noremap = true, silent = true, desc = '[] Smart find files' })
+    vim.keymap.set(
+      'n',
+      '<leader><leader>',
+      '<cmd>Telescope smart_open<CR>',
+      { noremap = true, silent = true, desc = '[] Smart find files' }
+    )
 
     pcall(require('telescope').load_extension, 'smart_open')
   end,

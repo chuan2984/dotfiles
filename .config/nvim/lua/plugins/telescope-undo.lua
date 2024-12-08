@@ -8,7 +8,7 @@ return {
   },
   keys = {
     { -- lazy style key map
-      '<leader>u',
+      '<leader>su',
       '<cmd>Telescope undo<cr>',
       desc = '[u]ndo history',
     },

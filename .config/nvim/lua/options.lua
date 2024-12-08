@@ -140,26 +140,3 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ 'VimEnter' }, {
-  pattern = '*',
-  callback = function()
-    local is_buffer_empty = vim.fn.empty(vim.fn.expand '%:t') == 1 and vim.fn.line '$' == 1 and vim.fn.getline(1) == ''
-    if is_buffer_empty then
-      local is_git_repo = vim.fn.system('git rev-parse --is-inside-work-tree 2>/dev/null'):match 'true' ~= nil
-      local open_file_finder_cmd = 'Telescope smart_open'
-      local open_git_diff_cmd = 'Easypick conflicts'
-
-      if is_git_repo then
-        local has_conflicts = vim.fn.system('git diff --check'):match 'conflict' ~= nil
-
-        if has_conflicts then
-          vim.cmd(open_git_diff_cmd)
-        else
-          vim.cmd(open_file_finder_cmd)
-        end
-      else
-        vim.cmd(open_file_finder_cmd)
-      end
-    end
-  end,
-})

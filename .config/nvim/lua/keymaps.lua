@@ -69,11 +69,6 @@ keymap('n', '<Leader>d', '"_d', opts)
 keymap('n', '<Leader>x', '"_x', opts)
 keymap('n', '<Leader>X', '"_X', opts)
 
--- close buffer
-keymap('n', '<leader>bd', '<cmd>bd<CR>', { desc = '[b]uffer [d]elete' })
--- Close buffer without closing split
-keymap('n', '<leader>bdd', '<cmd>bp|bd #<CR>', { desc = '[b]uffer [d]elete [s]plit' })
-
 -- copy current filename
 keymap('n', '<leader>cfn', '<cmd>let @+=@%<CR>', { desc = '[copy] current [f]ile [n]ame' })
 -- copy current file path to system clipboard
