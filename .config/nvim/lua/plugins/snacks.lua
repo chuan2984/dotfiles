@@ -194,6 +194,15 @@ return {
               { icon = ' ', key = 'f', desc = 'Find File', action = ":lua Snacks.dashboard.pick('files')" },
               { icon = ' ', key = 'n', desc = 'New File', action = ':ene | startinsert' },
               {
+                icon = ' ',
+                key = 'g',
+                desc = 'Git Status',
+                action = 'Neogit',
+                enabled = function()
+                  return Snacks.git.get_root() ~= nil
+                end,
+              },
+              {
                 icon = ' ',
                 key = 'rc',
                 desc = 'List Conflicts',
