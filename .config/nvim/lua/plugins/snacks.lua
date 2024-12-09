@@ -1,46 +1,22 @@
 return {
   'folke/snacks.nvim',
   priority = 1000,
-  lazy = false,
-  ---@type snacks.Config
-  opts = {
-    bigfile = { enabled = true },
-    dashboard = { enabled = true },
-    notifier = {
-      enabled = true,
-      timeout = 3000,
-    },
-    gitbrowse = {
-      enabled = true,
-      -- WARN: no way to get default opts, can be out of sync
-      -- stylua: ignore
-      remote_patterns = {
-        { "^(https?://.*)%.git$"              , "%1" },
-        -- my own, since i have 2 different ssh account setup at a time
-        { "^git@personal(.+):(.+)%.git$"      , "https://www%1/%2" },
-        { "^git@work(.+):(.+)%.git$"          , "https://www%1/%2" },
-        { "^git@(.+):(.+)%.git$"              , "https://%1/%2" },
-        { "^git@(.+):(.+)$"                   , "https://%1/%2" },
-        { "^git@(.+)/(.+)$"                   , "https://%1/%2" },
-        { "^ssh://git@(.*)$"                  , "https://%1" },
-        { "^ssh://([^:/]+)(:%d+)/(.*)$"       , "https://%1/%3" },
-        { "^ssh://([^/]+)/(.*)$"              , "https://%1/%2" },
-        { "ssh%.dev%.azure%.com/v3/(.*)/(.*)$", "dev.azure.com/%1/_git/%2" },
-        { "^https://%w*@(.*)"                 , "https://%1" },
-        { "^git@(.*)"                         , "https://%1" },
-        { ":%d+"                              , "" },
-        { "%.git$"                            , "" },
+  dependencies = {
+    {
+      'praczet/little-taskwarrior.nvim',
+      -- TODO: this is bugged, does not get picked up
+      opts = {
+        dashboard = {
+          limit = 6,
+          debug = false,
+          max_width = 56,
+          urgency_threshold = 1,
+        },
       },
-    },
-    quickfile = { enabled = true },
-    statuscolumn = { enabled = true },
-    words = { enabled = true },
-    styles = {
-      notification = {
-        wo = { wrap = true }, -- Wrap notifications
-      },
+      config = true,
     },
   },
+  lazy = false,
   keys = {
     {
       '<leader>.',
@@ -85,7 +61,7 @@ return {
       desc = 'Git Browse',
     },
     {
-      '<leader>gb',
+      '<leader>gbl',
       function()
         Snacks.git.blame_line()
       end,
@@ -195,5 +171,130 @@ return {
         Snacks.toggle.inlay_hints():map '<leader>uh'
       end,
     })
+    vim.api.nvim_create_autocmd('User', {
+      pattern = 'SnacksDashboardOpened',
+      callback = function(data)
+        vim.b[data.buf].miniindentscope_disable = true
+      end,
+    })
+  end,
+  config = function()
+    ---@type snacks.Config
+    local opts = {
+      bigfile = { enabled = true },
+      dashboard = {
+        enabled = true,
+        sections = {
+          { section = 'header' },
+          {
+            pane = 1,
+            gap = 1,
+            padding = 1,
+            {
+              { icon = ' ', key = 'f', desc = 'Find File', action = ":lua Snacks.dashboard.pick('files')" },
+              { icon = ' ', key = 'n', desc = 'New File', action = ':ene | startinsert' },
+              {
+                icon = ' ',
+                key = 'rc',
+                desc = 'List Conflicts',
+                action = 'Easypick conflicts',
+                enabled = function()
+                  local is_git_repo = Snacks.git.get_root() ~= nil
+                  if not is_git_repo then
+                    return false
+                  end
+
+                  local has_conflicts = vim.fn.system('git diff --check'):match 'conflict' ~= nil
+                  return has_conflicts
+                end,
+              },
+              {
+                icon = ' ',
+                key = 'r',
+                desc = 'Recent Files',
+                action = ":lua Snacks.dashboard.pick('oldfiles')",
+              },
+              {
+                icon = ' ',
+                key = 'c',
+                desc = 'Config',
+                action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
+              },
+              { icon = '󰒲 ', key = 'L', desc = 'Lazy', action = ':Lazy', enabled = package.loaded.lazy ~= nil },
+            },
+          },
+          {
+            pane = 1,
+            icon = ' ',
+            title = 'Recent Files',
+            section = 'recent_files',
+            cwd = true,
+            indent = 2,
+            padding = 1,
+          },
+          {
+            pane = 2,
+            icon = ' ',
+            title = 'Git Status',
+            section = 'terminal',
+            enabled = function()
+              return Snacks.git.get_root() ~= nil
+            end,
+            cmd = 'git status --short --branch --renames',
+            height = 6,
+            padding = 1,
+            ttl = 5 * 60,
+            indent = 2,
+          },
+          {
+            pane = 2,
+            icon = ' ',
+            title = 'Task Status',
+          },
+          {
+            pane = 2,
+            text = require('little-taskwarrior').get_snacks_dashboard_tasks(56, 'dir', 'special'),
+            indent = 2,
+            height = 16,
+          },
+          { pane = 1, section = 'startup' },
+        },
+      },
+      notifier = {
+        enabled = true,
+        timeout = 3000,
+      },
+      gitbrowse = {
+        enabled = true,
+      -- WARN: no way to get default opts, can be out of sync
+      -- stylua: ignore
+      remote_patterns = {
+        { "^(https?://.*)%.git$"              , "%1" },
+        -- my own, since i have 2 different ssh account setup at a time
+        { "^git@personal(.+):(.+)%.git$"      , "https://www%1/%2" },
+        { "^git@work(.+):(.+)%.git$"          , "https://www%1/%2" },
+        { "^git@(.+):(.+)%.git$"              , "https://%1/%2" },
+        { "^git@(.+):(.+)$"                   , "https://%1/%2" },
+        { "^git@(.+)/(.+)$"                   , "https://%1/%2" },
+        { "^ssh://git@(.*)$"                  , "https://%1" },
+        { "^ssh://([^:/]+)(:%d+)/(.*)$"       , "https://%1/%3" },
+        { "^ssh://([^/]+)/(.*)$"              , "https://%1/%2" },
+        { "ssh%.dev%.azure%.com/v3/(.*)/(.*)$", "dev.azure.com/%1/_git/%2" },
+        { "^https://%w*@(.*)"                 , "https://%1" },
+        { "^git@(.*)"                         , "https://%1" },
+        { ":%d+"                              , "" },
+        { "%.git$"                            , "" },
+      },
+      },
+      quickfile = { enabled = true },
+      statuscolumn = { enabled = true },
+      words = { enabled = true },
+      styles = {
+        notification = {
+          wo = { wrap = true }, -- Wrap notifications
+        },
+      },
+    }
+    require('snacks').setup(opts)
   end,
 }

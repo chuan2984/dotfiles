@@ -12,3 +12,4 @@ tags.lock
 tags.temp
 projections.json
 rspec_cmd.sh
+.little-taskwarrior.json
