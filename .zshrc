@@ -77,6 +77,7 @@ export HISTFILE=~/.zsh_history
 setopt HIST_IGNORE_ALL_DUPS
 # following should be turned off, if sharing history via setopt SHARE_HISTORY
 setopt INC_APPEND_HISTORY
+export ERL_AFLAGS="-kernel shell_history enabled"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
