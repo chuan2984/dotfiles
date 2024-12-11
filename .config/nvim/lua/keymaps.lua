@@ -53,12 +53,12 @@ keymap('v', '>', '>gv', opts)
 keymap('v', '<', '<gv', opts)
 
 -- Vertical movement
-keymap('n', '<C-d>', '<C-d>zz', opts)
-keymap('n', '<C-u>', '<C-u>zz', opts)
+keymap('n', '<C-d>', '<C-d>', opts)
+keymap('n', '<C-u>', '<C-u>', opts)
 
 -- Recenter search
-keymap('n', 'n', 'nzzzv', opts)
-keymap('n', 'N', 'Nzzzv', opts)
+keymap('n', 'n', 'nzv', opts)
+keymap('n', 'N', 'Nzv', opts)
 
 -- Paste without yanking the original text
 -- Terminal --
@@ -84,19 +84,5 @@ keymap('n', '<leader>cfp', '<cmd>let @+ = expand("%:p")<CR>', { desc = '[C]opy c
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
 keymap('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
-
--- [[ Basic Autocommands ]]
---  See `:help lua-guide-autocommands`
-
--- Highlight when yanking (copying) text
---  Try it with `yap` in normal mode
---  See `:help vim.highlight.on_yank()`
-vim.api.nvim_create_autocmd('TextYankPost', {
-  desc = 'Highlight when yanking (copying) text',
-  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
-  callback = function()
-    vim.highlight.on_yank()
-  end,
-})
 
 -- vim: ts=2 sts=2 sw=2 et
