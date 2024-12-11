@@ -10,7 +10,7 @@ return {
           limit = 6,
           debug = false,
           max_width = 56,
-          urgency_threshold = 1,
+          urgency_threshold = 9,
         },
       },
       config = true,
@@ -197,7 +197,7 @@ return {
                 icon = ' ',
                 key = 'g',
                 desc = 'Git Status',
-                action = 'Neogit',
+                action = ':Neogit',
                 enabled = function()
                   return Snacks.git.get_root() ~= nil
                 end,
@@ -206,7 +206,7 @@ return {
                 icon = ' ',
                 key = 'rc',
                 desc = 'List Conflicts',
-                action = 'Easypick conflicts',
+                action = ':Easypick conflicts',
                 enabled = function()
                   local is_git_repo = Snacks.git.get_root() ~= nil
                   if not is_git_repo then
@@ -252,7 +252,7 @@ return {
             cmd = 'git status --short --branch --renames',
             height = 6,
             padding = 1,
-            ttl = 5 * 60,
+            ttl = 60,
             indent = 2,
           },
           {
@@ -262,7 +262,11 @@ return {
           },
           {
             pane = 2,
-            text = require('little-taskwarrior').get_snacks_dashboard_tasks(56, 'dir', 'special'),
+            function()
+              return {
+                text = require('little-taskwarrior').get_snacks_dashboard_tasks(56, 'dir', 'special'),
+              }
+            end,
             indent = 2,
             height = 16,
           },
