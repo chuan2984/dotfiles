@@ -140,10 +140,10 @@ function module.apply_to_config(config)
 
 	config.key_tables = {
 		resize_pane = {
-			{ key = "h", action = act.AdjustPaneSize({ "Left", 1 }) },
-			{ key = "j", action = act.AdjustPaneSize({ "Down", 1 }) },
-			{ key = "k", action = act.AdjustPaneSize({ "Up", 1 }) },
-			{ key = "l", action = act.AdjustPaneSize({ "Right", 1 }) },
+			{ key = "h", action = act.AdjustPaneSize({ "Left", 10 }) },
+			{ key = "j", action = act.AdjustPaneSize({ "Down", 10 }) },
+			{ key = "k", action = act.AdjustPaneSize({ "Up", 10 }) },
+			{ key = "l", action = act.AdjustPaneSize({ "Right", 10 }) },
 			{ key = "Escape", action = "PopKeyTable" },
 			{ key = "Enter", action = "PopKeyTable" },
 		},

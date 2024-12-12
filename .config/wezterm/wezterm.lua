@@ -12,8 +12,8 @@ keymaps.apply_to_config(config)
 local tabbar = require("tabbar")
 tabbar.apply_to_config(config)
 
-local navigator = require("navigator")
-navigator.apply_to_config(config)
+local smart_splits = require("smart-splits")
+smart_splits.apply_to_config(config)
 
 local workspace_switcher = require("workspace_switcher")
 workspace_switcher.apply_to_config(config)
