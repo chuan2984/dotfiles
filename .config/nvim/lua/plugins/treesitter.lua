@@ -112,9 +112,10 @@ return {
     local gs = require 'gitsigns'
 
     -- make sure forward function comes first
-    local next_hunk_repeat, prev_hunk_repeat = ts_repeat_move.make_repeatable_move_pair(gs.next_hunk, gs.prev_hunk)
-    vim.keymap.set({ 'n', 'x', 'o' }, ']h', next_hunk_repeat)
-    vim.keymap.set({ 'n', 'x', 'o' }, '[h', prev_hunk_repeat)
+    local next_hunk_repeat, prev_hunk_repeat =
+      ts_repeat_move.make_repeatable_move_pair(gs.nav_hunk 'next', gs.nav_hunk 'prev')
+    vim.keymap.set({ 'n', 'x', 'o' }, ']c', next_hunk_repeat)
+    vim.keymap.set({ 'n', 'x', 'o' }, '[c', prev_hunk_repeat)
 
     local next_diag, prev_diag =
       ts_repeat_move.make_repeatable_move_pair(vim.diagnostic.goto_next, vim.diagnostic.goto_prev)

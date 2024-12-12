@@ -11,7 +11,7 @@ return {
         changedelete = { text = '▎' },
       },
       on_attach = function(bufnr)
-        local gs = package.loaded.gitsigns
+        local gs = require 'gitsigns'
 
         local function map(mode, l, r, opts)
           opts = opts or {}
@@ -25,7 +25,7 @@ return {
             return ']c'
           end
           vim.schedule(function()
-            gs.next_hunk()
+            gs.nav_hunk 'next'
           end)
           return '<Ignore>'
         end, { expr = true, desc = 'Go to the next hunk' })
@@ -35,7 +35,7 @@ return {
             return '[c'
           end
           vim.schedule(function()
-            gs.prev_hunk()
+            gs.nav_hunk 'prev'
           end)
           return '<Ignore>'
         end, { expr = true, desc = 'Go to the previous hunk' })
@@ -62,9 +62,6 @@ return {
           gs.diffthis '~'
         end, { desc = '[H]unk [D]iff this commit' })
         map('n', '<leader>td', gs.toggle_deleted, { desc = '[H]unk toggle [D]eleted' })
-
-        -- Text object
-        map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'inside hunk' })
       end,
     },
   },
