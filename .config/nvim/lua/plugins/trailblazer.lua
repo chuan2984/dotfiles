@@ -1,6 +1,73 @@
 -- TODO: add telescope extension and statusline maybe?
 return {
   'LeonHeidelbach/trailblazer.nvim',
+  keys = {
+    {
+      '<leader>Ma',
+      mode = 'n',
+      function()
+        vim.ui.input({ prompt = 'Stack name: ' }, function(input)
+          if input then
+            require('trailblazer').add_trail_mark_stack(input)
+            require('trailblazer').switch_trail_mark_stack(input, true)
+          end
+        end)
+      end,
+      desc = 'Add trailmark stack',
+    },
+    {
+      '<leader>MD',
+      mode = 'n',
+      function()
+        require('trailblazer').delete_all_trail_mark_stacks(true)
+      end,
+      desc = 'Delete all trailmark stacks',
+    },
+    {
+      '<leader>Ml',
+      mode = 'n',
+      function()
+        -- TODO: need a better way to get the numb>, this reports stacks from Storage, only refreshes after switched
+        local stacks = require('trailblazer.trails').stacks.trail_mark_stack_list
+        local sorted_stacks = require('trailblazer.trails').stacks.get_sorted_stack_names()
+        local current_stack = require('trailblazer.trails').stacks.current_trail_mark_stack_name
+        vim.ui.select(sorted_stacks, {
+          prompt = 'Choose a stack ',
+          format_item = function(item)
+            local fitem = item
+            local count = vim.tbl_count(stacks[item] and stacks[item].stack or {})
+            if item == current_stack then
+              fitem = ' ' .. fitem
+            end
+            fitem = string.sub(' ', #tostring(vim.fn.index(sorted_stacks, item) + 1), 1) .. fitem -- left align
+            return count > 0 and fitem .. string.format(' (%d)', count) or fitem -- add trails count if more than zero
+          end,
+        }, function(choice)
+          if choice then
+            require('trailblazer').switch_trail_mark_stack(choice)
+          end
+        end)
+      end,
+      desc = 'Switch trailmark stack',
+    },
+    {
+      '<leader>Md',
+      mode = 'n',
+      function()
+        local stacks = require('trailblazer.trails').stacks.get_sorted_stack_names()
+        local current_stack = require('trailblazer.trails').stacks.current_trail_mark_stack_name
+        stacks = vim.tbl_filter(function(stack)
+          return stack ~= current_stack
+        end, stacks)
+        vim.ui.select(stacks, { prompt = 'Delete stack ' }, function(choice)
+          if choice then
+            require('trailblazer').delete_trail_mark_stack(choice)
+          end
+        end)
+      end,
+      desc = 'Delete trailmark stack',
+    },
+  },
   event = { 'BufReadPost', 'BufNewFile' },
   config = function()
     local colors = require('catppuccin.palettes').get_palette 'macchiato' -- fetch colors from palette
@@ -74,18 +141,18 @@ return {
       mappings = { -- rename this to "force_mappings" to completely override default mappings and not merge with them
         nv = { -- Mode union: normal & visual mode. Can be extended by adding i, x, ...
           motions = {
-            new_trail_mark = '<c-s>',
-            track_back = '<leader>mo',
-            peek_move_next_down = '<leader>mn',
-            peek_move_previous_up = '<leader>mp',
-            move_to_nearest = '<leader>mi',
-            toggle_trail_mark_list = '<leader>M',
+            new_trail_mark = '<leader>mt',
+            track_back = '<leader>mp',
+            peek_move_next_down = '<leader>mi',
+            peek_move_previous_up = '<leader>mo',
+            move_to_nearest = '<leader>mn',
+            toggle_trail_mark_list = '<leader>ml',
           },
           actions = {
-            delete_all_trail_marks = '<leader>Md',
-            paste_at_last_trail_mark = '<leader>Mpl',
-            paste_at_all_trail_marks = '<leader>Mpa',
-            set_trail_mark_select_mode = '<leader>Msm',
+            delete_all_trail_marks = '<leader>mD',
+            paste_at_last_trail_mark = '<leader>mPl',
+            paste_at_all_trail_marks = '<leader>mPa',
+            set_trail_mark_select_mode = '<leader>msm',
             switch_to_next_trail_mark_stack = '<leader>Mn',
             switch_to_previous_trail_mark_stack = '<leader>Mp',
             set_trail_mark_stack_sort_mode = '<leader>Mss',
@@ -219,4 +286,4 @@ return {
 --
 -- 10. **`buffer_local_line_sorted`**:
 --     - This mode is similar to `buffer_local_chron`, but it sorts the marks within the current buffer by line number instead of chronological order.
---     - This can be useful when you want to quickly jump between specific positions within the current file, without having to worry about the order in which the marks were created.
+--     - This can be useful when you want to quickly jump between specific positions within the current file, without having to worry about the order in which the marks were createdjjj.

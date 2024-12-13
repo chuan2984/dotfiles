@@ -168,7 +168,11 @@ return {
 
     ---@diagnostic disable-next-line: duplicate-set-field
     statusline.section_location = function()
-      return ''
+      return '󰞁 '
+        .. require('trailblazer.trails').stacks.current_trail_mark_stack_name
+        .. '['
+        .. vim.tbl_count(require('trailblazer.trails.common').get_trail_mark_stack_subset_for_buf() or {})
+        .. ']'
     end
 
     -- Function to get the number of open buffers using the :ls command
