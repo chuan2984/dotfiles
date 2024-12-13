@@ -7,11 +7,11 @@ return {
       'praczet/little-taskwarrior.nvim',
       -- TODO: this is bugged, does not get picked up
       opts = {
+        urgency_threshold = 10,
         dashboard = {
           limit = 6,
           debug = false,
           max_width = 56,
-          urgency_threshold = 9,
         },
       },
       config = true,
