@@ -3,8 +3,7 @@ return {
   opts = {
     modes = {
       char = {
-        keys = { 'f', 'F', 't', 'T', ';', ',' },
-        multi_line = false,
+        enabled = false,
       },
     },
   },
@@ -41,9 +40,5 @@ return {
       end,
       desc = 'Treesitter Search',
     },
-    'f',
-    'F',
-    't',
-    'T',
   },
 }
