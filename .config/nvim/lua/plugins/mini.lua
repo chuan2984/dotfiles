@@ -25,8 +25,8 @@ return {
           object_scope_with_border = 'ai',
 
           -- Motions (jump to respective border line; if not present - body line)
-          goto_top = '[i',
-          goto_bottom = ']i',
+          -- goto_top = '[i',
+          -- goto_bottom = ']i',
         },
       },
 
@@ -181,6 +181,11 @@ return {
     statusline.section_lsp = function()
       return ' ' .. get_buffer_count()
     end
+
+    local bracketed = require 'mini.bracketed'
+    bracketed.setup {
+      file = { suffix = '' },
+    }
   end,
 }
 -- vim: ts=2 sts=2 sw=2 et
