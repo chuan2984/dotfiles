@@ -92,19 +92,19 @@ return {
       end,
     })
 
-    -- Open a file in a split window
     local map_split = function(buf_id, lhs, direction)
       local rhs = function()
         -- Make new window and set it as target
-        local new_target_window
-        vim.api.nvim_win_call(mini_files.get_target_window(), function()
+        local cur_target = MiniFiles.get_explorer_state().target_window
+        local new_target = vim.api.nvim_win_call(cur_target, function()
           vim.cmd(direction .. ' split')
-          new_target_window = vim.api.nvim_get_current_win()
+          return vim.api.nvim_get_current_win()
         end)
 
-        mini_files.set_target_window(new_target_window)
+        MiniFiles.set_target_window(new_target)
       end
 
+      -- Adding `desc` will result into `show_help` entries
       local desc = 'Split ' .. direction
       vim.keymap.set('n', lhs, rhs, { buffer = buf_id, desc = desc })
     end
@@ -114,26 +114,37 @@ return {
       callback = function(args)
         local buf_id = args.data.buf_id
         -- Tweak keys to your liking
-        map_split(buf_id, 'gs', 'belowright horizontal')
-        map_split(buf_id, 'gv', 'belowright vertical')
+        map_split(buf_id, '<C-s>', 'belowright horizontal')
+        map_split(buf_id, '<C-v>', 'belowright vertical')
       end,
     })
 
-    -- Create keymap to set cwd
-    local files_set_cwd = function(_)
-      -- Works only if cursor is on the valid file system entry
-      local cur_entry_path = mini_files.get_fs_entry().path
-      local cur_directory = vim.fs.dirname(cur_entry_path)
-      vim.fn.chdir(cur_directory)
+    -- Set focused directory as current working directory
+    local set_cwd = function()
+      local path = (MiniFiles.get_fs_entry() or {}).path
+      if path == nil then
+        return vim.notify 'Cursor is not on valid entry'
+      end
+      vim.fn.chdir(vim.fs.dirname(path))
+    end
+
+    -- Yank in register full path of entry under cursor
+    local yank_path = function()
+      local path = (MiniFiles.get_fs_entry() or {}).path
+      if path == nil then
+        return vim.notify 'Cursor is not on valid entry'
+      end
+      vim.fn.setreg(vim.v.register, path)
     end
 
     vim.api.nvim_create_autocmd('User', {
       pattern = 'MiniFilesBufferCreate',
       callback = function(args)
-        vim.keymap.set('n', 'g.', files_set_cwd, { buffer = args.data.buf_id })
+        local b = args.data.buf_id
+        vim.keymap.set('n', 'g~', set_cwd, { buffer = b, desc = 'Set cwd' })
+        vim.keymap.set('n', 'gy', yank_path, { buffer = b, desc = 'Yank path' })
       end,
     })
-
     -- Mini Surround
     require('mini.surround').setup {
       mappings = {
