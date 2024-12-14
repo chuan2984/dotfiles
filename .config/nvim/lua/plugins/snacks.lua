@@ -22,8 +22,20 @@ return {
   opts = {
     bigfile = { enabled = true },
     animate = { enabled = true, fps = 240, duration = 10 },
-    indent = { enabled = false },
-    ---@type snacks.scroll.Config
+    indent = {
+      enabled = true,
+      indent = {
+        char = '',
+        only_scope = true,
+        only_current = true,
+      },
+      animate = {
+        duration = { step = 10, total = 350 },
+      },
+      chunk = {
+        enabled = true,
+      },
+    },
     scroll = {
       enabled = true,
       animate = {
@@ -326,6 +338,7 @@ return {
           .option('conceallevel', { off = 0, on = vim.o.conceallevel > 0 and vim.o.conceallevel or 2 })
           :map '<leader>uc'
         Snacks.toggle.treesitter():map '<leader>uT'
+        Snacks.toggle.indent():map '<leader>ui'
         Snacks.toggle.option('background', { off = 'light', on = 'dark', name = 'Dark Background' }):map '<leader>ub'
         Snacks.toggle.inlay_hints():map '<leader>uh'
       end,
