@@ -18,6 +18,8 @@ function module.apply_to_config(config)
 		{ key = "phys:Space", mods = "LEADER", action = act.ActivateCommandPalette },
 
 		-- Pane keybindings
+		{ key = "PageUp", mods = "SHIFT", action = act.ScrollByPage(-1) },
+		{ key = "PageDown", mods = "SHIFT", action = act.ScrollByPage(1) },
 		{ key = "s", mods = "LEADER", action = act.SplitVertical({ domain = "CurrentPaneDomain" }) },
 		{ key = "v", mods = "LEADER", action = act.SplitHorizontal({ domain = "CurrentPaneDomain" }) },
 		{ key = "h", mods = "LEADER", action = act.ActivatePaneDirection("Left") },

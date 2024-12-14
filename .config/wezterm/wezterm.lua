@@ -31,7 +31,7 @@ config.window_decorations = "RESIZE"
 config.scrollback_lines = 3000
 config.default_workspace = "work"
 config.enable_kitty_graphics = true
-config.max_fps = 120
+config.max_fps = 240
 config.text_background_opacity = 0.5
 
 config.set_environment_variables = {
