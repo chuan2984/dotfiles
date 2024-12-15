@@ -3,11 +3,18 @@ return {
   opts = {
     modes = {
       char = {
-        enabled = false,
+        char_actions = function()
+          return { [';'] = 'next', [','] = 'prev' }
+        end,
+        multi_line = false,
       },
     },
   },
   keys = {
+    'f',
+    'F',
+    't',
+    'T',
     {
       's',
       mode = { 'n', 'x', 'o' },
