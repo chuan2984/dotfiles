@@ -165,6 +165,11 @@ return {
         builtin.find_files { cwd = vim.fn.stdpath 'config' }
       end, { desc = '[s]earch [n]eovim files' })
 
+      -- shortcut for package implementation
+      vim.keymap.set('n', '<leader>ep', function()
+        builtin.find_files { cwd = vim.fs.joinpath(vim.fn.stdpath 'data', 'lazy') }
+      end, { desc = '[s]earch package files' })
+
       -- shortcut for searching my dotfiles
       vim.keymap.set('n', '<leader>sdot', function()
         local home_dir = os.getenv 'HOME'
