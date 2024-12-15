@@ -36,6 +36,7 @@ return {
         enabled = true,
       },
     },
+    lazygit = { enabled = false },
     scroll = {
       enabled = true,
       animate = {
