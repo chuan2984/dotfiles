@@ -18,6 +18,21 @@ function module.apply_to_config(config)
 		config.keys,
 		{ key = "f", mods = "LEADER", action = switcher.switch_workspace({ extra_args = " | head -n 10" }) }
 	)
+
+	wezterm.on("augment-command-palette", function(_, _)
+		return {
+			{
+				brief = "Window | Workspace: Switch Workspace",
+				icon = "md_briefcase_arrow_up_down",
+				action = switcher.switch_workspace(),
+			},
+			{
+				brief = "Window | Workspace: Switch to Previous Workspace",
+				icon = "md_briefcase_arrow_up_down",
+				action = switcher.switch_to_prev_workspace(),
+			},
+		}
+	end)
 end
 
 return module
