@@ -7,6 +7,8 @@ wezterm.on("gui-startup", function(cmd)
 		args = cmd.args
 	end
 
+	wezterm.plugin.update_all()
+
 	local home = wezterm.home_dir
 	local work_dir = home .. "/github/work"
 	local personal_dir = home .. "/dotfiles/.config"
