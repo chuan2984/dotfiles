@@ -113,22 +113,6 @@ function module.apply_to_config(config)
 				end),
 			}),
 		},
-		{
-			key = ";",
-			mods = "LEADER",
-			action = act.PromptInputLine({
-				description = wezterm.format({
-					{ Attribute = { Intensity = "Bold" } },
-					{ Foreground = { AnsiColor = "Fuchsia" } },
-					{ Text = "Renaming Current Workspace Title...:" },
-				}),
-				action = wezterm.action_callback(function(window, _, line)
-					if line then
-						wezterm.mux.rename_workspace(wezterm.mux.get_active_workspace(), line)
-					end
-				end),
-			}),
-		},
 	}
 
 	-- I can use the tab navigator (LDR t), but I also want to quickly navigate tabs with index

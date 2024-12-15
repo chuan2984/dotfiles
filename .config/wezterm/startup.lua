@@ -1,5 +1,7 @@
 local wezterm = require("wezterm")
+local resurrect = wezterm.plugin.require("https://github.com/MLFlexer/resurrect.wezterm")
 local mux = wezterm.mux
+local workspace_state = resurrect.workspace_state
 
 wezterm.on("gui-startup", function(cmd)
 	local args = {}
@@ -13,89 +15,97 @@ wezterm.on("gui-startup", function(cmd)
 	local work_dir = home .. "/github/work"
 	local personal_dir = home .. "/dotfiles/.config"
 
+	-- TODO: check all files in the workspace folder and iterate over to restore all saved states
+
 	-- Work workspace
-	-- first tab, fieldwire_api
-	local api_tab, api_tab_pane, work_wiwndow = mux.spawn_window({
-		workspace = "work",
+	local work_ws_name = "work"
+	local _, _, work_wiwndow = mux.spawn_window({
+		workspace = work_ws_name,
 		cwd = work_dir .. "/fieldwire_api",
 		args = args,
 	})
-	api_tab:set_title("api")
-	api_tab_pane:send_text("rake full:up\n")
-
-	-- second tab, fieldwire_api_super
-	local api_super_tab, api_super_tab_pane, _ = work_wiwndow:spawn_tab({
-		cwd = work_dir .. "/fieldwire_api_super",
+	mux.set_active_workspace(work_ws_name)
+	workspace_state.restore_workspace(resurrect.load_state(work_ws_name, "workspace"), {
+		window = work_wiwndow,
+		relative = true,
+		restore_text = true,
+		on_pane_restore = resurrect.tab_state.default_on_pane_restore,
 	})
-	api_super_tab:set_title("api super")
-	api_super_tab_pane:send_text("make containers_start\n")
-	local client_api_pane = api_super_tab_pane:split({ direction = "Right", size = 0.333 })
-	client_api_pane:send_text("make dev_run_client_api_with_rails_db\n")
-	local admin_api_pane = api_super_tab_pane:split({ direction = "Right", size = 0.333 })
-	admin_api_pane:send_text("make dev_run_admin_api_with_rails_db\n")
-
-	-- third tab, fieldwire_web_app
-	local web_tab, web_tab_pane, _ = work_wiwndow:spawn_tab({
-		cwd = work_dir .. "/fieldwire_web_app",
-	})
-	web_tab:set_title("web")
-	web_tab_pane:send_text("yarn dev_server\n")
-
-	-- forth tab, fieldwire_admin
-	local admin_tab, admin_tab_pane, _ = work_wiwndow:spawn_tab({
-		cwd = work_dir .. "/fieldwire_admin",
-	})
-	admin_tab:set_title("admin")
-	admin_tab_pane:send_text("yarn start\n")
-	-- focus first tab
-	api_tab:activate()
 
 	-- Dotfiles workspace
-	-- first tab, .config dir
-	local dot_tab, _, _dot_window = mux.spawn_window({
-		workspace = "dotfiles",
+	local dot_ws_name = "dotfiles"
+	local _, _, dot_window = mux.spawn_window({
+		workspace = dot_ws_name,
 		cwd = personal_dir,
 		args = args,
 	})
-	dot_tab:set_title("dot")
+	mux.set_active_workspace(dot_ws_name)
+	workspace_state.restore_workspace(resurrect.load_state(dot_ws_name, "workspace"), {
+		window = dot_window,
+		relative = true,
+		restore_text = true,
+		on_pane_restore = resurrect.tab_state.default_on_pane_restore,
+	})
 
 	-- Neovim workspace
-	local neovim_tab, _, _neovim_window = mux.spawn_window({
-		workspace = "neovim",
+	local nvim_ws_name = "neovim"
+	local _, _, neovim_window = mux.spawn_window({
+		workspace = nvim_ws_name,
 		cwd = personal_dir .. "/nvim",
 		args = args,
 	})
-
-	neovim_tab:set_title("neovim")
-
-	-- Wezterm workspace
-	local wez_tab, _, _wez_window = mux.spawn_window({
-		workspace = "wezterm",
-		cwd = personal_dir .. "/wezterm",
-		args = args,
-		a,
+	mux.set_active_workspace(nvim_ws_name)
+	workspace_state.restore_workspace(resurrect.load_state(nvim_ws_name, "workspace"), {
+		window = neovim_window,
+		relative = true,
+		restore_text = true,
+		on_pane_restore = resurrect.tab_state.default_on_pane_restore,
 	})
 
-	wez_tab:set_title("wez")
+	-- Wezterm workspace
+	local wez_ws_name = "wezterm"
+	local _, _, wez_window = mux.spawn_window({
+		workspace = wez_ws_name,
+		cwd = personal_dir .. "/wezterm",
+		args = args,
+	})
+	mux.set_active_workspace(wez_ws_name)
+	workspace_state.restore_workspace(resurrect.load_state(wez_ws_name, "workspace"), {
+		window = wez_window,
+		relative = true,
+		restore_text = true,
+		on_pane_restore = resurrect.tab_state.default_on_pane_restore,
+	})
 
 	-- Obsidian workspace
-	local tab_six, sixth_pane, _ = mux.spawn_window({
-		workspace = "obsidian",
+	local obsidian_ws_name = "obsidian"
+	local _, _, obsidian_window = mux.spawn_window({
+		workspace = obsidian_ws_name,
 		cwd = home .. "/github/obsidian",
 		args = args,
 	})
-	tab_six:set_title("daily")
-	sixth_pane:send_text("nv -c ObsidianToday\n")
+	mux.set_active_workspace(obsidian_ws_name)
+	workspace_state.restore_workspace(resurrect.load_state(obsidian_ws_name, "workspace"), {
+		window = obsidian_window,
+		relative = true,
+		restore_text = true,
+		on_pane_restore = resurrect.tab_state.default_on_pane_restore,
+	})
 
 	-- PR review workspace
-	local tab_seven, seventh_pane, _ = mux.spawn_window({
-		workspace = "PR review",
+	local pr_ws_name = "PR review"
+	local _, _, pr_review_window = mux.spawn_window({
+		workspace = pr_ws_name,
 		cwd = work_dir,
 		args = args,
 	})
-	tab_seven:set_title("gh dash")
-	seventh_pane:send_text("gh dash\n")
+	mux.set_active_workspace(pr_ws_name)
+	workspace_state.restore_workspace(resurrect.load_state(pr_ws_name, "workspace"), {
+		window = pr_review_window,
+		relative = true,
+		restore_text = true,
+		on_pane_restore = resurrect.tab_state.default_on_pane_restore,
+	})
 
-	-- Start up in work workspace
 	mux.set_active_workspace("work")
 end)

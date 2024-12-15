@@ -18,6 +18,9 @@ smart_splits.apply_to_config(config)
 local workspace_switcher = require("workspace_switcher")
 workspace_switcher.apply_to_config(config)
 
+local resurrect = require("resurrect")
+resurrect.apply_to_config(config)
+
 config.color_scheme = "Catppuccin Macchiato"
 
 config.font = wezterm.font_with_fallback({
