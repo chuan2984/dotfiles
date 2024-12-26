@@ -65,7 +65,7 @@ return {
         mapping = cmp.mapping.preset.cmdline(),
         sources = cmp.config.sources(
           { { name = 'path' } },
-          { { name = 'cmdline', max_item_count = 16, option = { ignore_cmds = { 'Man', '!' } } } }
+          { { name = 'cmdline', option = { ignore_cmds = { 'Man', '!' } } } }
         ),
         enabled = function()
           -- Set of commands where cmp will be disabled
@@ -80,10 +80,10 @@ return {
         end,
       })
 
-      cmp.setup.filetype({'sql'}, {
+      cmp.setup.filetype({ 'sql' }, {
         sources = {
-          { name = 'vim-dadbod-completion', max_item_count = 6},
-          { name = 'buffer', max_item_count = 5 },
+          { name = 'vim-dadbod-completion' },
+          { name = 'buffer' },
         },
       })
 
@@ -172,7 +172,7 @@ return {
               natdat = '[DATE]',
               jupynium = '[Jupy]',
               dotenv = '[ENV]',
-              ['vim-dadbod-completion']= '[DB]',
+              ['vim-dadbod-completion'] = '[DB]',
             })[entry.source.name]
             return vim_item
           end,
@@ -182,12 +182,12 @@ return {
           documentation = cmp.config.window.bordered(),
         },
         sources = {
-          { name = 'nvim_lsp', max_item_count = 10, priority = 100 },
+          { name = 'nvim_lsp', priority = 100 },
           { name = 'lazydev', group_index = 0, priority = 99 },
-          { name = 'buffer', max_item_count = 6, priority = 80 },
-          { name = 'path', max_item_count = 6, priority = 50 },
-          { name = 'luasnip', max_item_count = 6, priority = 50 },
-          { name = 'jupynium', max_item_count = 10, priority = 1000 },
+          { name = 'buffer', priority = 80 },
+          { name = 'path', priority = 50 },
+          { name = 'luasnip', priority = 50 },
+          { name = 'jupynium', priority = 1000 },
         },
         sorting = {
           priority_weight = 1.0,
