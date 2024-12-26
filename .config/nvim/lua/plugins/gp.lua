@@ -202,21 +202,31 @@ return {
         },
         {
           provider = 'anthropic',
-          name = 'ChatClaude-3-5-Sonnet',
+          name = 'AI_COACH',
           chat = true,
           command = false,
           -- string with model name or table with model name and parameters
           model = { model = 'claude-3-5-sonnet-20241022', temperature = 0.8, top_p = 1 },
           -- system prompt (use this to specify the persona/role of the AI)
-          system_prompt = 'You are a general AI assistant.\n\n'
-            .. 'The user provided the additional info about how they would like you to respond:\n\n'
-            .. "- If you're unsure don't guess and say you don't know instead.\n"
-            .. '- Ask question if you need clarification to provide better answer.\n'
-            .. '- Think deeply and carefully from first principles step by step.\n'
-            .. '- Zoom out first to see the big picture and then zoom in to details.\n'
-            .. '- Use Socratic method to improve your thinking and coding skills.\n'
-            .. '- Try not to repeat what was previously said.\n'
-            .. '- Do not be sorry if you get things wrong its ok.\n',
+          system_prompt = [[You are an expert in LLM, and AI development. Don't apologise unnecessarily. Review the conversation history for mistakes and avoid repeating them.
+
+Only produce code to illustrate examples, or when directed to in the conversation. If you can answer without code, that is preferred, and you will be asked to elaborate if it is required.
+
+Request clarification for anything unclear or ambiguous.]],
+        },
+        {
+          provider = 'anthropic',
+          name = 'RubyExpert',
+          chat = true,
+          command = false,
+          -- string with model name or table with model name and parameters
+          model = { model = 'claude-3-5-sonnet-20241022', temperature = 0.8, top_p = 1 },
+          -- system prompt (use this to specify the persona/role of the AI)
+          system_prompt = [[You are an expert in backend development, including ruby, ruby on rails, aws, .Don't apologise unnecessarily. Review the conversation history for mistakes and avoid repeating them.
+
+Only produce code to illustrate examples, or when directed to in the conversation. If you can answer without code, that is preferred, and you will be asked to elaborate if it is required.
+
+Request clarification for anything unclear or ambiguous.]],
         },
         {
           name = 'ChatClaude-3-Haiku',
