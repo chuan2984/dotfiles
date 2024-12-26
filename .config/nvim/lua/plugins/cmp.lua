@@ -177,8 +177,12 @@ return {
             return vim_item
           end,
         },
+        performance = {
+          debounce = 30,
+          max_view_entries = 14,
+        },
         window = {
-          completion = cmp.config.window.bordered(),
+          completion = cmp.config.window.bordered { scrolloff = 2 },
           documentation = cmp.config.window.bordered(),
         },
         sources = {
