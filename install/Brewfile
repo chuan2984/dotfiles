@@ -4,6 +4,7 @@ tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
 tap "homebrew/services"
 tap "1password/tap"
+tap "ankitpokhrel/jira-cli"
 # personal
 tap "koekeishiya/formulae" # yabai
 tap "felixkratz/formulae"  # borders
@@ -55,6 +56,7 @@ cask "1password-cli"
 
 # work
 cask "postman"
+brew "jira-cli"
 
 # personal
 cask "font-fira-code-nerd-font"
