@@ -3,10 +3,7 @@ return {
   opts = {
     modes = {
       char = {
-        char_actions = function()
-          return { [';'] = 'next', [','] = 'prev' }
-        end,
-        multi_line = false,
+        enabled = false,
       },
     },
   },
