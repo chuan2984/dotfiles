@@ -42,6 +42,8 @@ return {
             -- You can use the capture groups defined in textobjects.scm
             ['af'] = '@function.outer',
             ['if'] = '@function.inner',
+            ['a_'] = '@block.outer',
+            ['i_'] = '@block.inner',
             ['ac'] = '@class.outer',
             -- You can optionally set descriptions to the mappings (used in the desc parameter of
             -- nvim_buf_set_keymap) which plugins like which-key display
@@ -58,8 +60,9 @@ return {
           -- mapping query_strings to modes.
           selection_modes = {
             ['@parameter.outer'] = 'v', -- charwise
+            ['@block.outer'] = 'v', -- charwise
             ['@function.outer'] = 'V', -- linewise
-            ['@class.outer'] = '<c-v>', -- blockwise
+            ['@class.outer'] = 'V', -- blockwise
           },
           -- If you set this to `true` (default is `false`) then any textobject is
           -- extended to include preceding or succeeding whitespace. Succeeding
@@ -77,9 +80,10 @@ return {
           set_jumps = true,
           goto_next_start = {
             [']f'] = '@function.outer',
+            [']_'] = '@block.outer',
           },
           goto_previous_start = {
-            ['[f'] = '@function.outer',
+            ['[_'] = '@block.outer',
           },
         },
       },
