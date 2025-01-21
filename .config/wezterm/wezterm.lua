@@ -44,8 +44,8 @@ config.term = "xterm-kitty"
 
 -- Dim inactive panes
 config.inactive_pane_hsb = {
-	saturation = 0.7,
-	brightness = 0.8,
+	saturation = 0.5,
+	brightness = 0.6,
 }
 
 return config
