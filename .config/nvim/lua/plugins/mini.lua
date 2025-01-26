@@ -4,8 +4,21 @@ return {
     'nvim-tree/nvim-web-devicons',
   },
   config = function()
+    local spec_treesitter = require('mini.ai').gen_spec.treesitter
     -- Mini AI
-    require('mini.ai').setup()
+    require('mini.ai').setup {
+      custom_textobjects = {
+        F = spec_treesitter { a = '@function.outer', i = '@function.inner' },
+        _ = spec_treesitter { a = '@block.outer', i = '@block.inner' },
+        i = function(ai_type)
+          if ai_type == 'i' then
+            require('mini.indentscope').textobject(false)
+          else
+            require('mini.indentscope').textobject(true)
+          end
+        end,
+      },
+    }
 
     -- MniFiles
     local mini_files = require 'mini.files'

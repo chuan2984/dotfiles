@@ -34,7 +34,7 @@ return {
       -- TODO: need to setup treesitter textobject apporpirately
       textobjects = {
         select = {
-          enable = true,
+          enable = false,
           -- Automatically jump forward to textobj, similar to targets.vim
           lookahead = true,
 
@@ -80,10 +80,9 @@ return {
           set_jumps = true,
           goto_next_start = {
             [']f'] = '@function.outer',
-            [']_'] = '@block.outer',
           },
           goto_previous_start = {
-            ['[_'] = '@block.outer',
+            ['[f'] = '@function.outer',
           },
         },
       },
