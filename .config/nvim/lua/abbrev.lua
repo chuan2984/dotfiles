@@ -15,9 +15,6 @@ vim.cmd 'iabbrev pol: **polish:**'
 -- obsidian tags
 vim.cmd 'iabbrev hi:: highlights::'
 
--- typos requires Abolish.vim
-vim.cmd 'iabbrev teh the'
-
 -- commandline
 vim.cmd 'ca orst Octo review start'
 vim.cmd 'ca orsb Octo review submit'

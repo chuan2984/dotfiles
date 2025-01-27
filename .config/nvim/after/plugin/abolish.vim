@@ -23,6 +23,7 @@ Abolish despara{te,tely,tion}                 despera{}
 Abolish d{e,i}screp{e,a}nc{y,ies}             d{i}screp{a}nc{}
 Abolish euphamis{m,ms,tic,tically}            euphemis{}
 Abolish hense                                 hence
+Abolish recieve                               receive
 Abolish {,re}impliment{,s,ing,ed,ation}       {}implement{}
 Abolish improvment{,s}                        improvement{}
 Abolish inherant{,ly}                         inherent{}
