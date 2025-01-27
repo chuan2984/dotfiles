@@ -10,6 +10,7 @@
   "deadcolumn.nvim": { "branch": "master", "commit": "897c905aef1a268ce4cc507d5cce048ed808fa7a" },
   "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
   "easypick.nvim": { "branch": "main", "commit": "a6de2bfaa9f257d3bbf900668eb963277abb436a" },
+  "ecolog.nvim": { "branch": "main", "commit": "d8e73983897a12f548df073e8e03212df4207e5a" },
   "fidget.nvim": { "branch": "main", "commit": "a0abbf18084b77d28bc70e24752e4f4fd54aea17" },
   "flash.nvim": { "branch": "main", "commit": "34c7be146a91fec3555c33fe89c7d643f6ef5cf1" },
   "friendly-snippets": { "branch": "rspec_snippets", "commit": "29d31374a59344c46863d8b2cf1c1c9d02898dd7" },

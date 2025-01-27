@@ -171,7 +171,7 @@ return {
               cmdline = '[CMD]',
               natdat = '[DATE]',
               jupynium = '[Jupy]',
-              dotenv = '[ENV]',
+              ecolog = '[ENV]',
               ['vim-dadbod-completion'] = '[DB]',
             })[entry.source.name]
             return vim_item
@@ -192,6 +192,7 @@ return {
           { name = 'path', priority = 50 },
           { name = 'luasnip', priority = 50 },
           { name = 'jupynium', priority = 1000 },
+          { name = 'ecolog', priority = 110 },
         },
         sorting = {
           priority_weight = 1.0,
