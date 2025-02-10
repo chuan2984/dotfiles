@@ -31,6 +31,8 @@ return {
       highlight = { enable = true },
       indent = { enable = true },
 
+      matchup = { enable = true },
+
       -- TODO: need to setup treesitter textobject apporpirately
       textobjects = {
         select = {
@@ -79,10 +81,16 @@ return {
           enable = true,
           set_jumps = true,
           goto_next_start = {
-            [']f'] = '@function.outer',
+            [']m'] = '@function.outer',
+          },
+          goto_next_end = {
+            [']M'] = '@function.outer',
+          },
+          goto_previous_end = {
+            ['[M'] = '@function.outer',
           },
           goto_previous_start = {
-            ['[f'] = '@function.outer',
+            ['[m'] = '@function.outer',
           },
         },
       },

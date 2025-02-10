@@ -21,6 +21,7 @@ return {
       },
     },
   },
+  { 'andymass/vim-matchup' },
   { 'tpope/vim-rails', ft = 'ruby' },
   { 'elixir-editors/vim-elixir', ft = 'elixir' },
   { 'tpope/vim-abolish' }, -- cannot lazy load to work with abolish.vim config file
