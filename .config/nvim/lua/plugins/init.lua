@@ -22,8 +22,9 @@ return {
     },
   },
   { 'tpope/vim-rails', ft = 'ruby' },
+  { 'elixir-editors/vim-elixir', ft = 'elixir' },
   { 'tpope/vim-abolish' }, -- cannot lazy load to work with abolish.vim config file
-  { 'ludovicchabant/vim-gutentags', event = 'VeryLazy' },
+  -- { 'ludovicchabant/vim-gutentags', event = 'VeryLazy' }, -- great when lsp is not enough
   {
     'norcalli/nvim-colorizer.lua',
     event = 'BufRead',
