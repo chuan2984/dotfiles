@@ -7,7 +7,9 @@ find_window() {
   id=$(yabai -m query --windows | jq \
     --arg title "$title" \
     --arg app "$app" \
-    '.[] | select(select(.app | ascii_downcase | contains($app)) | .title | ascii_downcase | contains($title)) |  .id')
+    '.[] | select((.app | ascii_downcase | contains($app)) and
+      (.title | ascii_downcase | contains($title)) and
+      (not or .["is-sticky"] == false)) | .id') # do not select sticky window
   #echo "window with title \"$title\" and app \"$app\" has id: \"$id\""
   echo $id
 }
