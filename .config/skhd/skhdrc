@@ -50,6 +50,7 @@ shift + alt - t : $HOME/.config/yabai/scripts/stack_window.sh wezterm
 shift + alt - s : $HOME/.config/yabai/scripts/stack_window.sh slack
 shift + alt - e : $HOME/.config/yabai/scripts/stack_window.sh rubymine
 shift + alt - o : $HOME/.config/yabai/scripts/stack_window.sh obsidian
+shift + alt - f : $HOME/.config/yabai/scripts/stack_window.sh firefox
 shift + alt - g : $HOME/.config/yabai/scripts/stack_window.sh "github desktop"
 
 # create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
