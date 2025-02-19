@@ -2,6 +2,17 @@ return {
   ---@module 'snacks'
   'folke/snacks.nvim',
   priority = 1000,
+  build = function()
+    local imagemagick_installed = vim.fn.system 'command -v convert' ~= ''
+    if not imagemagick_installed then
+      print 'ImageMagick not found. Installing via brew...'
+      vim.schedule(function()
+        os.execute 'brew install imagemagick'
+      end)
+    else
+      print 'ImageMagick already installed, examining path...'
+    end
+  end,
   dependencies = {
     {
       'praczet/little-taskwarrior.nvim',
@@ -36,6 +47,7 @@ return {
         enabled = true,
       },
     },
+    image = { enabled = true },
     lazygit = { enabled = false },
     scroll = {
       enabled = true,
