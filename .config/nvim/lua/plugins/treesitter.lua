@@ -8,7 +8,10 @@ return {
     },
     {
       'nvim-treesitter/nvim-treesitter-context',
-      config = true,
+      opts = {
+        enable = true,
+        max_lines = 6,
+      },
     },
     {
       'HiPhish/rainbow-delimiters.nvim',
