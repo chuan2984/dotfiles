@@ -20,8 +20,6 @@ return {
       },
     }
 
-    require('mini.splitjoin').setup()
-
     -- MniFiles
     local mini_files = require 'mini.files'
     mini_files.setup {
