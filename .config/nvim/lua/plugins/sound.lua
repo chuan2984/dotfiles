@@ -3,7 +3,7 @@ return {
   opts = {
     audio_player = 'afplay',
     max_sound = 1,
-    volume = 46,
+    volume = 40,
     sound_map = {
       { auto_command = 'VimEnter', sound = 'tank_1990/game_start.mp3' }, -- Neovim start
       { auto_command = 'VimLeavePre', sound = 'tank_1990/game_end.mp3' }, -- Neovim quit
@@ -18,7 +18,7 @@ return {
       -- { auto_command = 'UndoRedo', sound = 'tank_1990/hitting_tank_armor.mp3' }, -- Undo/Redo
 
       { auto_command = 'TextYankPost', sound = 'tank_1990/enemy_dies.mp3' }, -- Deleting text
-      -- { auto_command = 'VisualDelete', sound = 'tank_1990/killed_big_enemy.mp3' }, -- Deleting block in visual mode
+      { auto_command = 'RecordingLeave', sound = 'tank_1990/killed_big_enemy.mp3' }, -- Deleting block in visual mode
 
       { auto_command = 'BufDelete', sound = 'tank_1990/base_dies.mp3' }, -- Closing a buffer
       -- { auto_command = 'InsertEnter', sound = 'tank_1990/lose_protection.mp3', blocking = true }, -- Enter insert mode
