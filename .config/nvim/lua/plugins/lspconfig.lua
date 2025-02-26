@@ -101,6 +101,7 @@ return {
 
     local servers = {
       solargraph = {
+        cmd = { '/Users/chuanhe/.rbenv/shims/solargraph', 'stdio' },
         on_attach = function(_client, _buffer)
           -- vim.lsp.set_log_level 'debug'
         end,
@@ -113,7 +114,7 @@ return {
             formatting = true,
             autoformat = true,
             completion = true,
-            diagnostic = true,
+            diagnostics = true,
             folding = true,
             references = true,
             rename = true,
