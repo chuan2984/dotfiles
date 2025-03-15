@@ -33,3 +33,9 @@ taskwarrior
 pganalyze
 btree
 autovacuum
+enviornments
+#onvinence/!
+convinence/!
+Redis
+hgetall
+redis
