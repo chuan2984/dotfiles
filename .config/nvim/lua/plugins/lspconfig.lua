@@ -124,7 +124,6 @@ return {
       },
       lua_ls = {},
       stylua = {},
-      vale = {},
       markdownlint = {},
       lexical = {
         root_dir = function(fname)
