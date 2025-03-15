@@ -1,7 +1,6 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    -- Automatically install LSPs and related tools to stdpath for neovim
     'williamboman/mason.nvim',
     'williamboman/mason-lspconfig.nvim',
     'WhoIsSethDaniel/mason-tool-installer.nvim',
@@ -125,6 +124,14 @@ return {
       lua_ls = {},
       stylua = {},
       markdownlint = {},
+      harper_ls = {
+        settings = {
+          markdown = {
+            IgnoreLinkTitle = false,
+          },
+          userDictPath = '~/dotfiles/.config/nvim/spell/en.utf-8.add',
+        },
+      },
       lexical = {
         root_dir = function(fname)
           return require('lspconfig').util.root_pattern('mix.exs', '.git')(fname) or vim.loop.cwd()
