@@ -64,6 +64,7 @@ cask "font-jetbrains-mono-nerd-font"
 cask "font-meslo-lg-nerd-font"
 cask "appcleaner"
 cask "betterzip"
+cask "ubersicht"
 # install amphetamin instead
 cask "dozer"
 cask "keycastr"

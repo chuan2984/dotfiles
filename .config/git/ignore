@@ -14,3 +14,4 @@ projections.json
 rspec_cmd.sh
 .little-taskwarrior.json
 **/wezterm/workspace/
+**/ubersicht/widgets
