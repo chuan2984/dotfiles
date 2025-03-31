@@ -39,3 +39,7 @@ convinence/!
 Redis
 hgetall
 redis
+FileLoggerPlugin
+initializer
+opensearch
+stdout
