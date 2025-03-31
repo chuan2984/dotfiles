@@ -33,8 +33,11 @@ return {
         --  For example, in C this would take you to the header
         map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
-        -- When you move your cursor, the highlights will be cleared (the second autocommand).
         local client = vim.lsp.get_client_by_id(event.data.client_id)
+        if client and vim.lsp.inlay_hint then
+          vim.lsp.inlay_hint.enable(true)
+        end
+        -- When you move your cursor, the highlights will be cleared (the second autocommand).
         if client and client.server_capabilities.documentHighlightProvider then
           vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
             buffer = event.buf,
@@ -51,6 +54,38 @@ return {
 
     require('mason').setup()
 
+    local function add_ruby_deps_command(client, bufnr)
+      vim.api.nvim_buf_create_user_command(bufnr, 'ShowRubyDeps', function(opts)
+        local params = vim.lsp.util.make_text_document_params()
+        local showAll = opts.args == 'all'
+
+        client.request('rubyLsp/workspace/dependencies', params, function(error, result)
+          if error then
+            print('Error showing deps: ' .. error)
+            return
+          end
+
+          local qf_list = {}
+          for _, item in ipairs(result) do
+            if showAll or item.dependency then
+              table.insert(qf_list, {
+                text = string.format('%s (%s) - %s', item.name, item.version, item.dependency),
+                filename = item.path,
+              })
+            end
+          end
+
+          vim.fn.setqflist(qf_list)
+          vim.cmd 'copen'
+        end, bufnr)
+      end, {
+        nargs = '?',
+        complete = function()
+          return { 'all' }
+        end,
+      })
+    end
+
     -- LSP servers and clients are able to communicate to each other what features they support.
     --  By default, Neovim doesn't support everything that is in the LSP Specification.
     --  When you add nvim-cmp, luasnip, etc. Neovim now has *more* capabilities.
@@ -64,26 +99,76 @@ return {
     capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
     local servers = {
-      solargraph = {
-        cmd = { '/Users/chuanhe/.rbenv/shims/solargraph', 'stdio' },
-        on_attach = function(_client, _buffer)
-          -- vim.lsp.set_log_level 'debug'
-        end,
-        root_dir = require('lspconfig').util.root_pattern('Gemfile', '.git'),
-        flags = {
-          debounc_text_changes = 150,
+      ruby_lsp = {
+        cmd = {
+          '/users/chuanhe/.rbenv/shims/bundle',
+          'exec',
+          '--gemfile',
+          require('lspconfig').util.root_pattern('gemfile', '.git')() .. '/.ruby-lsp/Gemfile',
+          'ruby-lsp',
         },
-        settings = {
-          solargraph = {
-            formatting = true,
-            autoformat = true,
-            completion = true,
-            diagnostics = true,
-            folding = true,
-            references = true,
-            rename = true,
-            symbols = true,
+        on_attach = function(client, buffer)
+          add_ruby_deps_command(client, buffer)
+        end,
+        init_options = {
+          enabledFeatures = {
+            codeLens = false,
+            semanticHighlighting = false,
           },
+          indexing = {
+            excludedPatterns = {
+              '**/spec**',
+              '**/test**',
+              '**/vendor**',
+              '**/circleci_scripts**',
+              '**/coverage**',
+              '**/docker_files**',
+              '**/notes**',
+              '**/docs**',
+              '**/tmp**',
+              '**/swagger**',
+              '**/spikes**',
+            },
+            includedPatterns = {
+              '**/*.rb',
+            },
+            excludedGems = {
+              'google-api-client',
+              'rubocop',
+              'graphql',
+              'faker',
+              'aws-sdk',
+              'opensearch-api',
+              'capybara',
+              'brakeman',
+              'pry',
+              'byebug',
+              'shoulda-matchers',
+              'pry',
+              'rubocop-rails',
+              'rubocoprspec',
+              'railties',
+              'elasticsearch-dsl',
+              'rdoc',
+              'openapi3_parser',
+              'mail',
+              'test-prof',
+              'stripe',
+              'rubocop-ast',
+              'browser',
+              'rspec-rails',
+              'sentry-ruby',
+              'ttfunk',
+              'aws-sdk-kms',
+              'aws-sdk-s3',
+              'aws-sdk-sns',
+              'aws-sdk-sqs',
+              'aws-sdk-textract',
+            },
+          },
+          formatter = 'rubocop_internal',
+          linters = { 'rubocop_internal' },
+          experimentalFeaturesEnabled = false,
         },
       },
       lua_ls = {},
@@ -96,6 +181,7 @@ return {
               ToDoHyphen = false,
               SpellCheck = false,
               SentenceCapitalization = false,
+              LongSentences = false,
             },
             markdown = {
               IgnoreLinkTitle = false,
