@@ -24,6 +24,12 @@ return {
         right_pad = 4,
         language_pad = 0,
       },
+      checkbox = {
+        custom = {
+          started = { raw = '[>]', rendered = ' ', highlight = '@markup.raw' },
+          deleted = { raw = '[~]', rendered = ' ', highlight = '@markup.raw' },
+        },
+      },
     }
   end,
 }
