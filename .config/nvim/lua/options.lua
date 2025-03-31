@@ -77,4 +77,5 @@ vim.opt.cursorline = true
 
 -- add '-' to iskeyword so that my-object is considered one word
 vim.cmd [[set iskeyword+=-]]
+vim.cmd [[set spell]]
 vim.cmd 'setlocal spell spelllang=en_us'
