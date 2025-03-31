@@ -104,7 +104,7 @@ return {
           '/users/chuanhe/.rbenv/shims/bundle',
           'exec',
           '--gemfile',
-          require('lspconfig').util.root_pattern('gemfile', '.git')() .. '/.ruby-lsp/Gemfile',
+          '/users/chuanhe/github/work/fieldwire_api/.ruby-lsp/Gemfile',
           'ruby-lsp',
         },
         on_attach = function(client, buffer)
