@@ -3,7 +3,7 @@ return {
   opts = {
     audio_player = 'afplay',
     max_sound = 1,
-    volume = 40,
+    volume = 10,
     sound_map = {
       { auto_command = 'VimEnter', sound = 'tank_1990/game_start.mp3' }, -- Neovim start
       { auto_command = 'VimLeavePre', sound = 'tank_1990/game_end.mp3' }, -- Neovim quit
@@ -24,7 +24,7 @@ return {
       -- { auto_command = 'InsertEnter', sound = 'tank_1990/lose_protection.mp3', blocking = true }, -- Enter insert mode
       { auto_command = 'CmdlineEnter', sound = 'tank_1990/pause.mp3' }, -- Enter command mode
       -- { auto_command = 'WinScrolled', sound = 'tank_1990/score_counting.mp3', blocking = true }, -- Scroll
-      { key_map = { mode = 'i', key_chord = '<leader>', blocking = false }, sound = 'tank_1990/bullet_fires.mp3' },
+      -- { key_map = { mode = 'i', key_chord = '<leader>', blocking = false }, sound = 'tank_1990/bullet_fires.mp3' },
     },
   },
 }
