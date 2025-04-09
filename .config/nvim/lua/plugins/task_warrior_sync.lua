@@ -35,5 +35,7 @@ return {
       desc = '[t]ask[w]arrior [t]oggle current task',
     },
   },
-  config = true,
+  opts = {
+    display_due_or_scheduled = false,
+  },
 }
