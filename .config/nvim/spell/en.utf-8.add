@@ -43,3 +43,8 @@ FileLoggerPlugin
 initializer
 opensearch
 stdout
+casablanca
+rubocop
+class/!
+class
+Client/!
