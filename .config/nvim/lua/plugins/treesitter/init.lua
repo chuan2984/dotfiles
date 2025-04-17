@@ -26,6 +26,9 @@ return {
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     vim.treesitter.language.register('markdown', 'octo') -- for using Octo.nvim
 
+    -- setup custom treesitter parser
+    require('plugins.treesitter.d2').setup()
+
     ---@diagnostic disable-next-line: missing-fields
     require('nvim-treesitter.configs').setup {
       ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown_inline', 'markdown', 'vim', 'vimdoc', 'ruby', 'sql' },
