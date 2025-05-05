@@ -171,6 +171,7 @@ return {
           experimentalFeaturesEnabled = false,
         },
       },
+      clangd = {},
       lua_ls = {},
       stylua = {},
       markdownlint = {},
