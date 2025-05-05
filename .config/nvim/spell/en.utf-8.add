@@ -33,9 +33,6 @@ taskwarrior
 pganalyze
 btree
 autovacuum
-enviornments
-#onvinence/!
-convinence/!
 Redis
 hgetall
 redis
@@ -46,5 +43,5 @@ stdout
 casablanca
 rubocop
 class/!
-class
 Client/!
+uploader
