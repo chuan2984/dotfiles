@@ -45,3 +45,4 @@ rubocop
 class/!
 Client/!
 uploader
+ActiveRecord
