@@ -197,13 +197,7 @@ return {
         end,
         filetypes = { 'elixir', 'eelixir', 'heex' },
         cmd = {
-          vim.fs.joinpath(
-            require('mason-registry').get_package('lexical'):get_install_path(),
-            'libexec',
-            'lexical',
-            'bin',
-            'start_lexical.sh'
-          ),
+          vim.fs.joinpath(vim.fn.exepath 'lexical', 'libexec', 'lexical', 'bin', 'start_lexical.sh'),
         },
       },
       ['markdown-oxide'] = {},
