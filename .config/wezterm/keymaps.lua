@@ -29,6 +29,7 @@ function module.apply_to_config(config)
 		{ key = "q", mods = "LEADER", action = act.CloseCurrentPane({ confirm = true }) },
 		{ key = "z", mods = "LEADER", action = act.TogglePaneZoomState },
 		{ key = "o", mods = "LEADER", action = act.RotatePanes("Clockwise") },
+		{ key = "i", mods = "LEADER", action = act.PaneSelect({ show_pane_ids = true }) },
 		{
 			key = "=",
 			mods = "LEADER",
