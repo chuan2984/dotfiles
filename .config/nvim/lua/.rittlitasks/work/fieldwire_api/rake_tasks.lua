@@ -6,6 +6,29 @@ end
 
 M.tasks = {
   {
+    name = 'Create Jira ticket',
+    builder = function()
+      local task_name = vim.fn.input 'Task name: '
+      local parent = vim.fn.input 'Parent: '
+      local parent_opt = ''
+      if parent ~= '' then
+        parent_opt = ' --parent ' .. parent
+      end
+      local task = {
+        cmd = {
+          'jira issue create -tTask -s"'
+            .. task_name
+            .. 'fill this in" '
+            .. ' -lbackend_force -b "" '
+            .. parent_opt
+            .. ' --assignee chuan',
+        },
+      }
+
+      return task
+    end,
+  },
+  {
     name = 'Bring up all containers(full:up)',
     builder = function()
       local task = {
@@ -16,10 +39,30 @@ M.tasks = {
     end,
   },
   {
+    name = 'Bring up debug containers(debug:up)',
+    builder = function()
+      local task = {
+        cmd = { 'rake debug:up' },
+      }
+
+      return task
+    end,
+  },
+  {
+    name = 'Bring up web containers(web:up)',
+    builder = function()
+      local task = {
+        cmd = { 'rake web:up' },
+      }
+
+      return task
+    end,
+  },
+  {
     name = 'Down all containers',
     builder = function()
       local task = {
-        cmd = { 'docker compose down --remove-orphans' },
+        cmd = { 'rake down' },
       }
 
       return task
@@ -29,27 +72,47 @@ M.tasks = {
     name = 'Restart containers with aws sso',
     builder = function()
       local task = {
-        cmd = { "rake 'full:restart[sso]'" },
+        cmd = { "rake 'restart[sso]'" },
       }
 
       return task
     end,
   },
   {
-    name = 'Bash into full(full:b)',
+    name = 'Restart containers',
     builder = function()
       local task = {
-        cmd = { 'rake full:b' },
+        cmd = { 'rake restart' },
       }
 
       return task
     end,
   },
   {
-    name = 'Console into full(full:c)',
+    name = 'Bash into container',
     builder = function()
       local task = {
-        cmd = { 'rake full:c' },
+        cmd = { 'rake bash' },
+      }
+
+      return task
+    end,
+  },
+  {
+    name = 'Console into container',
+    builder = function()
+      local task = {
+        cmd = { 'rake console' },
+      }
+
+      return task
+    end,
+  },
+  {
+    name = 'Pry into container',
+    builder = function()
+      local task = {
+        cmd = { 'rake pry' },
       }
 
       return task
