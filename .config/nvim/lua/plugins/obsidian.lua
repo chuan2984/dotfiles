@@ -1,5 +1,5 @@
 return {
-  'epwalsh/obsidian.nvim',
+  'obsidian-nvim/obsidian.nvim',
   event = {
     'BufReadPre ' .. vim.fn.expand '~' .. '/github/obsidian/**.md',
     'BufNewFile ' .. vim.fn.expand '~' .. '/github/obsidian/**.md',
