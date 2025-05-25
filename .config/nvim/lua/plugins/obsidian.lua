@@ -20,9 +20,8 @@ return {
       '<leader>so',
       function()
         local home_dir = os.getenv 'HOME'
-        local find_command = { 'rg', '--files', '--glob', '!**/.git/*' }
-        require('telescope.builtin').find_files {
-          find_command = find_command,
+        -- local find_command = { 'rg', '--files', '--glob', '!**/.git/*' }
+        Snacks.picker.files {
           cwd = home_dir .. '/GitHub/obsidian/2ndBrain',
         }
       end,
@@ -145,7 +144,7 @@ return {
 
       picker = {
         -- Set your preferred picker. Can be one of 'telescope.nvim', 'fzf-lua', or 'mini.pick'.
-        name = 'telescope.nvim',
+        name = 'snacks.pick',
         -- Optional, configure key mappings for the picker. These are the defaults.
         -- Not all pickers support all mappings.
         mappings = {

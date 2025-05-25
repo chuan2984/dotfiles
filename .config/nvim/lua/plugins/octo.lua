@@ -15,7 +15,7 @@ return {
         ['personal.github.com'] = 'github.com',
         ['work.github.com'] = 'github.com',
       },
-      picker = 'telescope', -- or "fzf-lua"
+      picker = 'snacks', -- or "fzf-lua"
       picker_config = {
         use_emojis = true, -- only used by "fzf-lua" picker for now
         mappings = { -- mappings for the pickers
