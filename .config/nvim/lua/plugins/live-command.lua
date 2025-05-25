@@ -5,6 +5,7 @@ return {
     require('live-command').setup {
       commands = {
         Norm = { cmd = 'norm' },
+        Nnorm = { cmd = 'norm!' },
       },
     }
   end,
