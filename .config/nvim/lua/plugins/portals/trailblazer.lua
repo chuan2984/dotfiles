@@ -1,5 +1,6 @@
 local M = {}
 local settings = require 'portal.settings'
+local stacks = require 'trailblazer.trails.stacks'
 
 ---@type Portal.QueryGenerator
 local function generator(opts, sett)
@@ -44,8 +45,21 @@ local function generator(opts, sett)
       type = 'trailblazer',
       buffer = buffer,
       cursor = { row = mark.pos[1], col = mark.pos[2] },
-      callback = function(content)
-        common.focus_win_and_buf_by_trail_mark_index(buffer, content.extra.mark_id, false)
+      callback = function()
+        -- utility function that's used to find mark_index
+        -- there might be a better way to go to a mark, but I couldn't find a nice way to do it
+        local function find_index_by_id(array, target_id)
+          for i, item in ipairs(array) do
+            if item.mark_id == target_id then
+              return i
+            end
+          end
+          return nil
+        end
+
+        local mark_index = find_index_by_id(stacks.current_trail_mark_stack, mark.mark_id)
+
+        common.focus_win_and_buf_by_trail_mark_index(buffer, mark_index, false)
       end,
       extra = {
         mark_id = mark.mark_id,

@@ -36,10 +36,16 @@ return {
       desc = '[p]ortal jumplist next',
     },
   },
-
-  config = function()
-    require('portal').setup {
-      labels = { 'j', 'k', 'h', 'l' },
-    }
-  end,
+  opts = {
+    labels = { 'j', 'k', 'h', 'l' },
+    window_options = {
+      relative = 'cursor',
+      width = 90,
+      height = 6,
+      col = 3,
+      focusable = false,
+      border = 'single',
+      noautocmd = true,
+    },
+  },
 }
