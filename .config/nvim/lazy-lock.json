@@ -23,7 +23,7 @@
   "little-taskwarrior.nvim": { "branch": "main", "commit": "af3d0466f95236c2aeb75166cbaf51db42f99a80" },
   "live-command.nvim": { "branch": "main", "commit": "05b9f886628f3e9e6122e734c1fac4f13dcb64b4" },
   "luvit-meta": { "branch": "main", "commit": "1df30b60b1b4aecfebc785aa98943db6c6989716" },
-  "m_taskwarrior_d.nvim": { "branch": "main", "commit": "94522fd1e41f3aa044f9661c798bbb454ffc5b5c" },
+  "m_taskwarrior_d.nvim": { "branch": "main", "commit": "aff5d8e0f9c21fb1391afeda56b2697b208781d1" },
   "markdown-preview.nvim": { "branch": "master", "commit": "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "ce0e87c0be12e7c48296a7513e90430e3eac7f24" },
   "mason-tool-installer.nvim": { "branch": "main", "commit": "75d60a8f928decd8b38897f80849768b7c540a5b" },
