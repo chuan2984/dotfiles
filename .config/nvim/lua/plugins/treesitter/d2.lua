@@ -1,19 +1,20 @@
 local M = {}
 
 function M.setup()
-  local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
-  parser_config.d2 = {
+  local ok, parsers = pcall(require, 'nvim-treesitter.parsers')
+  if not ok then
+    vim.notify("tree-sitter-d2: can't import nvim-treesitter.parsers", vim.log.levels.WARN)
+    return
+  end
+
+  parsers.d2 = {
     install_info = {
-      url = 'https://github.com/ravsii/tree-sitter-d2',
-      files = { 'src/parser.c' },
+      url = 'ravsii/tree-sitter-d2',
       branch = 'main',
     },
     filetype = 'd2',
   }
 
-  -- we also need to tell neovim to use "d2" filetype on "*.d2" files, as well as
-  -- token comment.
-  -- ftplugin/autocmd is also an option.
   vim.filetype.add {
     extension = {
       d2 = function()
