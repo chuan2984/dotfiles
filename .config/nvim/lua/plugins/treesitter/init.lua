@@ -4,7 +4,10 @@ return {
   branch = 'main',
   dependencies = {
     -- TODO: change it back when its supported
-    -- 'https://github.com/ravsii/tree-sitter-d2',
+    {
+      'https://github.com/ravsii/tree-sitter-d2',
+      branch = 'nvim-treesitter-main',
+    },
     {
       -- TODO: change it back when its supported
       -- Because it is currently not supported with the new treesitter update
@@ -32,8 +35,6 @@ return {
   config = function()
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     vim.treesitter.language.register('markdown', 'octo') -- for using Octo.nvim
-
-    require('plugins.treesitter.d2').setup()
 
     ---@diagnostic disable-next-line: missing-fields
     require('nvim-treesitter').setup {
