@@ -16,6 +16,18 @@ return {
       lua = { 'stylua' },
       markdown = { 'markdownlint' },
     },
+    formatters = {
+      stylua = {
+        prepend_args = {
+          '--indent-type',
+          'Spaces',
+          '--indent-width',
+          '2',
+          '--column-width',
+          '120',
+        },
+      },
+    },
   },
 }
 -- vim: ts=2 sts=2 sw=2 et
