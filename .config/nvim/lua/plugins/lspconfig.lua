@@ -161,7 +161,7 @@ return {
         init_options = {
           enabledFeatures = {
             codeLens = false,
-            semanticHighlighting = false,
+            semanticHighlighting = true,
           },
           indexing = {
             excludedPatterns = {
