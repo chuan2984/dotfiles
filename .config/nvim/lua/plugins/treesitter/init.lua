@@ -3,10 +3,8 @@ return {
   event = { 'BufReadPost', 'BufNewFile' },
   branch = 'main',
   dependencies = {
-    -- TODO: change it back when its supported
     {
       'https://github.com/ravsii/tree-sitter-d2',
-      branch = 'nvim-treesitter-main',
     },
     {
       -- TODO: change it back when its supported
