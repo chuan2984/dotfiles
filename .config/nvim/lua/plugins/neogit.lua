@@ -41,8 +41,31 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',
     'sindrets/diffview.nvim',
-    'nvim-telescope/telescope.nvim',
   },
   cmd = { 'Neogit', 'DiffviewOpen', 'DiffviewFileHistory' },
-  config = true,
+  config = function()
+    require('neogit').setup {
+      filewatcher = {
+        interval = 300,
+        enabled = true,
+      },
+      process_spinner = true,
+      console_timeout = 600,
+      integrations = {
+        snacks = true,
+        diffview = true,
+      },
+      mappings = {
+        status = {
+          ['<cr>'] = 'TabOpen',
+        },
+      },
+    }
+    vim.api.nvim_create_autocmd('FileType', {
+      pattern = { 'NeogitStatus', 'NeogitCommitView', 'NeogitPopup' },
+      callback = function()
+        vim.api.nvim_win_set_option(0, 'winfixbuf', true)
+      end,
+    })
+  end,
 }
