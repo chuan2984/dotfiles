@@ -68,10 +68,15 @@ keymap('n', '<Leader>d', '"_d', opts)
 keymap('n', '<Leader>x', '"_x', opts)
 keymap('n', '<Leader>X', '"_X', opts)
 
--- copy current filename
-keymap('n', '<leader>cfn', '<cmd>let @+=@%<CR>', { desc = '[copy] current [f]ile [n]ame' })
--- copy current file path to system clipboard
-keymap('n', '<leader>cfp', '<cmd>let @+ = expand("%:p")<CR>', { desc = '[C]opy current file [p]ath' }, opts)
+keymap('n', '<leader>cpr', function()
+  local abs_file_path = vim.fn.expand '%:p'
+  local git_root = Snacks.git.get_root()
+  local rel_file_path = abs_file_path:sub(#git_root + 2)
+  vim.fn.setreg('+', rel_file_path)
+  vim.notify('Copied relative_path to system clipboard: ' .. rel_file_path)
+end, { desc = '[copy] [p]ath [r]elative' })
+
+keymap('n', '<leader>cpa', '<cmd>let @+ = expand("%:p")<CR>', { desc = '[C]opy [p]ath [a]bsolute' }, opts)
 
 -- Terminal --
 -- Better terminal navigation
