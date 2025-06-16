@@ -55,11 +55,11 @@ return {
         snacks = true,
         diffview = true,
       },
-      mappings = {
-        status = {
-          ['<cr>'] = 'TabOpen',
-        },
-      },
+      -- mappings = {
+      --   status = {
+      --     ['<cr>'] = 'TabOpen',
+      --   },
+      -- },
     }
     vim.api.nvim_create_autocmd('FileType', {
       pattern = { 'NeogitStatus', 'NeogitCommitView', 'NeogitPopup' },
