@@ -58,10 +58,7 @@ return {
     branch = 'main',
     event = 'BufRead',
     config = function()
-      -- require('nvim-next.integrations').treesitter_textobjects()
       require('nvim-treesitter-textobjects').setup {
-        -- nvim_next = {
-        --   enable = true,
         move = {
           enable = true,
           set_jumps = true,
@@ -78,7 +75,6 @@ return {
             ['[m'] = '@function.outer',
           },
         },
-        -- },
       }
     end,
   },
