@@ -21,8 +21,12 @@ return {
         url = 'postgresql://pgu:this_is_a_password@localhost:5432/fieldwire_api_development',
       },
       {
-        name = 'api_redis',
+        name = 'api_valkey',
         url = 'redis://localhost:6379',
+      },
+      {
+        name = 'api_redis',
+        url = 'redis://localhost:6380',
       },
     }
 
