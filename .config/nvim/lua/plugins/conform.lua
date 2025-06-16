@@ -15,6 +15,7 @@ return {
     formatters_by_ft = {
       lua = { 'stylua' },
       markdown = { 'markdownlint' },
+      python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
     },
     formatters = {
       stylua = {

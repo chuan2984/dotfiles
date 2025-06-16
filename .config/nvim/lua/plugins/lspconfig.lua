@@ -227,6 +227,8 @@ return {
           },
         },
       },
+      basedpyright = {},
+      ruff = {},
       stylua = {},
       markdownlint = {},
       harper_ls = {
