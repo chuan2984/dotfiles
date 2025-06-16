@@ -38,6 +38,7 @@ return {
     -- TODO: change it back when the original supports ts main
     -- 'RRethy/nvim-treesitter-endwise'
     'brianhuster/treesitter-endwise.nvim',
+    lazy = false,
     event = 'InsertEnter',
   },
   {
