@@ -68,6 +68,7 @@ cask "font-noto-sans-mono-cjk-kr"
 cask "appcleaner"
 cask "betterzip"
 cask "ubersicht"
+cask "ast-grep"
 # install amphetamin instead
 cask "dozer"
 cask "keycastr"
