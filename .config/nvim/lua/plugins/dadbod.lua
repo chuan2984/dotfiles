@@ -13,12 +13,20 @@ return {
   init = function()
     vim.g.dbs = {
       {
-        name = 'api_postgres',
-        url = 'postgresql://pgu:this_is_a_password@localhost:5432/postgres',
-      },
-      {
         name = 'api_dev',
         url = 'postgresql://pgu:this_is_a_password@localhost:5432/fieldwire_api_development',
+      },
+      {
+        name = 'api_dev_replica',
+        url = 'postgresql://pgu:this_is_a_password@localhost:6543/fieldwire_api_development',
+      },
+      {
+        name = 'api_test',
+        url = 'postgresql://pgu:this_is_a_password@localhost:5433/fieldwire_api_test',
+      },
+      {
+        name = 'api_test_replica',
+        url = 'postgresql://pgu:this_is_a_password@localhost:6544/fieldwire_api_test',
       },
       {
         name = 'api_valkey',
