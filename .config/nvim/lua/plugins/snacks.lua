@@ -48,7 +48,7 @@ return {
       },
     },
     image = { enabled = true },
-    lazygit = { enabled = false },
+    lazygit = { enabled = true },
     scroll = {
       enabled = true,
       animate = {
@@ -303,7 +303,7 @@ return {
       desc = 'Git Log',
     },
     {
-      '<leader>gL',
+      '<leader>gll',
       function()
         Snacks.picker.git_log_line()
       end,
@@ -324,14 +324,14 @@ return {
       desc = 'Git Stash',
     },
     {
-      '<leader>gd',
+      '<leader>gdh',
       function()
         Snacks.picker.git_diff()
       end,
       desc = 'Git Diff (Hunks)',
     },
     {
-      '<leader>gf',
+      '<leader>glf',
       function()
         Snacks.picker.git_log_file()
       end,
@@ -593,7 +593,7 @@ return {
       desc = 'Lazygit Current File History',
     },
     {
-      '<leader>gg',
+      '<leader>gG',
       function()
         Snacks.lazygit()
       end,

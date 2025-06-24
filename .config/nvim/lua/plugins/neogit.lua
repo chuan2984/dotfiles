@@ -26,12 +26,6 @@ return {
       desc = 'Git commit',
     },
     {
-      '<leader>gd',
-      mode = 'n',
-      ':DiffviewOpen<CR>',
-      desc = 'Diff this',
-    },
-    {
       '<leader>gfh',
       mode = 'n',
       ':DiffviewFileHistory<CR>',
