@@ -41,6 +41,7 @@ brew "elixir"
 # personal
 brew "neovim"
 brew "lazygit"
+brew "lazydocker"
 brew "nvimpager"
 brew "universal-ctags"
 brew "zoxide"
