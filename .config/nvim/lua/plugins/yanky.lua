@@ -2,7 +2,7 @@ return {
   'gbprod/yanky.nvim',
   opts = {
     ring = {
-      history_length = 20,
+      history_length = 10,
       storage = 'memory',
     },
     textobj = {
@@ -10,8 +10,14 @@ return {
     },
   },
   keys = {
-    { '<leader>sp', '<cmd>YankyRingHistory<cr>', mode = { 'n', 'x' }, desc = 'Open Yank History' },
-    { '<leader>sp', '<cmd>YankyRingHistory<cr>', mode = { 'n', 'x' }, desc = 'Open Yank History' },
+    {
+      '<leader>sp',
+      function()
+        Snacks.picker.yanky()
+      end,
+      mode = { 'n', 'x' },
+      desc = 'Open Yank History',
+    },
     { 'y', '<Plug>(YankyYank)', mode = { 'n', 'x' }, desc = 'Yank text' },
     { 'p', '<Plug>(YankyPutAfter)', mode = { 'n', 'x' }, desc = 'Put yanked text after cursor' },
     { 'P', '<Plug>(YankyPutBefore)', mode = { 'n', 'x' }, desc = 'Put yanked text before cursor' },
@@ -22,7 +28,6 @@ return {
   },
   config = function(_, opts)
     require('yanky').setup(opts)
-    require('telescope').load_extension 'yank_history'
 
     vim.keymap.set({ 'o', 'x' }, 'iy', function()
       require('yanky.textobj').last_put()
