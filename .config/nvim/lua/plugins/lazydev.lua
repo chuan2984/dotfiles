@@ -11,6 +11,7 @@ return {
       -- See the configuration section for more details
       -- Load luvit types when the `vim.uv` word is found
       'lazy.nvim',
+      'snacks.nvim',
       { path = 'luvit-meta/library', words = { 'vim%.uv' } },
       { path = '~/.hammerspoon/Spoons/EmmyLua.spoon/annotations' },
       { path = 'wezterm-types', mods = { 'wezterm' } },
