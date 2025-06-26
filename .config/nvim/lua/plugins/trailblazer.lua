@@ -1,4 +1,3 @@
--- TODO: add telescope extension and statusline maybe?
 return {
   'LeonHeidelbach/trailblazer.nvim',
   keys = {
@@ -68,7 +67,8 @@ return {
       desc = 'Delete trailmark stack',
     },
   },
-  event = { 'BufReadPost', 'BufNewFile' },
+  -- INFO: cannot lazy load if autoload on enter
+  lazy = false,
   config = function()
     local colors = require('catppuccin.palettes').get_palette 'macchiato' -- fetch colors from palette
     require('trailblazer').setup {
