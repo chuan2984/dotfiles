@@ -50,3 +50,7 @@
 [maintenance]
 	strategy = incremental
 	auto = false
+[diff]
+	tool = nvimdiff
+[merge]
+	tool = nvimdiff2

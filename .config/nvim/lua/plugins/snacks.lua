@@ -593,7 +593,15 @@ return {
       desc = 'Lazygit Current File History',
     },
     {
-      '<leader>gG',
+      '<leader>ld',
+      function()
+        -- theres an option to pass in opts here to terminal
+        Snacks.terminal 'lazydocker'
+      end,
+      desc = 'Lazydocker',
+    },
+    {
+      '<leader>lg',
       function()
         Snacks.lazygit()
       end,
