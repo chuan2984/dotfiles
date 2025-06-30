@@ -1,0 +1,45 @@
+ANTHROPIC_HOST: https://api.anthropic.com
+GOOSE_MODEL: gpt-4o-mini
+GOOSE_PROVIDER: openai
+OPENAI_BASE_PATH: v1/chat/completions
+OPENAI_HOST: https://api.openai.com
+extensions:
+  computercontroller:
+    bundled: true
+    display_name: Computer Controller
+    enabled: true
+    name: computercontroller
+    timeout: 60
+    type: builtin
+  context7:
+    args:
+    - -y
+    - '@upstash/context7-mcp'
+    bundled: null
+    cmd: npx
+    description: null
+    enabled: true
+    env_keys: []
+    envs: {}
+    name: context7
+    timeout: 100
+    type: stdio
+  developer:
+    bundled: true
+    display_name: Developer Tools
+    enabled: true
+    name: developer
+    timeout: 60
+    type: builtin
+  mcp-server-git:
+    args:
+    - mcp-server-git
+    bundled: null
+    cmd: uvx
+    description: null
+    enabled: true
+    env_keys: []
+    envs: {}
+    name: mcp-server-git
+    timeout: 60
+    type: stdio
