@@ -1,6 +1,6 @@
 return {
   {
-    'chuan2984/nvim-bqf',
+    'kevinhwang91/nvim-bqf',
     event = 'FileType qf',
     dependencies = {
       'junegunn/fzf',

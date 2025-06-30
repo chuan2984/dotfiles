@@ -19,8 +19,7 @@ return {
           return 'make install_jsregexp'
         end)(),
       },
-      -- TODO: change it back when rspec snippets are merged { 'rafamadriz/friendly-snippets', lazy = true },
-      { 'chuan2984/friendly-snippets', lazy = true, branch = 'rspec_snippets' },
+      { 'rafamadriz/friendly-snippets', lazy = true },
       { 'saadparwaiz1/cmp_luasnip', lazy = true },
       { 'hrsh7th/cmp-cmdline', lazy = true },
       { 'hrsh7th/cmp-nvim-lsp', lazy = true },
