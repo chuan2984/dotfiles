@@ -256,7 +256,17 @@ return {
         --   vim.fs.joinpath(vim.fn.exepath 'lexical', 'libexec', 'lexical', 'bin', 'start_lexical.sh'),
         -- },
       },
-      ['markdown-oxide'] = {},
+      ['markdown_oxide'] = {
+        -- Ensure that dynamicRegistration is enabled! This allows the LS to take into account actions like the
+        -- Create Unresolved File code action, resolving completions for unindexed code blocks, ...
+        capabilities = vim.tbl_deep_extend('force', capabilities, {
+          workspace = {
+            didChangeWatchedFiles = {
+              dynamicRegistration = true,
+            },
+          },
+        }),
+      },
     }
 
     -- You can add other tools here that you want Mason to install

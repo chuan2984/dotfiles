@@ -37,9 +37,13 @@ return {
       '<CMD>ObsidianNewFromTemplate<CR>',
       desc = '[O]bsidian [n]ew [t]emplate',
     },
+    {
+      '<leader>oat',
+      '<CMD>ObsidianTemplate<CR>',
+      desc = '[O]bsidian [a]pply [t]emplate',
+    },
   },
   dependencies = {
-    -- Required.
     'nvim-lua/plenary.nvim',
   },
   config = function()
@@ -71,41 +75,6 @@ return {
         min_chars = 2,
       },
 
-      -- Optional, configure key mappings. These are the defaults. If you don't want to set any keymappings this
-      -- way then set 'mappings = {}'.
-      mappings = {
-        -- Overrides the 'gf' mapping to work on markdown/wiki links within your vault.
-        ['gf'] = {
-          action = function()
-            if require('obsidian').util.cursor_on_markdown_link() then
-              return '<cmd>ObsidianFollowLink<CR>'
-            else
-              return 'gf'
-            end
-          end,
-          opts = { noremap = false, expr = true, buffer = true, desc = '[G]o to [F]ile or Link' },
-        },
-        -- Toggle check-boxes.
-        ['<leader>oc'] = {
-          action = function()
-            return require('obsidian').util.toggle_checkbox()
-          end,
-          opts = { buffer = true, desc = '[O]bsidian Toggle [C]heckbox' },
-        },
-        ['<leader>oat'] = {
-          action = function()
-            return vim.cmd 'ObsidianTemplate'
-          end,
-          opts = { buffer = true, desc = '[O]bsidian [a]pply [t]emplate' },
-        },
-        ['<leader>oqs'] = {
-          action = function()
-            return vim.cmd 'ObsidianQuickSwitch'
-          end,
-          opts = { buffer = true, desc = '[O]bsidian [q]uick [s]witch' },
-        },
-      },
-
       disable_frontmatter = true,
       -- This configuration for lighlight and conceal does not work, replicated at the bottom
       -- This requires you have `conceallevel` set to 1 or 2. See `:help conceallevel` for more details.
@@ -135,24 +104,9 @@ return {
         -- vim.fn.jobstart({"xdg-open", url})  -- linux
       end,
 
-      -- Optional, set to true if you use the Obsidian Advanced URI plugin.
-      -- https://github.com/Vinzent03/obsidian-advanced-uri
-      use_advanced_uri = false,
-
-      -- Optional, set to true to force ':ObsidianOpen' to bring the app to the foreground.
-      open_app_foreground = true,
-
       picker = {
-        -- Set your preferred picker. Can be one of 'telescope.nvim', 'fzf-lua', or 'mini.pick'.
+        -- Set your preferred picker. Can be one of 'telescope.nvim', 'fzf-lua', 'mini.pick' or 'snacks.pick'.
         name = 'snacks.pick',
-        -- Optional, configure key mappings for the picker. These are the defaults.
-        -- Not all pickers support all mappings.
-        mappings = {
-          -- Create a new note from your query.
-          new = '<C-o>',
-          -- Insert a link to the selected note.
-          insert_link = '<C-l>',
-        },
       },
 
       -- Optional, sort search results by "path", "modified", "accessed", or "created".

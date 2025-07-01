@@ -179,12 +179,14 @@ return {
         performance = {
           debounce = 0,
           throttle = 0,
-          max_view_entries = 14,
+          max_view_entries = 20,
         },
         matching = {
           disallow_fullfuzzy_matching = true,
           disallow_fuzzy_matching = true,
           disallow_partial_fuzzy_matching = true,
+          disallow_partial_matching = false,
+          disallow_symbol_nonprefix_matching = false,
           disallow_disallow_partial_matching = false,
           disallow_prefix_unmatching = true,
         },
@@ -193,7 +195,11 @@ return {
           documentation = cmp.config.window.bordered(),
         },
         sources = {
-          { name = 'nvim_lsp', priority = 100 },
+          {
+            name = 'nvim_lsp',
+            priority = 100,
+            option = { markdown_oxide = { keyword_pattern = [[\(\k\| \|\/\|#\)\+]] } },
+          },
           { name = 'lazydev', group_index = 0, priority = 99 },
           { name = 'buffer', priority = 80 },
           { name = 'path', priority = 50 },
