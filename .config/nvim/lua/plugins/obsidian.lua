@@ -15,6 +15,7 @@ return {
       print 'Pngpaste already installed, exiting...'
     end
   end,
+  cmd = 'ObsidianToday',
   keys = {
     {
       '<leader>so',
@@ -50,26 +51,25 @@ return {
     local opts = {
       workspaces = {
         {
-          name = 'work',
+          name = '2ndBrain',
           path = '~/GitHub/obsidian/2ndBrain',
         },
       },
-
       log_level = vim.log.levels.INFO,
 
-      -- daily_notes = {
-      --   -- Optional, if you keep daily notes in a separate directory.
-      --   folder = 'Periodic Notes/Daily',
-      --   -- Optional, if you want to change the date format for the ID of daily notes.
-      --   date_format = '%Y-%m-%d-%A',
-      --   -- Optional, if you want to change the date format of the default alias of daily notes.
-      --   -- alias_format = '%B %-d, %Y',
-      --   -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
-      --   template = nil,
-      -- },
+      daily_notes = {
+        -- Optional, if you keep daily notes in a separate directory.
+        folder = '5. Daily',
+        -- Optional, if you want to change the date format for the ID of daily notes.
+        date_format = '%Y-%m-%d-%A',
+        -- Optional, if you want to change the date format of the default alias of daily notes.
+        -- alias_format = '%B %-d, %Y',
+        -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
+        template = 'Daily template.md',
+      },
 
       completion = {
-        -- Set to false to disable completion.
+        -- Using oxide, lsp, to do this instead
         nvim_cmp = false,
         -- Trigger completion at 2 chars.
         min_chars = 2,
@@ -88,11 +88,18 @@ return {
 
       -- Optional, for templates (see below).
       templates = {
-        subdir = 'Templates alt',
-        date_format = '%Y-%m-%d',
+        folder = 'Templates alt',
+        date_format = '%Y-%m-%d-%A',
         time_format = '%H:%M',
         -- A map for custom variables, the key should be the variable and the value a function
-        substitutions = {},
+        substitutions = {
+          yesterday = function()
+            return os.date('%Y-%m-%d-%A', os.time() - 86400)
+          end,
+          tomorrow = function()
+            return os.date('%Y-%m-%d-%A', os.time() + 86400)
+          end,
+        },
       },
 
       -- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
