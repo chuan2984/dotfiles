@@ -31,7 +31,7 @@ return {
       },
       providers = {
         anthropic = {
-          'claude-3.7-sonnet-latest',
+          'claude-3-7-sonnet-latest',
         },
         openai = {
           'gpt-4o-mini',
