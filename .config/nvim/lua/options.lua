@@ -50,7 +50,7 @@ vim.opt.scrolloff = 8 -- will scroll down when there are 8 lines at the bottom o
 vim.opt.sidescrolloff = 20 -- same as above but for horizontal
 
 -- Case-insensitive searching UNLESS \C or capital in search
-vim.opt.ignorecase = false
+vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.smartindent = true
 
