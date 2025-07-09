@@ -15,7 +15,7 @@ return {
       print 'Pngpaste already installed, exiting...'
     end
   end,
-  cmd = 'ObsidianToday',
+  cmd = 'Obsidian',
   keys = {
     {
       '<leader>so',
@@ -30,17 +30,17 @@ return {
     },
     {
       '<leader>ot',
-      '<CMD>ObsidianToday<CR>',
+      '<CMD>Obsidian today<CR>',
       desc = '[O]bsidian [T]oday',
     },
     {
       '<leader>ont',
-      '<CMD>ObsidianNewFromTemplate<CR>',
+      '<CMD>Obsidian new_from_template<CR>',
       desc = '[O]bsidian [n]ew [t]emplate',
     },
     {
       '<leader>oat',
-      '<CMD>ObsidianTemplate<CR>',
+      '<CMD>Obsidian template<CR>',
       desc = '[O]bsidian [a]pply [t]emplate',
     },
   },
@@ -49,6 +49,7 @@ return {
   },
   config = function()
     local opts = {
+      legacy_commands = false,
       workspaces = {
         {
           name = '2ndBrain',

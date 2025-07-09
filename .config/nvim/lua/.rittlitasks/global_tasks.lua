@@ -3,10 +3,10 @@ local M = {}
 
 M.tasks = {
   {
-    name = 'Open Daily Notes',
+    name = 'Open Daily Notes(Obsidian)',
     builder = function()
       local task = {
-        cmd = { 'cd 2ndBrain', 'nvim -c ObsidianToday' },
+        cmd = { 'cd 2ndBrain', 'nvim -c "Obsidian today"' },
       }
 
       return task
