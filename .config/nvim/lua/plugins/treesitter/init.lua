@@ -42,7 +42,8 @@ return {
     event = 'InsertEnter',
   },
   {
-    'https://github.com/ravsii/tree-sitter-d2',
+    'ravsii/tree-sitter-d2',
+    build = 'make nvim-install',
   },
   {
     'nvim-treesitter/nvim-treesitter-context',
