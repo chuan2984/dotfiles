@@ -36,6 +36,12 @@ return {
         openai = {
           'gpt-4o-mini',
         },
+        github_copilot = {
+          'gpt-4.1',
+          'claude-3.7-sonnet-thought',
+          'claude-sonnet-4',
+          'gemini-2.5-pro',
+        },
       },
     }
   end,
