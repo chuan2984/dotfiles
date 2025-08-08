@@ -1,16 +1,5 @@
 return {
   {
-    'kevinhwang91/nvim-bqf',
-    event = 'FileType qf',
-    dependencies = {
-      'junegunn/fzf',
-      'nvim-treesitter/nvim-treesitter',
-    },
-    opts = {
-      auto_resize_height = true,
-    },
-  },
-  {
     'stevearc/quicker.nvim',
     event = 'FileType qf',
     -- ---@module "quicker"
@@ -29,11 +18,26 @@ return {
 
       require('quicker').setup {
         highlight = {
-          treesitter = false,
+          treesitter = true,
           load_buffers = false,
           lsp = true,
         },
-        keys = {},
+        keys = {
+          {
+            '>',
+            function()
+              require('quicker').expand { before = 2, after = 2, add_to_existing = true }
+            end,
+            desc = 'Expand quickfix context',
+          },
+          {
+            '<',
+            function()
+              require('quicker').collapse()
+            end,
+            desc = 'Collapse quickfix context',
+          },
+        },
       }
     end,
   },
