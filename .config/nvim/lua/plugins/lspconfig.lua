@@ -219,6 +219,9 @@ return {
           experimentalFeaturesEnabled = false,
         },
       },
+      kotlin_lsp = {},
+      detekt = {},
+      ktlint = {},
       clangd = {},
       lua_ls = {
         settings = {

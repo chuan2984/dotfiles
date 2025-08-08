@@ -16,6 +16,7 @@ return {
       lua = { 'stylua' },
       markdown = { 'markdownlint' },
       python = { 'ruff_fix', 'ruff_format', 'ruff_organize_imports' },
+      kotlin = { 'ktlint' },
     },
     formatters = {
       stylua = {
