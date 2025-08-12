@@ -11,13 +11,34 @@ return {
       generator = null_ls.generator {
         command = 'detekt',
         debounce = 200,
-        args = {
-          '--input',
-          '$FILENAME',
-          '--config',
-          'detekt/config.yml',
-          '--build-upon-default-config',
-        },
+        args = function(params)
+          local file_path = params.bufname
+          local baseline_file
+
+          if string.match(file_path, '/common/') then
+            baseline_file = 'detekt/baselines/common.xml'
+          elseif string.match(file_path, '/deploy/') then
+            baseline_file = 'detekt/baselines/deploy.xml'
+          elseif string.match(file_path, '/pdf_export/') then
+            baseline_file = 'detekt/baselines/pdf_export.xml'
+          elseif string.match(file_path, '/spec_file/api/') then
+            baseline_file = 'spec_file/detekt/baselines/spec_file/api.xml'
+          elseif string.match(file_path, '/spec_file/core/') then
+            baseline_file = 'spec_file/detekt/baselines/spec_file/core.xml'
+          elseif string.match(file_path, '/spec_file/ui/') then
+            baseline_file = 'spec_file/detekt/baselines/spec_file/ui.xml'
+          else
+            baseline_file = 'detekt/baselines/common.xml'
+          end
+          return {
+            '--input',
+            '$FILENAME',
+            '--config',
+            'detekt/config.yml',
+            '--baseline',
+            baseline_file,
+          }
+        end,
         to_stdin = false,
         from_stderr = true,
         format = 'raw', -- Changed from "line" to "raw"
@@ -42,7 +63,7 @@ return {
                 row = tonumber(row),
                 col = tonumber(col),
                 message = message,
-                severity = helpers.diagnostics.severities.warning,
+                severity = helpers.diagnostics.severities.error,
                 code = code,
               })
             end
