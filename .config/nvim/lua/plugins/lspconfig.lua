@@ -219,7 +219,7 @@ return {
           experimentalFeaturesEnabled = false,
         },
       },
-      kotlin_lsp = {},
+      -- kotlin_lsp = {},
       detekt = {},
       ktlint = {},
       clangd = {},
