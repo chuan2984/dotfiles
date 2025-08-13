@@ -15,3 +15,4 @@ rspec_cmd.sh
 .little-taskwarrior.json
 **/wezterm/workspace/
 **/ubersicht/widgets
+gradle-logs.log

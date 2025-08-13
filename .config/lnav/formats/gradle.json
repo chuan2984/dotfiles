@@ -1,0 +1,98 @@
+{
+  "$schema": "https://lnav.org/schemas/format-v1.schema.json",
+  "gradle": {
+    "title": "PDF Service JSON Logs",
+    "description": "Custom format for PDF service JSON logs",
+    "file-pattern": ".*gradle.*",
+    "json": true,
+    "opid-field": "id",
+    "hide-extra": false,
+    "line-format": [
+      {
+        "field": "timestamp",
+        "default-value": "-"
+      },
+      " ",
+      {
+        "field": "level",
+        "default-value": "INFO",
+        "min-width": 5,
+        "align": "left"
+      },
+      "[",
+      {
+        "field": "logger",
+        "default-value": "unknown",
+        "max-width": 12,
+        "overflow": "last-word"
+      },
+      "] - ",
+      {
+        "field": "message",
+        "default-value": ""
+      }
+    ],
+    "timestamp-field": "timestamp",
+    "timestamp-format": [
+      "%Y-%m-%dT%H:%M:%S"
+    ],
+    "level-field": "level",
+    "level": {
+      "error": "ERROR",
+      "warning": "WARN",
+      "info": "INFO",
+      "debug": "DEBUG",
+      "trace": "TRACE"
+    },
+    "value": {
+      "level": {
+        "kind": "string",
+        "identifier": true
+      },
+      "timestamp": {
+        "kind": "string",
+        "identifier": false
+      },
+      "thread": {
+        "kind": "string",
+        "identifier": false,
+        "hidden" : true
+      },
+      "logger": {
+        "kind": "string",
+        "identifier": true
+      },
+      "message": {
+        "kind": "string",
+        "identifier": false
+      },
+      "exception": {
+        "kind": "string",
+        "identifier": false
+      },
+      "instanceId": {
+        "kind": "string",
+        "identifier": false,
+        "hidden": true
+      },
+      "id": {
+        "kind": "string",
+        "identifier": false
+      },
+      "instanceMetrics": {
+        "kind": "json",
+        "identifier": false
+      }
+    },
+    "highlights": {
+      "performance": {
+        "pattern": ".*CPU:.*%.*Memory:.*MB.*",
+        "color": "cyan"
+      },
+      "sqs_metrics": {
+        "pattern": ".*SQS: \\d+/\\d+.*",
+        "color": "blue"
+      }
+    }
+  }
+}

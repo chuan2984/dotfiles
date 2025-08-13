@@ -66,12 +66,15 @@ alias v='fd --hidden --type f --exclude .git | fzf --height 50% --reverse | xarg
 # alias it since its not installed system-wide
 alias jupynium="$HOME/github/jupyter/jupyterenv/bin/jupynium"
 
+alias gw='./gradlew'
+
 # open ~/.zshrc in using the default editor specified in $EDITOR
 alias ec="nvim $HOME/.zshrc"
 alias sc="exec zsh"
 
 #Suffix Aliases
-alias -s {yaml,yml,lua,vim,csharp,js,rb,json,c,cs,py,md,txt}=nvim
+alias -s {yaml,yml,lua,vim,csharp,js,rb,json,c,cs,py,md,txt,kt,ex}=nvim
+
 
 # Zsh History
 export HISTFILESIZE=1000
