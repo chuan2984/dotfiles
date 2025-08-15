@@ -70,7 +70,6 @@ return {
   -- INFO: cannot lazy load if autoload on enter
   lazy = false,
   config = function()
-    local colors = require('catppuccin.palettes').get_palette 'macchiato' -- fetch colors from palette
     require('trailblazer').setup {
       auto_save_trailblazer_state_on_exit = true,
       auto_load_trailblazer_state_on_enter = true,
@@ -159,96 +158,10 @@ return {
           },
         },
       },
-      hl_groups = {
-        TrailBlazerTrailMarkNext = {
-          guifg = colors.green, -- #a6da95
-          guibg = 'none',
-        },
-        TrailBlazerTrailMarkPrevious = {
-          guifg = colors.peach, -- #f5a97f
-          guibg = 'none',
-        },
-        TrailBlazerTrailMarkCursor = {
-          guifg = colors.crust, -- #181926
-          guibg = colors.overlay0,
-        },
-        TrailBlazerTrailMarkNewest = {
-          guifg = colors.crust, -- #181926
-          guibg = colors.sky,
-        },
-        TrailBlazerTrailMarkCustomOrd = {
-          guifg = colors.crust, -- #181926
-          guibg = colors.mauve, -- #c6a0f6
-        },
-        TrailBlazerTrailMarkGlobalChron = {
-          guifg = colors.crust, -- #181926
-          guibg = colors.red, -- #ed8796
-        },
-        TrailBlazerTrailMarkGlobalBufLineorted = {
-          guifg = colors.crust, -- #181926
-          guibg = colors.maroon, -- #ee99a0
-        },
-        TrailBlazerTrailMarkGlobalFpathLineSorted = {
-          guifg = colors.crust, -- #181926
-          guibg = colors.maroon, -- #ee99a0
-        },
-        TrailBlazerTrailMarkGlobalChronBufLineSorted = {
-          guifg = colors.crust, -- #181926
-          guibg = colors.yello, -- ##eed49f
-        },
-        TrailBlazerTrailMarkGlobalChronFpathLineSorted = {
-          guifg = colors.crust, -- #181926
-          guibg = colors.yello, -- ##eed49f
-        },
-        TrailBlazerTrailMarkGlobalChronBufSwitchGroupChron = {
-          guifg = colors.crust, -- #181926
-          guibg = colors.pink, -- #f5bde6
-        },
-        TrailBlazerTrailMarkGlobalChronBufSwitchGroupLineSorted = {
-          guifg = colors.crust, -- #181926
-          guibg = colors.sky, -- #91d7e3
-        },
-        TrailBlazerTrailMarkBufferLocalChron = {
-          guifg = colors.crust, -- #181926
-          guibg = colors.green, -- #a6da95
-        },
-        TrailBlazerTrailMarkBufferLocalLineSorted = {
-          guifg = colors.crust, -- #181926
-          guibg = colors.teal, -- #8bd5ca
-        },
-      },
     }
   end,
 }
---
--- rosewater = "#f4dbd6",
--- flamingo = "#f0c6c6",
--- pink = "#f5bde6",
--- mauve = "#c6a0f6",
--- red = "#ed8796",
--- maroon = "#ee99a0",
--- peach = "#f5a97f",
--- yellow = "#eed49f",
--- green = "#a6da95",
--- teal = "#8bd5ca",
--- sky = "#91d7e3",
--- sapphire = "#7dc4e4",
--- blue = "#8aadf4",
--- lavender = "#b7bdf8",
--- text = "#cad3f5",
--- subtext1 = "#b8c0e0",
--- subtext0 = "#a5adcb",
--- overlay2 = "#939ab7",
--- overlay1 = "#8087a2",
--- overlay0 = "#6e738d",
--- surface2 = "#5b6078",
--- surface1 = "#494d64",
--- surface0 = "#363a4f",
--- base = "#24273a",
--- mantle = "#1e2030",
--- crust = "#181926",
 
--- 1. **`custom_ord`**:
 --    - This mode is useful when you have manually rearranged the order of your trail marks, and you want to preserve that custom order when navigating through them.
 --    - For example, if you're working on a complex project with many files, and you've carefully positioned your marks to represent the logical flow of your work, this mode will allow you to move through those marks in the order you've set, rather than the default chronological order.
 --
