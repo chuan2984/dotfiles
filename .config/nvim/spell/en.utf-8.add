@@ -63,3 +63,4 @@ SQS
 json
 Rails
 params
+localstack
