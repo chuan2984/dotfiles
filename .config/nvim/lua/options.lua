@@ -79,5 +79,3 @@ vim.opt.cursorline = true
 vim.cmd [[set iskeyword+=-]]
 vim.cmd [[set spell]]
 vim.cmd 'setlocal spell spelllang=en_us'
-
-vim.diagnostic.config { virtual_text = true }

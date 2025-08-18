@@ -61,6 +61,7 @@
   "rittli.nvim": { "branch": "main", "commit": "271755de75e5b1e0fd9fee2bfceee3b8db8ecf61" },
   "smart-splits.nvim": { "branch": "master", "commit": "c088d64c6e0e3221d24ef1f9337b5fe15557ddcc" },
   "snacks.nvim": { "branch": "main", "commit": "bc0630e43be5699bb94dadc302c0d21615421d93" },
+  "tiny-inline-diagnostic.nvim": { "branch": "main", "commit": "7dcf8542059fb15c978de845fc8665428ae13a04" },
   "todo-comments.nvim": { "branch": "main", "commit": "304a8d204ee787d2544d8bc23cd38d2f929e7cc5" },
   "trailblazer.nvim": { "branch": "main", "commit": "5c0e3ac01e227bb9afe428583f29f0ec34801408" },
   "tree-sitter-d2": { "branch": "main", "commit": "f40a9fa426d55a03cedd17475e4d6affe755a1ae" },
