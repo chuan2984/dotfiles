@@ -21,12 +21,23 @@
       },
       "[",
       {
+        "field": "action",
+        "default-value": "-"
+      },
+      "/",
+      {
         "field": "logger",
         "default-value": "unknown",
         "max-width": 12,
         "overflow": "last-word"
       },
-      "] - ",
+      "] ",
+      "[",
+      {
+        "field": "duration",
+        "default-value": "0"
+      },
+      "ms] ",
       {
         "field": "message",
         "default-value": ""
@@ -49,6 +60,18 @@
         "kind": "string",
         "identifier": true
       },
+      "duration": {
+        "kind": "string",
+        "identifier": false
+      },
+      "durationUnit": {
+        "kind": "string",
+        "hidden": true
+      },
+      "action": {
+        "kind": "string",
+        "identifier": true
+      },
       "timestamp": {
         "kind": "string",
         "identifier": false
@@ -56,7 +79,7 @@
       "thread": {
         "kind": "string",
         "identifier": false,
-        "hidden" : true
+        "hidden": true
       },
       "logger": {
         "kind": "string",

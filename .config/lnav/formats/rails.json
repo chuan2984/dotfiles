@@ -1,0 +1,87 @@
+{
+  "$schema": "https://lnav.org/schemas/format-v1.schema.json",
+  "fieldwire_api_log": {
+    "title": "Fieldwire API",
+    "description": "Format for Fieldwire API logs",
+    "opid-field": "jid",
+    "thread-id-field": "process_id",
+    "regex": {
+      "mailer": {
+        "pattern": "^(?<level>\\w+), \\[(?<timestamp>\\d{4}-\\d{2}-\\d{2}(?:T| )\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{3,6})?) #(?<process_id>\\d+)\\]\\s+ (?<level_verbose>.+) -- : (?<structured_args>\\{.*\\})$"
+      },
+      "std": {
+        "pattern": "^(?<timestamp>\\d{4}-\\d{2}-\\d{2}(?:T|\\s)\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{3,6})?)\\s(?<level>\\w+)\\s(?<process>\\[(?<process_id>\\d+?):(?<process_name>.+?)\\])\\s?(?<worker_ctx>\\{jid: (?<jid>.+), queue: (?<queue>.+)\\})?\\s?(?<duration_str>\\((?<duration>\\d+\\.\\d+\\w+)\\))? (?<context>.+?)(?:\\s--\\s(?<body>(?!\\s\\{).+?)?(?:\\s--\\s(?<structured_args>\\{(\\s:sql => \\\"(?<sql>.+?)\\\",)?.*\\}))?)$"
+      }
+    },
+    "value": {
+      "timestamp": {
+        "kind": "string"
+      },
+      "level": {
+        "kind": "string"
+      },
+      "process": {
+        "kind": "string"
+      },
+      "process_id": {
+        "kind": "integer",
+        "identifier": true
+      },
+      "process_name": {
+        "kind": "string",
+        "identifier": true
+      },
+      "worker_ctx": {
+        "kind": "json",
+        "identifier": true
+      },
+      "jid": {
+        "kind": "string",
+        "identifier": true
+      },
+      "queue": {
+        "kind": "string",
+        "identifier": true
+      },
+      "duration_str": {
+        "kind": "string"
+      },
+      "duration": {
+        "kind": "string",
+        "collate": "measure_with_units"
+      },
+      "context": {
+        "kind": "string"
+      },
+      "body": {
+        "kind": "string"
+      },
+      "structured_args": {
+        "kind": "string"
+      },
+      "sql": {
+        "kind": "string"
+      }
+    },
+    "sample": [
+      {
+        "line": "2025-11-21 12:43:47.197 D [148:puma srv tp 003] (2.736ms) ActiveRecord -- Project Load -- { :sql => \"SELECT \\\"projects\\\".* FROM \\\"projects\\\" WHERE \\\"projects\\\".\\\"id\\\" = '0750b2e7-49ff-44e6-8ce6-a50428659c8d' LIMIT 1 /*controller:tasks_forms#index*/\", :allocations => 725, :cached => false, :replica => true }"
+      },
+      {
+        "line": "2025-11-21 12:43:47.117 D [148:puma srv tp 009] Rack -- Started -- { :method => \"GET\", :path => \"/api/v3/projects/0750b2e7-49ff-44e6-8ce6-a50428659c8d/entity_taggings?entity_id%5B%5D=8623ea3f-10e5-4c8e-8f81-2aed8a34c2bd\", :ip => \"127.0.0.1\" }"
+      },
+      {
+        "line": "2025-11-21 12:43:47.117 D [148:puma srv tp 009] { jid: 654a654b65454c56, queue: default } Rack -- Started -- { :method => \"GET\", :path => \"/api/v3/projects/0750b2e7-49ff-44e6-8ce6-a50428659c8d/entity_taggings?entity_id%5B%5D=8623ea3f-10e5-4c8e-8f81-2aed8a34c2bd\", :ip => \"127.0.0.1\" }"
+      },
+      {
+        "line": "2025-11-21 12:43:40.194 D [148:puma srv tp 010] Api::V3::RfisController -- Processing #index"
+      },
+      {
+        "line": "2025-11-21 12:43:40.218 D [148:puma srv tp 010] Rails -- { \"Access-Control-Allow-Origin\" => \"http://localhost:8080\", \"Access-Control-Allow-Methods\" => \"GET, HEAD, POST, PUT, PATCH, DELETE, OPTIONS\", \"Access-Control-Expose-Headers\" => \"X-Count, X-Current-Page, X-Current-User-Id, X-Has-More, X-Last-Synced-At, X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset, X-Total-Pages, X-Simple-Cursor, Content-Disposition, Link\", \"Access-Control-Max-Age\" => \"7200\" }"
+      },
+      {
+        "line": "I, [2025-11-20T16:44:11.556048 #247]  INFO -- : {:message=>\"Delivered mail 691f455b7e983_f7147d0188cf@fieldwire_api.mail (37.9ms)\", :payload=>{:event_name=>\"deliver.action_mailer\", :mailer=>\"TaskMailer\", :action=>nil, :message_id=>\"691f455b7e983_f7147d0188cf@fieldwire_api.mail\", :perform_deliveries=>true, :subject=>\"[Fieldwire] [Test] aaaa\", :to=>[\"toto@example.com\"], :from=>\"Fieldwire <support@>\", :bcc=>nil, :cc=>[\"jhgilbert@fieldwire.com\"], :date=>2025-11-20 16:44:11 UTC, :duration=>37.93, :args=>nil}}"
+      }
+    ]
+  }
+}
