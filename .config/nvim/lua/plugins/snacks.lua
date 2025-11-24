@@ -30,6 +30,7 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
+    gh = {},
     bigfile = { enabled = true },
     animate = { enabled = true, fps = 240, duration = 10 },
     explorer = { enabled = false },
@@ -197,7 +198,10 @@ return {
         end,
       },
       sources = {
-        git_grep_hunks = require('plugins.snacks.custom_picker').git_grep_hunk,
+        git_grep_hunks = require('plugins.snacks.custom_picker').git_grep_hunks,
+        ast_grep = require('plugins.snacks.custom_picker').ast_grep,
+        gh_issue = {},
+        gh_pr = {},
       },
       layout = {
         preset = function()
@@ -215,6 +219,40 @@ return {
     },
   },
   keys = {
+    -- GH
+    {
+      '<leader>ghi',
+      function()
+        Snacks.picker.gh_issue()
+      end,
+      desc = 'GitHub Issues (open)',
+    },
+    {
+      '<leader>ghI',
+      function()
+        Snacks.picker.gh_issue { state = 'all' }
+      end,
+      desc = 'GitHub Issues (all)',
+    },
+    {
+      '<leader>ghp',
+      function()
+        Snacks.picker.gh_pr {
+          state = 'open',
+          author = 'chuan29812',
+        }
+      end,
+      desc = 'GitHub Pull Requests (Mine open)',
+    },
+    {
+      '<leader>ghP',
+      function()
+        Snacks.picker.gh_pr {
+          state = 'all',
+        }
+      end,
+      desc = 'GitHub Pull Requests (ALL)',
+    },
     -- Top Pickers & Explorer
     {
       '<leader><space>',
@@ -289,11 +327,19 @@ return {
       desc = 'Git Branches',
     },
     {
-      '<leader>gh',
+      '<leader>gH',
       function()
         Snacks.picker.git_grep_hunks()
+        -- require('snacks').picker.pick 'git_grep_hunks'
       end,
-      desc = 'Git grep [h]unks',
+      desc = 'Git grep [H]unks',
+    },
+    {
+      '<leader>sast',
+      function()
+        Snacks.picker.ast_grep()
+      end,
+      desc = 'AST Grep',
     },
     {
       '<leader>gl',
