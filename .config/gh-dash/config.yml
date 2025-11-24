@@ -54,6 +54,7 @@ keybindings:
         wezterm cli spawn --cwd {{.RepoPath}} -- zsh -c "nvim -c ':Octo pr edit {{.PrNumber}}'"
 repoPaths:
   Fieldwire/fieldwire_api: ~/github/work/fieldwire_api
+  Fieldwire/fieldwire_pdf_export: ~/github/work/fieldwire_pdf_export
 theme:
   ui:
     table:
