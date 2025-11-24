@@ -25,6 +25,14 @@ return {
           merge_pr = { lhs = '<C-m>', desc = '[m]erge pull request' },
         },
       },
+      mappings = {
+        submit_win = {
+          comment_review = { lhs = '<C-n>', desc = 'comment review', mode = { 'n', 'i' } },
+        },
+      },
+      reviews = {
+        auto_show_threads = false,
+      },
       suppress_missing_scope = {
         projects_v2 = true,
       },
