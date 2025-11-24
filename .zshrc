@@ -53,8 +53,6 @@ alias 6='cd -6'
 alias 7='cd -7'
 alias 8='cd -8'
 alias 9='cd -9'
-alias ~web='cd ~web'
-alias ~api='cd ~api'
 alias g='git'
 # starts fzf with preview, <c-w> to open in neovim, <c-y> to copy the path to clipboard
 alias sf='fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+}),ctrl-y:execute-silent(echo {} | pbcopy)+abort"'
@@ -71,6 +69,22 @@ alias gw='./gradlew'
 # open ~/.zshrc in using the default editor specified in $EDITOR
 alias ec="nvim $HOME/.zshrc"
 alias sc="exec zsh"
+
+# Work related
+alias rd='rake down'
+alias rr='rake restart'
+alias rb='rake bash'
+alias rc='rake console'
+alias rl='rake logs'
+alias rp='rake pry'
+alias rsso='rake aws:sso:refresh_credentials'
+alias rwu='rake web:up'
+alias rwdu='rake web_debug:up'
+alias rwdd='rake web_debug:debug'
+alias rfu='rake full:up'
+alias rfdu='rake full_debug:up'
+alias rfdd='rake full_debug:debug'
+alias rdm='rake database:migrate'
 
 #Suffix Aliases
 alias -s {yaml,yml,lua,vim,csharp,js,rb,json,c,cs,py,md,txt,kt,ex}=nvim
@@ -115,6 +129,7 @@ source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.config/zsh-plugins/termfile_download.sh
+export JIRA_API_TOKEN=ATATT3xFfGF0v3U8cr8d0PUZDRajP0gcQ4Hr1KJy0HP1YH69nSvSpCVd7_7-uy901ZbwEkOtRZBca1NWwfwLd_jjpL3RQDsdaF3PuS9DKUF8xvvGs9Fq1nGDdUBTcL7ronZNbYnum8FEQvsLbdiSpdOWm9YPYo30roEdNVKJI4vfKI-wT0PMcGw=65F9BE62
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
