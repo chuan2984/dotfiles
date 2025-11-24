@@ -18,9 +18,10 @@ M.tasks = {
         cmd = {
           'jira issue create -tTask -s"'
             .. task_name
-            .. 'fill this in" '
+            .. '"'
             .. ' -lbackend_force -b "" '
             .. parent_opt
+            .. ' --component API'
             .. ' --assignee chuan',
         },
       }
