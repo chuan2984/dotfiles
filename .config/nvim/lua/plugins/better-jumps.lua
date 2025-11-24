@@ -1,6 +1,6 @@
 return {
   {
-    'chuan2984/demicolon.nvim',
+    'mawkler/demicolon.nvim',
     dependencies = {
       'nvim-treesitter/nvim-treesitter-textobjects',
     },
