@@ -76,7 +76,9 @@ return {
         min_chars = 2,
       },
 
-      disable_frontmatter = true,
+      frontmatter = {
+        enable = false,
+      },
       -- This configuration for lighlight and conceal does not work, replicated at the bottom
       -- This requires you have `conceallevel` set to 1 or 2. See `:help conceallevel` for more details.
       ui = {
