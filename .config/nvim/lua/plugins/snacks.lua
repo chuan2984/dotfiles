@@ -30,7 +30,7 @@ return {
   lazy = false,
   ---@type snacks.Config
   opts = {
-    gh = {},
+    -- gh = {},
     bigfile = { enabled = true },
     animate = { enabled = true, fps = 240, duration = 10 },
     explorer = { enabled = false },
@@ -200,8 +200,8 @@ return {
       sources = {
         git_grep_hunks = require('plugins.snacks.custom_picker').git_grep_hunks,
         ast_grep = require('plugins.snacks.custom_picker').ast_grep,
-        gh_issue = {},
-        gh_pr = {},
+        -- gh_issue = {},
+        -- gh_pr = {},
       },
       layout = {
         preset = function()
@@ -248,10 +248,10 @@ return {
       '<leader>ghP',
       function()
         Snacks.picker.gh_pr {
-          state = 'all',
+          state = 'open',
         }
       end,
-      desc = 'GitHub Pull Requests (ALL)',
+      desc = 'GitHub Pull Requests (ALL open)',
     },
     -- Top Pickers & Explorer
     {
