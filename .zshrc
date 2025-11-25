@@ -54,6 +54,7 @@ alias 7='cd -7'
 alias 8='cd -8'
 alias 9='cd -9'
 alias g='git'
+alias g-='git switch -'
 # starts fzf with preview, <c-w> to open in neovim, <c-y> to copy the path to clipboard
 alias sf='fzf -m --preview="bat --color=always {}" --bind "enter:become(nvim {+}),ctrl-y:execute-silent(echo {} | pbcopy)+abort"'
 alias gdb='git branch --format="%(refname:short)" | fzf -m --bind "enter:execute(git branch -D {+})+abort"'
@@ -85,6 +86,7 @@ alias rfu='rake full:up'
 alias rfdu='rake full_debug:up'
 alias rfdd='rake full_debug:debug'
 alias rdm='rake database:migrate'
+alias gpp='git switch develop && git pull origin develop && git push mine develop --no-verify && rake database:migrate && git restore db/structure.sql && git switch -'
 
 #Suffix Aliases
 alias -s {yaml,yml,lua,vim,csharp,js,rb,json,c,cs,py,md,txt,kt,ex}=nvim
