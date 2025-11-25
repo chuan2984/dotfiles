@@ -30,17 +30,15 @@ return {
         },
       },
       providers = {
-        anthropic = {
-          'claude-3-7-sonnet-latest',
-        },
-        openai = {
-          'gpt-4o-mini',
-        },
+        -- anthropic = {
+        --   'claude-3-7-sonnet-latest',
+        -- },
+        -- openai = {
+        --   'gpt-4o-mini',
+        -- },
         github_copilot = {
-          'gpt-4.1',
-          'claude-3.7-sonnet-thought',
-          'claude-sonnet-4',
-          'gemini-2.5-pro',
+          'gpt-5',
+          'claude-sonnet-4.5',
         },
       },
     }
