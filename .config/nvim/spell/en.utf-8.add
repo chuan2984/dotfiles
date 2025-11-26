@@ -64,3 +64,5 @@ json
 Rails
 params
 localstack
+interactor
+Interactors
