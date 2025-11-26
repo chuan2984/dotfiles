@@ -4,7 +4,6 @@
     "title": "Fieldwire API",
     "description": "Format for Fieldwire API logs",
     "opid-field": "jid",
-    "thread-id-field": "process_id",
     "regex": {
       "mailer": {
         "pattern": "^(?<level>\\w+), \\[(?<timestamp>\\d{4}-\\d{2}-\\d{2}(?:T| )\\d{2}:\\d{2}:\\d{2}(?:\\.\\d{3,6})?) #(?<process_id>\\d+)\\]\\s+ (?<level_verbose>.+) -- : (?<structured_args>\\{.*\\})$"
@@ -18,26 +17,25 @@
         "kind": "string"
       },
       "level": {
-        "kind": "string"
-      },
-      "process": {
-        "kind": "string"
-      },
-      "process_id": {
-        "kind": "integer",
-        "identifier": true
-      },
-      "process_name": {
         "kind": "string",
         "identifier": true
+      },
+      "process": {
+        "kind": "string",
+        "hidden": true
+      },
+      "process_id": {
+        "kind": "integer"
+      },
+      "process_name": {
+        "kind": "string"
       },
       "worker_ctx": {
         "kind": "json",
         "identifier": true
       },
       "jid": {
-        "kind": "string",
-        "identifier": true
+        "kind": "string"
       },
       "queue": {
         "kind": "string",
@@ -51,7 +49,8 @@
         "collate": "measure_with_units"
       },
       "context": {
-        "kind": "string"
+        "kind": "string",
+        "identifier": true
       },
       "body": {
         "kind": "string"
