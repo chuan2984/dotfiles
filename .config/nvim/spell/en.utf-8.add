@@ -66,3 +66,6 @@ params
 localstack
 interactor
 Interactors
+wezterm
+tmux
+opencode
