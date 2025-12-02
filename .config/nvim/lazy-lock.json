@@ -63,7 +63,6 @@
   "spelunk.nvim": { "branch": "main", "commit": "d1ff64ffa4f689b0e06b201da84995737ec9e44b" },
   "tiny-inline-diagnostic.nvim": { "branch": "main", "commit": "71f998696a4d63a1fa42a6c70d5931a2001e485b" },
   "todo-comments.nvim": { "branch": "main", "commit": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668" },
-  "trailblazer.nvim": { "branch": "main", "commit": "5c0e3ac01e227bb9afe428583f29f0ec34801408" },
   "tree-sitter-d2": { "branch": "main", "commit": "ffb66ce4c801a1e37ed145ebd5eca1ea8865e00f" },
   "treesitter-endwise.nvim": { "branch": "master", "commit": "b605a0f37ff9c27ff2de66ce056f46f7d1164d76" },
   "treesj": { "branch": "main", "commit": "4770492244ccecdc9b01e0e81fa8f2f6b4a23841" },

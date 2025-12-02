@@ -138,11 +138,18 @@ return {
 
     ---@diagnostic disable-next-line: duplicate-set-field
     statusline.section_location = function()
-      return '󰞁 '
-        .. require('trailblazer.trails').stacks.current_trail_mark_stack_name
-        .. '['
-        .. vim.tbl_count(require('trailblazer.trails.common').get_trail_mark_stack_subset_for_buf() or {})
-        .. ']'
+      local ok, spelunk = pcall(require, 'spelunk')
+      local bookmark_icon = '󰞁 '
+      if not ok then
+        return bookmark_icon
+      end
+      local markmgr = require 'spelunk.markmgr'
+      local current_stack_idx = spelunk.get_current_stack_index()
+      local num_total_marks = markmgr.len_marks(current_stack_idx)
+      local stack_name = markmgr.get_stack_name(current_stack_idx)
+      local num_current_file_marks = spelunk.statusline():gsub('%s+', '')
+
+      return bookmark_icon .. stack_name .. '[' .. num_current_file_marks .. '/' .. num_total_marks .. ']'
     end
 
     -- Function to get the number of open buffers using the :ls command
