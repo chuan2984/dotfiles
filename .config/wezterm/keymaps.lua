@@ -18,8 +18,10 @@ function module.apply_to_config(config)
     { key = "phys:Space", mods = "LEADER", action = act.ActivateCommandPalette },
 
     -- Pane keybindings
-    { key = "UpArrow", mods = "SHIFT", action = act.ScrollByPage(-4) },
-    { key = "DownArrow", mods = "SHIFT", action = act.ScrollByPage(4) },
+    { key = "UpArrow", mods = "LEADER", action = act.ScrollByPage(-4) },
+    { key = "DownArrow", mods = "LEADER", action = act.ScrollByPage(4) },
+    { key = "UpArrow", mods = "SHIFT", action = act.ScrollByLine(-8) },
+    { key = "DownArrow", mods = "SHIFT", action = act.ScrollByLine(8) },
     {
       key = "/",
       mods = "LEADER",
