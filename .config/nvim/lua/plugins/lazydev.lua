@@ -2,7 +2,7 @@ return {
   'folke/lazydev.nvim',
   dependencies = {
     { 'Bilal2453/luvit-meta', lazy = true },
-    { 'justinsgithub/wezterm-types', lazy = true },
+    { 'DrKJeff16/wezterm-types', lazy = true, version = false },
   },
   ft = 'lua', -- only load on lua files
   cmd = { 'LazyDev' },

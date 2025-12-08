@@ -69,7 +69,7 @@
   "vim-rails": { "branch": "master", "commit": "b0a5c76f86ea214ade36ab0b811e730c3f0add67" },
   "vim-sleuth": { "branch": "master", "commit": "be69bff86754b1aa5adcbb527d7fcd1635a84080" },
   "vim-slime": { "branch": "main", "commit": "67b24bf93cff3ac39db94694a7aefcdb3f44b927" },
-  "wezterm-types": { "branch": "main", "commit": "b11ab048051c8bf2c64a2087dbdc38a5af90f2c0" },
+  "wezterm-types": { "branch": "main", "commit": "e30476bc7779adf466e771f2de13aebcdc7eb1a6" },
   "which-key.nvim": { "branch": "main", "commit": "3aab2147e74890957785941f0c1ad87d0a44c15a" },
   "yanky.nvim": { "branch": "main", "commit": "04775cc6e10ef038c397c407bc17f00a2f52b378" }
 }
