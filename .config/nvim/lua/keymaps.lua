@@ -89,4 +89,11 @@ keymap('n', '<leader>cpa', '<cmd>let @+ = expand("%:p")<CR>', { desc = '[C]opy [
 -- or just use <C-\><C-n> to exit terminal mode
 keymap('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+-- Custom Neovim Tips
+require('neovim_tips').setup {
+  daily_tip = true,
+}
+keymap('n', '<leader>vt', '<cmd>NeovimTips<cr>', { desc = 'Neovim Tips' })
+keymap('n', '<leader>vT', '<cmd>NeovimTipsRandom<cr>', { desc = 'Random Neovim Tip' })
+
 -- vim: ts=2 sts=2 sw=2 et
