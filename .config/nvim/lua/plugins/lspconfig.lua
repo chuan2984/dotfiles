@@ -139,12 +139,14 @@ return {
     end
 
     local capabilities = vim.lsp.protocol.make_client_capabilities()
+
     -- add folding
     capabilities.textDocument.foldingRange = {
       dynamicRegistration = false,
       lineFoldingOnly = true,
     }
-    capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
+
+    capabilities = vim.tbl_deep_extend('force', capabilities, require('blink.cmp').get_lsp_capabilities({}, false))
 
     local servers = {
       ruby_lsp = {

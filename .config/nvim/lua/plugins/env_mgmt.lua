@@ -1,9 +1,5 @@
 return {
   'philosofonusus/ecolog.nvim',
-  dependencies = {
-    -- 'hrsh7th/nvim-cmp', -- Optional: for autocompletion support (recommended)
-    'iguanacucumber/magazine.nvim',
-  },
   keys = {
     { '<leader>ek', '<cmd>EcologPeek<cr>', desc = 'Ecolog peek variable' },
     { '<leader>eg', '<cmd>EcologGotoVar<cr>', desc = 'Ecolog go to env variable' },
@@ -13,8 +9,7 @@ return {
   lazy = false,
   opts = {
     integrations = {
-      nvim_cmp = true, -- If you dont plan to use nvim_cmp set to false, enabled by default
-      -- blink_cmp = true,
+      blink_cmp = true,
     },
     -- Enables shelter mode for sensitive values
     shelter = {
