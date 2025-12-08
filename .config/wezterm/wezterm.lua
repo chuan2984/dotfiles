@@ -30,7 +30,6 @@ toggle_terminal.apply_to_config(config)
 config.window_decorations = "RESIZE"
 config.scrollback_lines = 3000
 config.default_workspace = "work"
-config.enable_kitty_graphics = true
 config.max_fps = 240
 config.text_background_opacity = 0.5
 
