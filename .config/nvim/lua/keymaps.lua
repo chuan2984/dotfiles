@@ -1,10 +1,14 @@
 -- [[ Basic Keymaps ]]
 --  See `:help keymap.set()`
 --
-local opts = { noremap = true, silent = false }
-local keymap = vim.keymap.set
+local default_opts = { noremap = true, silent = false }
 
-vim.keymap.set('i', 'jk', '<Esc>', opts)
+-- Helper function to merge default opts with desc and extra opts
+local function map(mode, lhs, rhs, desc, extra_opts)
+  local final_opts = vim.tbl_extend('force', default_opts, { desc = desc }, extra_opts or {})
+  vim.keymap.set(mode, lhs, rhs, final_opts)
+end
+
 -- Modes
 --   normal_mode = "n",
 --   insert_mode = "i",
@@ -14,86 +18,91 @@ vim.keymap.set('i', 'jk', '<Esc>', opts)
 --   command_mode = "c",
 
 -- config lua helper
-keymap('v', '<leader>xl', "<cmd>:'<,'>lua<CR>", { desc = 'Execute visually selected lines' })
-keymap('n', '<leader>xf', '<cmd>source %<CR>', { desc = 'Execute the current file' })
+map('v', '<leader>xl', "<cmd>:'<,'>lua<CR>", 'Execute visually selected lines')
+map('n', '<leader>xf', '<cmd>source %<CR>', 'Execute the current file')
 
 -- Set highlight on search, but clear on pressing <Esc> in normal mode
 vim.opt.hlsearch = true
-keymap('n', '<Esc>', '<cmd>nohlsearch<CR>')
-keymap({ 'n', 'x' }, 'j', "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
-keymap({ 'n', 'x' }, 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
+map('n', '<Esc>', '<cmd>nohlsearch<CR>')
+map('n', 'j', "v:count == 0 ? 'gj' : 'j'", nil, { expr = true, silent = true })
+map('x', 'j', "v:count == 0 ? 'gj' : 'j'", nil, { expr = true, silent = true })
+map('n', 'k', "v:count == 0 ? 'gk' : 'k'", nil, { expr = true, silent = true })
+map('x', 'k', "v:count == 0 ? 'gk' : 'k'", nil, { expr = true, silent = true })
 
 -- Diagnostic keymaps
-keymap('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' }, opts)
-keymap('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' }, opts)
-keymap('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' }, opts)
+map('n', '[d', function()
+  vim.diagnostic.jump { count = -1 }
+end, 'Go to previous [D]iagnostic message')
+map('n', ']d', function()
+  vim.diagnostic.jump { count = 1 }
+end, 'Go to next [D]iagnostic message')
+map('n', '<leader>e', vim.diagnostic.open_float, 'Show diagnostic [E]rror messages')
 
 -- Currently handled by a plugin
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
 --
 --  See `:help wincmd` for a list of all window commands
---keymap('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' }, opts)
---keymap('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right window' }, opts)
---keymap('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' }, opts)
---keymap('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' }, opts)
+--map('n', '<C-h>', '<C-w><C-h>', 'Move focus to the left window')
+--map('n', '<C-l>', '<C-w><C-l>', 'Move focus to the right window')
+--map('n', '<C-j>', '<C-w><C-j>', 'Move focus to the lower window')
+--map('n', '<C-k>', '<C-w><C-k>', 'Move focus to the upper window')
 
 -- Navigate quickfix list
-keymap('n', ']q', ':cnext<CR>', { desc = 'Go to previous item in quickfix list' }, opts)
-keymap('n', '[q', ':cprevious<CR>', { desc = 'Go to next item in quickfix list' }, opts)
+map('n', ']q', ':cnext<CR>', 'Go to next item in quickfix list')
+map('n', '[q', ':cprevious<CR>', 'Go to previous item in quickfix list')
 
 -- Navigate buffers
-keymap('n', ']b', ':bnext<CR>', opts)
-keymap('n', '[b', ':bprevious<CR>', opts)
-keymap('n', '<leader>bb', '<C-^>', { desc = 'alternate file' }, opts)
+map('n', ']b', ':bnext<CR>', 'Next buffer')
+map('n', '[b', ':bprevious<CR>', 'Previous buffer')
+map('n', '<leader>bb', '<C-^>', 'Alternate file')
 
 -- Visual --
-keymap('v', '>', '>gv', opts)
-keymap('v', '<', '<gv', opts)
+map('v', '>', '>gv', 'Indent right and reselect')
+map('v', '<', '<gv', 'Indent left and reselect')
 
 -- Vertical movement
-keymap('n', '<C-d>', '<C-d>', opts)
-keymap('n', '<C-u>', '<C-u>', opts)
+map('n', '<C-d>', '<C-d>', 'Scroll down half page')
+map('n', '<C-u>', '<C-u>', 'Scroll up half page')
 
 -- Recenter search
-keymap('n', 'n', 'nzv', opts)
-keymap('n', 'N', 'Nzv', opts)
+map('n', 'n', 'nzv', 'Next search result (centered)')
+map('n', 'N', 'Nzv', 'Previous search result (centered)')
 
 -- Paste without yanking the original text
--- Terminal --
-keymap('v', '<Leader>p', '"_dP', opts)
+map('v', '<Leader>p', '"_dP', 'Paste without yanking')
 -- Delete without yanking the original text
-keymap('v', '<Leader>d', '"_d', opts)
-keymap('n', '<Leader>d', '"_d', opts)
-keymap('n', '<Leader>x', '"_x', opts)
-keymap('n', '<Leader>X', '"_X', opts)
+map('v', '<Leader>d', '"_d', 'Delete without yanking')
+map('n', '<Leader>d', '"_d', 'Delete without yanking')
+map('n', '<Leader>x', '"_x', 'Delete char without yanking')
+map('n', '<Leader>X', '"_X', 'Delete char backward without yanking')
 
-keymap('n', '<leader>cpr', function()
+map('n', '<leader>cpr', function()
   local abs_file_path = vim.fn.expand '%:p'
   local git_root = Snacks.git.get_root()
   local rel_file_path = abs_file_path:sub(#git_root + 2)
   vim.fn.setreg('+', rel_file_path)
   vim.notify('Copied relative_path to system clipboard: ' .. rel_file_path)
-end, { desc = '[copy] [p]ath [r]elative' })
+end, '[C]opy [p]ath [r]elative')
 
-keymap('n', '<leader>cpa', '<cmd>let @+ = expand("%:p")<CR>', { desc = '[C]opy [p]ath [a]bsolute' }, opts)
+map('n', '<leader>cpa', '<cmd>let @+ = expand("%:p")<CR>', '[C]opy [p]ath [a]bsolute')
 
 -- Terminal --
 -- Better terminal navigation
--- keymap('t', '<C-h>', '<C-\\><C-N><C-w>h', term_opts)
--- keymap('t', '<C-j>', '<C-\\><C-N><C-w>j', term_opts)
--- keymap('t', '<C-k>', '<C-\\><C-N><C-w>k', term_opts)
--- keymap('t', '<C-l>', '<C-\\><C-N><C-w>l', term_opts)
+-- map('t', '<C-h>', '<C-\\><C-N><C-w>h', 'Move focus to the left window')
+-- map('t', '<C-j>', '<C-\\><C-N><C-w>j', 'Move focus to the lower window')
+-- map('t', '<C-k>', '<C-\\><C-N><C-w>k', 'Move focus to the upper window')
+-- map('t', '<C-l>', '<C-\\><C-N><C-w>l', 'Move focus to the right window')
 
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
-keymap('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+map('t', '<Esc><Esc>', '<C-\\><C-n>', 'Exit terminal mode')
 
 -- Custom Neovim Tips
 require('neovim_tips').setup {
   daily_tip = true,
 }
-keymap('n', '<leader>vt', '<cmd>NeovimTips<cr>', { desc = 'Neovim Tips' })
-keymap('n', '<leader>vT', '<cmd>NeovimTipsRandom<cr>', { desc = 'Random Neovim Tip' })
+map('n', '<leader>vt', '<cmd>NeovimTips<cr>', 'Neovim Tips')
+map('n', '<leader>vT', '<cmd>NeovimTipsRandom<cr>', 'Random Neovim Tip')
 
 -- vim: ts=2 sts=2 sw=2 et
