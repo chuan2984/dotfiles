@@ -2,19 +2,19 @@ return {
   'NeogitOrg/neogit',
   keys = {
     {
-      '<leader>gs',
+      '<leader>ggs',
       mode = 'n',
       ':Neogit kind=auto<CR>',
       desc = 'Git status',
     },
     {
-      '<leader>gp',
+      '<leader>ggp',
       mode = 'n',
       ':Neogit pull<CR>',
       desc = 'Git pull',
     },
     {
-      '<leader>gP',
+      '<leader>ggP',
       mode = 'n',
       ':Neogit push<CR>',
       desc = 'Git push',
