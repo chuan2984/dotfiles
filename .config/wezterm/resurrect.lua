@@ -1,9 +1,8 @@
 local wezterm = require("wezterm")
-local resurrect = wezterm.plugin.require("https://github.com/MLFlexer/resurrect.wezterm")
+local resurrect = wezterm.plugin.require("https://github.com/chuan2984/resurrect.wezterm")
 local M = {}
 
 M.apply_to_config = function(config)
-	resurrect.state_manager.periodic_save()
 	local home = os.getenv("HOME")
 	local sep = package.config:sub(1, 1)
 
@@ -13,15 +12,16 @@ M.apply_to_config = function(config)
 		key = "R",
 		mods = "LEADER",
 		action = wezterm.action_callback(function(win, pane)
-			resurrect.fuzzy_loader.fuzzyload(win, pane, function(id, _)
+			resurrect.fuzzy_loader.fuzzy_load(win, pane, function(id, _)
 				local type = string.match(id, "^([^/]+)") -- match before '/'
 				id = string.match(id, "([^/]+)$") -- match after '/'
 				id = string.match(id, "(.+)%..+$") -- remove file extention
 				local opts = {
-					window = pane:window(), -- use current window, leave it out for new window
 					relative = true,
-					restore_text = true,
+					restore_text = false,
 					on_pane_restore = resurrect.tab_state.default_on_pane_restore,
+					close_open_tabs = true,
+					window = pane:window(),
 				}
 				if type == "workspace" then
 					local state = resurrect.state_manager.load_state(id, "workspace")
@@ -48,10 +48,19 @@ M.apply_to_config = function(config)
 			}),
 			action = wezterm.action_callback(function(window, _, line)
 				if line then
-					current_name = wezterm.mux.get_active_workspace()
+					local current_name = wezterm.mux.get_active_workspace()
+					local mappings = resurrect.workspace_mappings
+					
+					-- Rename workspace
 					wezterm.mux.rename_workspace(current_name, line)
-					resurrect.state_manager.save_state(resurrect.get_workspace_state())
-					resurrect.state_manager.delete_state(current_name)
+					
+					-- Update mapping (keeps same path, changes workspace name)
+					mappings.update_workspace_name(current_name, line)
+					
+					-- Save state (will use path-based state ID from mapping)
+					resurrect.state_manager.save_state(resurrect.workspace_state.get_workspace_state())
+					
+					-- NO LONGER DELETE OLD STATE - state file name doesn't change!
 				end
 			end),
 		}),
@@ -75,19 +84,45 @@ M.apply_to_config = function(config)
 	-- loads the state whenever I create a new workspace
 	wezterm.on("smart_workspace_switcher.workspace_switcher.created", function(window, path, label)
 		local workspace_state = resurrect.workspace_state
-
-		workspace_state.restore_workspace(resurrect.state_manager.load_state(label, "workspace"), {
+		local mappings = resurrect.workspace_mappings
+		
+		-- Get current workspace name (might be custom or path-based)
+		local workspace_name = window:active_workspace()
+		
+		-- Save mapping between workspace and path
+		mappings.set_mapping(workspace_name, path)
+		
+		-- Load state using path-based state ID
+		local state_id = mappings.path_to_state_id(path)
+		
+		workspace_state.restore_workspace(resurrect.state_manager.load_state(state_id, "workspace"), {
 			window = window,
 			relative = true,
 			restore_text = true,
 			on_pane_restore = resurrect.tab_state.default_on_pane_restore,
+			close_open_tabs = true,
 		})
 	end)
 
 	wezterm.on("smart_workspace_switcher.workspace_switcher.selected", function(window, path, label)
 		local workspace_state = resurrect.workspace_state
+		local mappings = resurrect.workspace_mappings
+		
+		-- Get current workspace name
+		local workspace_name = window:active_workspace()
+		
+		-- Update mapping if path is provided (might be switching to existing workspace)
+		if path and path ~= "" then
+			mappings.set_mapping(workspace_name, path)
+		end
+		
+		-- Save state
 		resurrect.state_manager.save_state(workspace_state.get_workspace_state())
 	end)
+
+	-- Periodic save and GUI startup resurrection
+	resurrect.state_manager.periodic_save()
+	wezterm.on("gui-startup", resurrect.state_manager.resurrect_on_gui_startup)
 end
 
 return M
