@@ -41,6 +41,7 @@
 	enabled = true
 [pull]
 	rebase = true
+	conflictStyle=diff3
 [column]
 	ui = auto
 [rebase]
@@ -50,7 +51,8 @@
 [maintenance]
 	strategy = incremental
 	auto = false
+	repo = /Users/chuanhe/github/work/fieldwire_api
 [diff]
 	tool = nvimdiff
 [merge]
-	tool = nvimdiff2
+	conflictStyle=diff3
