@@ -69,3 +69,7 @@ Interactors
 wezterm
 tmux
 opencode
+extraction_strategy
+BlockExtractor
+systems
+filesystems
