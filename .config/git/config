@@ -6,6 +6,7 @@
 	excludesfile = ~/.config/git/ignore
 [alias]
 	whoami = config user.email
+  jump = "!$(brew --prefix git)/share/git-core/contrib/git-jump/git-jump"
 	lgb = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset%n' --abbrev-commit --date=relative --branches
 	bb = !~/.config/git/scripts/better-branch.sh
 	blamec = blame -w -C -C -C -L
