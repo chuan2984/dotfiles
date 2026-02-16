@@ -68,7 +68,7 @@ alt - 0 : yabai -m space --focus recent
 # move window and focus desktop
 shift + alt - m : yabai -m window --space last; yabai -m space --focus last
 shift + alt - p : yabai -m window --space prev; yabai -m space --focus prev
-shift + alt - n : yabai -m window --space next; yabai -m space --focus next
+# shift + alt - n : yabai -m window --space next; yabai -m space --focus next  # disabled in favor of floating notes toggle
 
 # resize window
 shift + alt +cmd - h : yabai -m window --resize right:-600:0 2> /dev/null || yabai -m window --resize left:-600:0 2> /dev/null
@@ -79,3 +79,5 @@ shift + alt +cmd - l : yabai -m window --resize right:600:0 2> /dev/null || yaba
 # restart yabai
 shift + alt - r: yabai --restart-service
 
+# toggle floating notes
+shift + alt - n : $HOME/dotfiles/.config/wezterm/toggle_floating_notes.sh
