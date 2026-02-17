@@ -110,7 +110,7 @@ M.setup = function()
   -- |     ||     ||        ||               ||         |
   -- └-----┘└-----┘└--------┘|               |└---------┘
   --                         └---------------┘
-  local widths = { 40, 50, 10 }
+  local widths = { 35, 40, 10 }
 
   local ensure_center_layout = function(ev)
     local state = MiniFiles.get_explorer_state()
