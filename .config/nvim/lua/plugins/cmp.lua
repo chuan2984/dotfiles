@@ -26,7 +26,7 @@ return {
       -- elsewhere in your config, without redefining it, due to `opts_extend`
       sources = {
         default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer', 'ecolog' },
-        per_file_type = {
+        per_filetype = {
           sql = { 'dadbod' },
           lua = { inherit_defaults = true, 'lazydev' },
         },

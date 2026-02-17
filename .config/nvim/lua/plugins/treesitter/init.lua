@@ -46,8 +46,15 @@ return {
         'lazy',
         'mason',
         'snacks_dashboard',
+        'snacks_terminal',
+        'snacks_picker_preview',
+        'snacks_win_drop',
+        'snacks_win_backdrop',
         'snacks_notif',
         'snacks_win',
+        'blink-cmp-menu',
+        'fidget',
+        'minifiles',
       }
 
       -- Auto-install parsers and enable highlighting on FileType

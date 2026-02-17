@@ -68,16 +68,23 @@ return {
         -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
         template = 'Daily template.md',
       },
-
-      completion = {
-        -- Using oxide, lsp, to do this instead
-        nvim_cmp = false,
-        -- Trigger completion at 2 chars.
-        min_chars = 2,
-      },
-
       frontmatter = {
         enable = false,
+      },
+      callback = {
+        enter_note = function(_, note)
+          vim.ui.open = (function(overridden)
+            return function(uri, opt)
+              if vim.endswith(uri, '.png') then
+                vim.cmd('edit ' .. uri) -- early return to just open in neovim
+                return
+              elseif vim.endswith(uri, '.pdf') then
+                opt = { cmd = { 'zathura' } } -- override open app
+              end
+              return overridden(uri, opt)
+            end
+          end)(vim.ui.open)
+        end,
       },
       -- This configuration for lighlight and conceal does not work, replicated at the bottom
       -- This requires you have `conceallevel` set to 1 or 2. See `:help conceallevel` for more details.
@@ -105,15 +112,6 @@ return {
         },
       },
 
-      -- Optional, by default when you use `:ObsidianFollowLink` on a link to an external
-      -- URL it will be ignored but you can customize this behavior here.
-      ---@param url string
-      follow_url_func = function(url)
-        -- Open the URL in the default web browser.
-        vim.fn.jobstart { 'open', url } -- Mac OS
-        -- vim.fn.jobstart({"xdg-open", url})  -- linux
-      end,
-
       picker = {
         -- Set your preferred picker. Can be one of 'telescope.nvim', 'fzf-lua', 'mini.pick' or 'snacks.pick'.
         name = 'snacks.pick',
@@ -122,8 +120,10 @@ return {
       -- Optional, sort search results by "path", "modified", "accessed", or "created".
       -- The recommend value is "modified" and `true` for `sort_reversed`, which means, for example,
       -- that `:ObsidianQuickSwitch` will show the notes sorted by latest modified time
-      sort_by = 'modified',
-      sort_reversed = true,
+      search = {
+        sort_by = 'modified',
+        sort_reversed = true,
+      },
 
       -- Optional, determines how certain commands open notes. The valid options are:
       -- 1. "current" (the default) - to always open in the current window
@@ -131,7 +131,7 @@ return {
       -- 3. "hsplit" - to open in a horizontal split if there's not already a horizontal split
       open_notes_in = 'current',
       attachments = {
-        img_folder = 'Assets/imgs',
+        folder = 'Assets/imgs',
       },
     }
 
