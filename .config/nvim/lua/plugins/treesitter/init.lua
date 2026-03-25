@@ -40,12 +40,18 @@ return {
       }
 
       local group = vim.api.nvim_create_augroup('TreesitterSetup', { clear = true })
-
       local ignore_filetypes = {
         'checkhealth',
         'lazy',
+        'bigfile',
+        'snacks_win_help',
         'mason',
         'snacks_dashboard',
+        'VoltWindow',
+        'typr',
+        'snacks_picker_list',
+        'snacks_picker_input',
+        'snacks_layout_box',
         'snacks_terminal',
         'snacks_picker_preview',
         'snacks_win_drop',
@@ -53,9 +59,16 @@ return {
         'snacks_notif',
         'snacks_win',
         'blink-cmp-menu',
+        'blink-cmp-documentation',
         'fidget',
+        'opencode-ask',
+        'NeogitStatus',
+        'qf',
+        'dbui',
         'minifiles',
       }
+
+      require('plugins.treesitter.navigator').setup()
 
       -- Auto-install parsers and enable highlighting on FileType
       vim.api.nvim_create_autocmd('FileType', {
