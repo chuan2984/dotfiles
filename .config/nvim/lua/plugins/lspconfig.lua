@@ -154,7 +154,7 @@ return {
           os.getenv 'HOME' .. '/.rbenv/shims/bundle',
           'exec',
           '--gemfile',
-          os.getenv 'HOME' .. '/github/work/fieldwire_api/.ruby-lsp/Gemfile',
+          os.getenv 'HOME' .. '/github/work/fieldwire_api/Gemfile',
           'ruby-lsp',
         },
         on_attach = function(client, buffer)
