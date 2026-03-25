@@ -31,7 +31,7 @@ return {
           lua = { inherit_defaults = true, 'lazydev' },
         },
         providers = {
-          dadbad = { module = 'vim_dadbod_completion.blink' },
+          dadbod = { name = 'dadbod', module = 'vim_dadbod_completion.blink' },
           ecolog = { name = 'ecolog', module = 'ecolog.integrations.cmp.blink_cmp' },
           lazydev = { name = 'LazyDev', module = 'lazydev.integrations.blink', score_offset = 100 },
           snippets = {
