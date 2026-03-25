@@ -122,7 +122,6 @@ return {
     local smartsplits = require 'smart-splits'
     smartsplits.setup {
       default_amount = 10,
-      at_edge = 'split',
     }
 
     vim.api.nvim_create_augroup('AutoResizeSplits', { clear = true })
