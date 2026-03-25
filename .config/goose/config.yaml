@@ -1,8 +1,8 @@
-ANTHROPIC_HOST: https://api.anthropic.com
-GOOSE_MODEL: gpt-4o-mini
-GOOSE_PROVIDER: openai
-OPENAI_BASE_PATH: v1/chat/completions
+GOOSE_MODEL: claude-sonnet-4.5
+GOOSE_PROVIDER: github_copilot
+GOOSE_MODE: auto
 OPENAI_HOST: https://api.openai.com
+ANTHROPIC_HOST: https://api.anthropic.com
 extensions:
   computercontroller:
     bundled: true
@@ -43,3 +43,4 @@ extensions:
     name: mcp-server-git
     timeout: 60
     type: stdio
+OPENAI_BASE_PATH: v1/chat/completions
