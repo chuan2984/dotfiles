@@ -1,12 +1,13 @@
 return {
   {
     'NickvanDyke/opencode.nvim',
+    lazy = false,
     dependencies = {
       'folke/snacks.nvim',
     },
     keys = {
       {
-        '<leader>gg',
+        '<c-g>g',
         function()
           require('opencode').ask('@this: ', { submit = true })
         end,
@@ -14,7 +15,7 @@ return {
         desc = 'Ask opencode',
       },
       {
-        '<leader>gx',
+        '<c-g>x',
         function()
           require('opencode').select()
         end,
@@ -22,7 +23,7 @@ return {
         desc = 'Execute opencode action…',
       },
       {
-        '<leader>ga',
+        '<c-g>a',
         function()
           require('opencode').prompt '@this'
         end,
@@ -30,7 +31,7 @@ return {
         desc = 'Add to opencode',
       },
       {
-        '<leader>g;',
+        '<c-g>;',
         function()
           require('opencode').toggle()
         end,
@@ -38,7 +39,7 @@ return {
         desc = 'Toggle opencode',
       },
       {
-        '<leader><C-u>',
+        '<c-g><C-u>',
         function()
           require('opencode').command 'session.half.page.up'
         end,
@@ -46,7 +47,7 @@ return {
         desc = 'opencode half page up',
       },
       {
-        '<leader><C-d>',
+        '<c-g><C-d>',
         function()
           require('opencode').command 'session.half.page.down'
         end,
@@ -55,22 +56,33 @@ return {
       },
     },
     config = function()
+      local opencode_cmd = 'opencode --port'
+      ---@type snacks.terminal.Opts
+      local snacks_terminal_opts = {
+        win = {
+          position = 'right',
+          enter = false,
+          on_win = function(win)
+            require('opencode.terminal').setup(win.win)
+          end,
+        },
+      }
       ---@type opencode.Opts
       vim.g.opencode_opts = {
-        events = {
-          session_diff = {
-            enabled = true,
-            diff_mode = 'enhanced',
-          },
+        server = {
+          start = function()
+            require('snacks.terminal').open(opencode_cmd, snacks_terminal_opts)
+          end,
+          stop = function()
+            require('snacks.terminal').get(opencode_cmd, snacks_terminal_opts):close()
+          end,
+          toggle = function()
+            require('snacks.terminal').toggle(opencode_cmd, snacks_terminal_opts)
+          end,
         },
-        provider = {
-          enabled = 'wezterm',
-          wezterm = {
-            direction = 'right',
-            percent = 40,
-            top_level = false,
-          },
-        },
+        -- lsp = {
+        --   enabled = true,
+        -- },
       }
 
       -- Required for `opts.events.reload`.
