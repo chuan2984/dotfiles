@@ -89,10 +89,10 @@ map('n', '<leader>cpa', '<cmd>let @+ = expand("%:p")<CR>', '[C]opy [p]ath [a]bso
 
 -- Terminal --
 -- Better terminal navigation
--- map('t', '<C-h>', '<C-\\><C-N><C-w>h', 'Move focus to the left window')
--- map('t', '<C-j>', '<C-\\><C-N><C-w>j', 'Move focus to the lower window')
--- map('t', '<C-k>', '<C-\\><C-N><C-w>k', 'Move focus to the upper window')
--- map('t', '<C-l>', '<C-\\><C-N><C-w>l', 'Move focus to the right window')
+map('t', '<C-h>', '<C-\\><C-N><C-w>h', 'Move focus to the left window')
+map('t', '<C-j>', '<C-\\><C-N><C-w>j', 'Move focus to the lower window')
+map('t', '<C-k>', '<C-\\><C-N><C-w>k', 'Move focus to the upper window')
+map('t', '<C-l>', '<C-\\><C-N><C-w>l', 'Move focus to the right window')
 
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
