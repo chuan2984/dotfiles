@@ -269,9 +269,41 @@ M.ts_tree_display = function()
     end
   end
 
+  -- Find current node index among siblings
+  local current_idx = nil
   for i, child in ipairs(children) do
+    if child:id() == node:id() then
+      current_idx = i
+      break
+    end
+  end
+
+  -- Determine visible window of siblings (show ~5 before and ~5 after current)
+  local window_size = 10
+  local start_idx = 1
+  local end_idx = #children
+
+  if current_idx and #children > window_size then
+    -- Center the current node in the window
+    start_idx = math.max(1, current_idx - 5)
+    end_idx = math.min(#children, start_idx + window_size - 1)
+
+    -- Adjust if we hit the end
+    if end_idx == #children and end_idx - start_idx < window_size - 1 then
+      start_idx = math.max(1, end_idx - window_size + 1)
+    end
+  end
+
+  -- Show ellipsis if there are more siblings above
+  if start_idx > 1 then
+    table.insert(lines, conf.icons.branch_mid .. '⋯ (' .. (start_idx - 1) .. ' more above)')
+  end
+
+  for i = start_idx, end_idx do
+    local child = children[i]
     local is_last = (i == #children)
-    local marker = is_last and conf.icons.branch_end or conf.icons.branch_mid
+    local is_last_visible = (i == end_idx)
+    local marker = (is_last or is_last_visible) and conf.icons.branch_end or conf.icons.branch_mid
     local is_target = (child:id() == node:id())
 
     table.insert(lines, marker .. child:type())
@@ -279,7 +311,7 @@ M.ts_tree_display = function()
     if is_target then
       table.insert(highlights, { #lines - 1, conf.highlights.tree_node })
 
-      local indent = is_last and conf.icons.indent_end or conf.icons.indent_mid
+      local indent = (is_last or is_last_visible) and conf.icons.indent_end or conf.icons.indent_mid
       local grandchildren = {}
       for j = 0, child:child_count() - 1 do
         local grandchild = child:child(j)
@@ -293,6 +325,11 @@ M.ts_tree_display = function()
         table.insert(lines, indent .. g_marker .. grandchild:type())
       end
     end
+  end
+
+  -- Show ellipsis if there are more siblings below
+  if end_idx < #children then
+    table.insert(lines, conf.icons.branch_end .. '⋯ (' .. (#children - end_idx) .. ' more below)')
   end
 
   local width = 0
