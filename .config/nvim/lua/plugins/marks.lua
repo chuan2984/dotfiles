@@ -6,19 +6,6 @@ return {
         delete = '<leader>br',
       },
       enable_persist = true,
-      orientation = 'centered',
-      style = {
-        border = 'single', -- 'single', 'double', 'rounded', 'solid', 'none', or custom array
-        border_hl = 'FloatBorder', -- Highlight group for borders
-        title_pos = 'center', -- 'left', 'center', 'right'
-        winblend = 0, -- 0-100, window transparency
-        background_hl = nil, -- Highlight group for background (nil = default)
-        -- Text highlights
-        hl_stack_name = 'Title', -- Stack name in header
-        hl_bookmark_idx = 'Number', -- Bookmark index numbers
-        hl_bookmark_path = 'Normal', -- File paths
-        hl_bookmark_alias = 'Comment', -- Bookmark aliases
-      },
       enable_status_col_display = true,
       fuzzy_search_provider = 'snacks',
       statusline_prefix = '',
