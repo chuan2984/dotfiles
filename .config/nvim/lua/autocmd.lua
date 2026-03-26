@@ -64,7 +64,8 @@ vim.api.nvim_create_autocmd({ 'BufLeave', 'FocusLost' }, {
   pattern = '*',
   callback = function(event)
     local writable_buffer = vim.bo[event.buf].modifiable and vim.bo[event.buf].buftype == ''
-    local file_exists = vim.fn.expand '%' ~= ''
+    local filename = vim.fn.expand '%'
+    local file_exists = filename ~= '' and vim.fn.filereadable(filename) == 1
     local saved_recently = (vim.b.timestamp or 0) == vim.fn.localtime()
     local being_formatted = (vim.b.saving_format or false)
 
