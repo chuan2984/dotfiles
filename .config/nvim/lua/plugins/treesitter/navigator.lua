@@ -82,6 +82,7 @@ local function clear_transient_keymaps()
       get_transient_key 'prev',
       get_transient_key 'node_start',
       get_transient_key 'node_end',
+      'q', -- quit key
     }
     for _, key in ipairs(keys) do
       if key then
@@ -91,6 +92,17 @@ local function clear_transient_keymaps()
       end
     end
   end
+end
+
+local function close_tree_win()
+  if state.tree_win and vim.api.nvim_win_is_valid(state.tree_win) then
+    vim.api.nvim_win_close(state.tree_win, true)
+  end
+  state.tree_win = nil
+  clear_highlights()
+  clear_transient_keymaps()
+  state.source_buf = nil
+  vim.api.nvim_clear_autocmds { group = state.tree_grp }
 end
 
 local function set_transient_keymaps()
@@ -112,18 +124,10 @@ local function set_transient_keymaps()
     set('prev', M.goto_prev)
     set('node_start', M.goto_node_start)
     set('node_end', M.goto_node_end)
-  end
-end
 
-local function close_tree_win()
-  if state.tree_win and vim.api.nvim_win_is_valid(state.tree_win) then
-    vim.api.nvim_win_close(state.tree_win, true)
+    -- Add 'q' to quit transient mode
+    vim.keymap.set({ 'n', 'v' }, 'q', close_tree_win, opts)
   end
-  state.tree_win = nil
-  clear_highlights()
-  clear_transient_keymaps()
-  state.source_buf = nil
-  vim.api.nvim_clear_autocmds { group = state.tree_grp }
 end
 
 local function dive_into_block(node)
@@ -329,7 +333,7 @@ M.ts_tree_display = function()
         if state.is_navigating then
           return
         end
-        if ev.event == 'CursorMoved' and get_sticky_node() then
+        if ev.event == 'CursorMoved' and state.sticky_node then
           return
         end
         close_tree_win()
