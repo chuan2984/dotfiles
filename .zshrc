@@ -26,6 +26,7 @@ function vim-htag() {
 }
 
 # Aliases
+alias tsm='bin/ticketsmith'
 if command -v eza &>/dev/null; then
   alias ls='eza' # with -F maybe?
   alias la='eza -a'
