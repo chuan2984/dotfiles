@@ -31,6 +31,11 @@ function module.apply_to_config(config)
   end)
 
   wezterm.on("update-status", function(window, pane)
+    -- Check if pane is valid before proceeding
+    if not pane then
+      return
+    end
+
     -- Workspace name
     local stat = window:active_workspace()
     local stat_color = "#fcba03"
@@ -51,23 +56,29 @@ function module.apply_to_config(config)
     end
 
     -- Current working directory
-    local cwd = pane:get_current_working_dir()
-    if cwd then
-      if type(cwd) == "userdata" then
+    local cwd = ""
+    local success, result = pcall(function()
+      return pane:get_current_working_dir()
+    end)
+    if success and result then
+      if type(result) == "userdata" then
         -- Wezterm introduced the URL object in 20240127-113634-bbcac864
-        cwd = basename(cwd.file_path)
+        cwd = basename(result.file_path)
       else
         -- 20230712-072601-f4abf8fd or earlier version
-        cwd = basename(cwd)
+        cwd = basename(result)
       end
-    else
-      cwd = ""
     end
 
     -- Current command
-    local cmd = pane:get_foreground_process_name()
+    local cmd = ""
+    local success_cmd, result_cmd = pcall(function()
+      return pane:get_foreground_process_name()
+    end)
     -- CWD and CMD could be nil (e.g. viewing log using Ctrl-Alt-l)
-    cmd = cmd and basename(cmd) or ""
+    if success_cmd and result_cmd then
+      cmd = basename(result_cmd)
+    end
 
     -- Time
     local time = wezterm.strftime("%H:%M")
