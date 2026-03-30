@@ -1,5 +1,3 @@
-require("backdrops"):set_files():random()
-
 require("startup")
 ---@type Wezterm
 local wezterm = require("wezterm")
@@ -26,6 +24,10 @@ resurrect.apply_to_config(config)
 
 local toggle_terminal = wezterm.plugin.require("https://github.com/zsh-sage/toggle_terminal.wez")
 toggle_terminal.apply_to_config(config)
+
+-- Initialize backdrops AFTER all other modules to avoid circular dependency
+-- (backdrops is also required by keymaps, so we load it last)
+require("backdrops"):set_files():random()
 
 config.window_decorations = "RESIZE"
 config.scrollback_lines = 3000
