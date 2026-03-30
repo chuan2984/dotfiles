@@ -134,6 +134,16 @@ source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zs
 source ~/.config/zsh-plugins/termfile_download.sh
 export JIRA_API_TOKEN=ATATT3xFfGF0v3U8cr8d0PUZDRajP0gcQ4Hr1KJy0HP1YH69nSvSpCVd7_7-uy901ZbwEkOtRZBca1NWwfwLd_jjpL3RQDsdaF3PuS9DKUF8xvvGs9Fq1nGDdUBTcL7ronZNbYnum8FEQvsLbdiSpdOWm9YPYo30roEdNVKJI4vfKI-wT0PMcGw=65F9BE62
 
+# This is required for wezterm resurrect to save whenever pwd changes
+# refer to README of event-driven saving of state
+_wezterm_precmd() {
+  if [[ "$PWD" != "$_WEZTERM_LAST_PWD" ]]; then
+    _WEZTERM_LAST_PWD="$PWD"
+    printf "\033]1337;SetUserVar=WEZTERM_SAVE=%s\007" "$(printf 1 | base64)"
+  fi
+}
+precmd_functions+=(_wezterm_precmd)
+
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="$HOME/.sdkman"
 [[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
