@@ -3,7 +3,7 @@
 # Paths
 CONFIG_DIR="$HOME/dotfiles/.config/wezterm"
 CONFIG_FILE="$CONFIG_DIR/floating_notes.lua"
-SHARED_CONFIG="$CONFIG_DIR/floating_notes_config.json"
+SHARED_CONFIG="$CONFIG_DIR/config/floating_notes.json"
 
 # Parse settings from shared JSON config
 WINDOW_TITLE=$(jq -r '.window_title' "$SHARED_CONFIG")

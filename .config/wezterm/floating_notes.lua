@@ -4,7 +4,7 @@ local mux = wezterm.mux
 local act = wezterm.action
 
 -- Load shared config from JSON (cached at startup)
-local config_file = io.open(wezterm.config_dir .. "/floating_notes_config.json")
+local config_file = io.open(wezterm.config_dir .. "/config/floating_notes.json")
 local notes_config = wezterm.json_parse(config_file:read("*a"))
 config_file:close()
 
