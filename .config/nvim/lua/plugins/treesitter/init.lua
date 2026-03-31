@@ -57,6 +57,7 @@ return {
         'snacks_win_drop',
         'snacks_win_backdrop',
         'snacks_notif',
+        'flash_prompt',
         'snacks_notif_history',
         'snacks_win',
         'blink-cmp-menu',

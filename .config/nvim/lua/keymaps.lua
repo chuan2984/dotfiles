@@ -88,11 +88,41 @@ end, '[C]opy [p]ath [r]elative')
 map('n', '<leader>cpa', '<cmd>let @+ = expand("%:p")<CR>', '[C]opy [p]ath [a]bsolute')
 
 -- Terminal --
--- Better terminal navigation
-map('t', '<C-h>', '<C-\\><C-N><C-w>h', 'Move focus to the left window')
-map('t', '<C-j>', '<C-\\><C-N><C-w>j', 'Move focus to the lower window')
-map('t', '<C-k>', '<C-\\><C-N><C-w>k', 'Move focus to the upper window')
-map('t', '<C-l>', '<C-\\><C-N><C-w>l', 'Move focus to the right window')
+-- Better terminal navigation (disabled in lazygit buffers to avoid conflicts)
+local function term_nav(key, fallback)
+  return function()
+    local buf_name = vim.api.nvim_buf_get_name(0)
+    if buf_name:match 'lazygit' then
+      return key
+    end
+    return fallback
+  end
+end
+
+vim.keymap.set(
+  't',
+  '<C-h>',
+  term_nav('<C-h>', '<C-\\><C-N><C-w>h'),
+  { expr = true, noremap = true, silent = true, desc = 'Move focus to the left window' }
+)
+vim.keymap.set(
+  't',
+  '<C-j>',
+  term_nav('<C-j>', '<C-\\><C-N><C-w>j'),
+  { expr = true, noremap = true, silent = true, desc = 'Move focus to the lower window' }
+)
+vim.keymap.set(
+  't',
+  '<C-k>',
+  term_nav('<C-k>', '<C-\\><C-N><C-w>k'),
+  { expr = true, noremap = true, silent = true, desc = 'Move focus to the upper window' }
+)
+vim.keymap.set(
+  't',
+  '<C-l>',
+  term_nav('<C-l>', '<C-\\><C-N><C-w>l'),
+  { expr = true, noremap = true, silent = true, desc = 'Move focus to the right window' }
+)
 
 -- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
 -- or just use <C-\><C-n> to exit terminal mode
