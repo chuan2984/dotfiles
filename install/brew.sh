@@ -15,7 +15,7 @@ if ! grep -q 'brew shellenv' "$HOME/.zprofile" 2>/dev/null; then
 else
   echo "PATH entry already present in .zprofile — skipping."
 fi
-eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+source "$HOME/.zprofile"
 
 echo "Installing homebrew packages..."
 
