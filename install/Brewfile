@@ -12,6 +12,7 @@ brew "ack"
 brew "bash"
 brew "bash-completion"
 brew "bat"
+brew "btop"
 brew "fd"
 brew "fzf"
 brew "gh"
@@ -24,7 +25,6 @@ brew "zsh-syntax-highlighting"
 brew "zsh-vi-mode"
 brew "glow"
 brew "lnav"
-brew "block-goose-cli"
 
 # languages
 brew "python"
@@ -51,8 +51,8 @@ brew "koekeishiya/formulae/skhd"
 brew "koekeishiya/formulae/yabai"
 
 # general
-cask "hammerspoon"
-cask "1password"
+# cask "hammerspoon", not needed right now
+# cask "1password", come installed usually
 cask "1password-cli"
 
 # work
@@ -68,12 +68,10 @@ cask "font-noto-sans-mono-cjk-jp"
 cask "font-noto-sans-mono-cjk-kr"
 cask "appcleaner"
 cask "betterzip"
-cask "ubersicht"
+# cask "ubersicht"
 cask "ast-grep"
-# install amphetamin instead
-cask "dozer"
+cask "amphetamine"
 cask "keycastr"
 cask "wezterm"
-cask "obsidian"
 cask "arc"
 cask "alt-tab"
