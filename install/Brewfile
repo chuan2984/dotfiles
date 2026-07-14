@@ -45,6 +45,7 @@ brew "nvimpager"
 brew "universal-ctags"
 brew "zoxide"
 brew "task"
+brew "ast-grep"
 brew "taskwarrior-tui"
 brew "felixkratz/formulae/borders"
 brew "koekeishiya/formulae/skhd"
@@ -60,6 +61,7 @@ cask "postman"
 brew "jira-cli"
 
 # personal
+cask "jordanbaird-ice"
 cask "font-jetbrains-mono-nerd-font"
 cask "font-departure-mono-nerd-font"
 cask "font-noto-sans-mono-cjk-sc"
@@ -69,7 +71,6 @@ cask "font-noto-sans-mono-cjk-kr"
 cask "appcleaner"
 cask "betterzip"
 # cask "ubersicht", not very useful
-cask "ast-grep"
 # install "amphetamine" from AppStore
 cask "keycastr"
 cask "wezterm"
