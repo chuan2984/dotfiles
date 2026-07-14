@@ -1,10 +1,5 @@
 #!/bin/bash
 
-if command -v brew >/dev/null 2>&1; then
-  echo "Homebrew is already installed — nothing to do."
-  exit 0
-fi
-
 # -p makes it safe even if it already exists
 mkdir -p temp_brew_install
 cd temp_brew_install
