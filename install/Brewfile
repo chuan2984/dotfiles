@@ -68,9 +68,9 @@ cask "font-noto-sans-mono-cjk-jp"
 cask "font-noto-sans-mono-cjk-kr"
 cask "appcleaner"
 cask "betterzip"
-# cask "ubersicht"
+# cask "ubersicht", not very useful
 cask "ast-grep"
-cask "amphetamine"
+# install "amphetamine" from AppStore
 cask "keycastr"
 cask "wezterm"
 cask "arc"
