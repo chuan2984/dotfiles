@@ -1,13 +1,10 @@
 # general
-tap "homebrew/bundle"
-tap "homebrew/cask-fonts"
-tap "homebrew/cask-versions"
-tap "homebrew/services"
-tap "1password/tap"
-tap "ankitpokhrel/jira-cli"
+tap "ankitpokhrel/jira-cli", trusted: true
+tap "1password/tap", trusted: true
+
 # personal
-tap "koekeishiya/formulae" # yabai
-tap "felixkratz/formulae"  # borders
+tap "koekeishiya/formulae", trusted: true # yabai
+tap "felixkratz/formulae", trusted: true  # borders
 
 # general
 brew "tldr"
