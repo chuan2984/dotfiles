@@ -10,8 +10,7 @@ M.setup = function()
 
   ---@diagnostic disable-next-line: duplicate-set-field
   statusline.section_location = function()
-    local bookmark_icon = '󰞁 '
-    return bookmark_icon
+    return require('opencode').statusline()
   end
 
   -- Function to get the number of open buffers using the :ls command
