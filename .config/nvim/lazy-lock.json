@@ -55,7 +55,6 @@
   "rittli.nvim": { "branch": "main", "commit": "271755de75e5b1e0fd9fee2bfceee3b8db8ecf61" },
   "smart-splits.nvim": { "branch": "master", "commit": "96afd5d3b029ac354aaa369fb33b4613a0bbf2f0" },
   "snacks.nvim": { "branch": "main", "commit": "ad9ede6a9cddf16cedbd31b8932d6dcdee9b716e" },
-  "spelunk.nvim": { "branch": "main", "commit": "213c65863d80f5625c25405243d176ed11dc3740" },
   "tiny-inline-diagnostic.nvim": { "branch": "main", "commit": "ba133b3e932416e4b9507095731a6d7276878fe8" },
   "todo-comments.nvim": { "branch": "main", "commit": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668" },
   "tree-sitter-d2": { "branch": "main", "commit": "ffb66ce4c801a1e37ed145ebd5eca1ea8865e00f" },

@@ -10,18 +10,8 @@ M.setup = function()
 
   ---@diagnostic disable-next-line: duplicate-set-field
   statusline.section_location = function()
-    local ok, spelunk = pcall(require, 'spelunk')
     local bookmark_icon = '󰞁 '
-    if not ok then
-      return bookmark_icon
-    end
-    local markmgr = require 'spelunk.markmgr'
-    local current_stack_idx = spelunk.get_current_stack_index()
-    local num_total_marks = markmgr.len_marks(current_stack_idx)
-    local stack_name = markmgr.get_stack_name(current_stack_idx)
-    local num_current_file_marks = spelunk.statusline():gsub('%s+', '')
-
-    return bookmark_icon .. stack_name .. '[' .. num_current_file_marks .. '/' .. num_total_marks .. ']'
+    return bookmark_icon
   end
 
   -- Function to get the number of open buffers using the :ls command
