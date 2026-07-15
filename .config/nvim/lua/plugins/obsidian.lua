@@ -66,7 +66,7 @@ return {
         -- Optional, if you want to change the date format of the default alias of daily notes.
         -- alias_format = '%B %-d, %Y',
         -- Optional, if you want to automatically insert a template from your template directory like 'daily.md'
-        template = 'Daily template.md',
+        template = 'daily_template.md',
       },
       frontmatter = {
         enable = false,
@@ -94,11 +94,13 @@ return {
 
       new_notes_location = 'current_dir',
       -- Either 'wiki' or 'markdown'.
-      preferred_link_style = 'wiki',
+      link = {
+        style = 'wiki',
+      },
 
       -- Optional, for templates (see below).
       templates = {
-        folder = 'Templates alt',
+        folder = 'templates_alt',
         date_format = '%Y-%m-%d-%A',
         time_format = '%H:%M',
         -- A map for custom variables, the key should be the variable and the value a function
@@ -108,6 +110,13 @@ return {
           end,
           tomorrow = function()
             return os.date('%Y-%m-%d-%A', os.time() + 86400)
+          end,
+          weekday = function()
+            return os.date '%A, %B %d, %Y'
+          end,
+          week_num = function(_, suffix)
+            -- suffix lets you do {{week_num:short}} etc if you want to extend later
+            return os.date '%V'
           end,
         },
       },
