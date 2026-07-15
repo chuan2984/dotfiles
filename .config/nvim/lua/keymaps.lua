@@ -128,11 +128,4 @@ vim.keymap.set(
 -- or just use <C-\><C-n> to exit terminal mode
 map('t', '<Esc><Esc>', '<C-\\><C-n>', 'Exit terminal mode')
 
--- Custom Neovim Tips
-require('neovim_tips').setup {
-  daily_tip = true,
-}
-map('n', '<leader>vt', '<cmd>NeovimTips<cr>', 'Neovim Tips')
-map('n', '<leader>vT', '<cmd>NeovimTipsRandom<cr>', 'Random Neovim Tip')
-
 -- vim: ts=2 sts=2 sw=2 et
