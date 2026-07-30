@@ -1,5 +1,7 @@
 gui:
   scrollHeight: 6 
+os:
+  editPreset: nvim-remote
 customCommands:
   - key: '<c-p>'
     description: "Pull from a specific remote repository"
@@ -55,6 +57,16 @@ customCommands:
     context: "remotes"
     loadingText: "Pruning..."
     description: "prune deleted remote branches"
+  - key: "<alt+d>"
+    command: "nvim --server \"$NVIM\" --remote-send '<cmd>DiffviewOpen -- {{.SelectedFile.Name | quote}}<cr>'"
+    context: "files"
+    description: "Open diffview diff for selected file"
+    output: log
+  - key: "<alt+d>"
+    command: "nvim --server \"$NVIM\" --remote-send '<cmd>DiffviewFileHistory {{.SelectedCommitFile.Name | quote}}<cr>'"
+    context: "commitFiles"
+    description: "Open diffview file history for selected file"
+    output: log
   - key: "<c-v>"
     context: "global"
     description: "Create new conventional commit"

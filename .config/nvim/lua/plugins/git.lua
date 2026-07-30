@@ -36,7 +36,7 @@ return {
     'nvim-lua/plenary.nvim',
     'dlyongemallo/diffview-plus.nvim',
   },
-  cmd = { 'Neogit', 'DiffviewOpen', 'DiffviewFileHistory' },
+  cmd = { 'Neogit', 'Diffview', 'DiffviewFileHistory', 'DiffviewOpen', 'DiffviewDiffFiles' },
   config = function()
     require('neogit').setup {
       filewatcher = {

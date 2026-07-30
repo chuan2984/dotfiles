@@ -26,6 +26,7 @@
 	cm = commit -m
 	st = status
 	last = switch -
+	diffview = "!nvim -c DiffviewOpen"
 [color]
 	ui = auto
 	branch = auto
@@ -54,6 +55,10 @@
 	auto = false
 	repo = /Users/chuanhe/github/work/fieldwire_api
 [diff]
-	tool = nvimdiff
+	tool = diffview
+[difftool "diffview"]
+	cmd = nvim --server \"$NVIM\" --remote-send '<cmd>DiffviewOpen<cr>'
+[difftool]
+	prompt = false
 [merge]
 	conflictStyle=diff3

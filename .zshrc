@@ -25,6 +25,11 @@ function vim-htag() {
   vim -u NONE -c "helptags $1" -c q
 }
 
+# this is used as a replacment for nvim -d
+dvdiff() {
+  nvim -c "DiffviewDiffFiles ${1// /\\ } ${2// /\\ }"
+}
+
 # Aliases
 alias tsm='bin/ticketsmith'
 if command -v eza &>/dev/null; then
