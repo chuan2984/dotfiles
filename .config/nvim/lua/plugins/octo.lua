@@ -8,7 +8,7 @@ return {
   },
   config = function()
     require('octo').setup {
-      use_local_fs = true,
+      use_local_fs = false,
       default_remote = { 'origin', 'mine' },
       enable_builtin = true,
       ssh_aliases = {
