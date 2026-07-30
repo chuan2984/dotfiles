@@ -5,7 +5,7 @@
   "conform.nvim": { "branch": "master", "commit": "619363c30309d29ffa631e67c8183f2a72caa373" },
   "deadcolumn.nvim": { "branch": "master", "commit": "92c86f10bfba2717ca2280e2e759b047135d5288" },
   "demicolon.nvim": { "branch": "main", "commit": "153444f17494e2ff6ab7d226e6173c1841b1130a" },
-  "diffview.nvim": { "branch": "main", "commit": "4516612fe98ff56ae0415a259ff6361a89419b0a" },
+  "diffview-plus.nvim": { "branch": "main", "commit": "62dc5adf4e77489a2a6d3bf36ef6e4ac5738b634" },
   "ecolog.nvim": { "branch": "main", "commit": "558ddee4d7151af6a37cd40c517243b63ba493ce" },
   "fidget.nvim": { "branch": "main", "commit": "6f793b2bcd2d35e201c09520f698bb763220908a" },
   "flash.nvim": { "branch": "main", "commit": "b6346946d10d07998efee029fb0f7a593806d0cd" },

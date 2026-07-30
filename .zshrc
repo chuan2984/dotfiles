@@ -90,14 +90,14 @@ alias rdm='rake database:migrate'
 alias gpp='git switch develop && git pull origin develop && git push mine develop --no-verify && rake database:migrate && git restore db/structure.sql && git switch -'
 
 #Suffix Aliases
-alias -s {yaml,yml,lua,vim,csharp,js,rb,json,c,cs,py,md,txt,kt,ex}=nvim
-
+alias -s {yaml,yml,lua,vim,csharp,js,rb,json,c,cs,py,md,txt,kt,ex,rs}=nvim
 
 # Zsh History
-export HISTFILESIZE=1000
-export HISTSIZE=1000
+export HISTSIZE=50000
+export SAVEHIST=50000
 export HISTFILE=~/.zsh_history
 setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
 # following should be turned off, if sharing history via setopt SHARE_HISTORY
 setopt INC_APPEND_HISTORY
 export ERL_AFLAGS="-kernel shell_history enabled"
@@ -114,6 +114,9 @@ alias nv=nvim
 # Set Ruby env path
 export PATH="$HOME/.rbenv/bin:$PATH"
 eval "$(rbenv init - zsh)"
+
+# Set Rust env path
+export PATH="$HOME/.cargo/bin:$PATH"
 
 # Set up Node env
 export PATH="$HOME/.nodenv/bin:$PATH"

@@ -34,7 +34,7 @@ return {
   },
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'sindrets/diffview.nvim',
+    'dlyongemallo/diffview-plus.nvim',
   },
   cmd = { 'Neogit', 'DiffviewOpen', 'DiffviewFileHistory' },
   config = function()
@@ -58,7 +58,7 @@ return {
     vim.api.nvim_create_autocmd('FileType', {
       pattern = { 'NeogitStatus', 'NeogitCommitView', 'NeogitPopup' },
       callback = function()
-        vim.api.nvim_win_set_option(0, 'winfixbuf', true)
+        vim.api.nvim_win_set_option_value('winfixbuf', true, { win = 0 })
       end,
     })
   end,
