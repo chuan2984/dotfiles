@@ -37,7 +37,7 @@ config.text_background_opacity = 0.5
 config.set_environment_variables = {
   TERMINFO_DIRS = os.getenv("HOME") .. "/.terminfo",
 }
-config.term = "xterm-kitty"
+config.term = "wezterm"
 
 -- Dim inactive panes
 config.inactive_pane_hsb = {
