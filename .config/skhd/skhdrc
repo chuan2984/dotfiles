@@ -48,9 +48,9 @@ shift + alt - 9 : yabai -m window --space 9; yabai -m space --focus 9
 shift + alt - d : $HOME/.config/yabai/scripts/stack_window.sh arc
 shift + alt - t : $HOME/.config/yabai/scripts/stack_window.sh wezterm
 shift + alt - s : $HOME/.config/yabai/scripts/stack_window.sh slack
-shift + alt - o : $HOME/.config/yabai/scripts/stack_window.sh obsidian
-shift + alt - z : $HOME/.config/yabai/scripts/stack_window.sh "zoom meeting"
-shift + alt - c : $HOME/.config/yabai/scripts/stack_window.sh chatgpt
+# shift + alt - o : $HOME/.config/yabai/scripts/stack_window.sh obsidian
+# shift + alt - z : $HOME/.config/yabai/scripts/stack_window.sh "zoom meeting"
+shift + alt - c : $HOME/.config/yabai/scripts/stack_window.sh chrome
 
 # create desktop, move window and follow focus - uses jq for parsing json (brew install jq)
 shift + alt + ctrl - n : yabai -m space --create && \
@@ -59,7 +59,7 @@ shift + alt + ctrl - n : yabai -m space --create && \
                    yabai -m space --focus "${index}"
 
 # fast focus desktop
-alt - 0 : yabai -m space --focus recent
+shift + alt - z : yabai -m space --focus recent
 
 # send window to monitor and follow focus, uncomment if using multi-monitor setup
 # shift + alt - n : yabai -m window --display next; yabai -m display --focus next
