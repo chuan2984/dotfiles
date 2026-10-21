@@ -29,6 +29,7 @@ return {
         per_filetype = {
           sql = { 'dadbod' },
           lua = { inherit_defaults = true, 'lazydev' },
+          opencode_ask = { 'lsp', 'buffer' },
         },
         providers = {
           dadbod = { name = 'dadbod', module = 'vim_dadbod_completion.blink' },

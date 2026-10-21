@@ -121,7 +121,10 @@ return {
   config = function()
     local smartsplits = require 'smart-splits'
     smartsplits.setup {
-      default_amount = 10,
+      resize = {
+        amount = 10,
+        ignored_events = { 'BufEnter', 'WinEnter' },
+      },
     }
 
     vim.api.nvim_create_augroup('AutoResizeSplits', { clear = true })

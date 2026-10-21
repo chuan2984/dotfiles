@@ -76,7 +76,7 @@ return {
       },
     },
     config = function()
-      local opencode_cmd = 'opencode --port'
+      local opencode_cmd = 'opencode'
       ---@type snacks.terminal.Opts
       local snacks_terminal_opts = {
         win = {
